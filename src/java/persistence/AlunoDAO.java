@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import padraomemento.Aluno;
 
 public class AlunoDAO {
@@ -20,7 +22,7 @@ public class AlunoDAO {
         try{
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
-            st.execute("insert into aluno(nome) values ('"+ aluno.getNome() +"')");
+            st.execute("insert into aluno( nome) values ('"+ aluno.getNome()+ "')");
         } catch(SQLException e){
             throw e;
         } finally{
@@ -28,26 +30,29 @@ public class AlunoDAO {
         }
     }
     
-   /* public void load(Aluno aluno) throws SQLException, ClassNotFoundException{
+      public List<Aluno> listAll()  throws SQLException, ClassNotFoundException {
         Connection conn = null;
         Statement st = null;
-        
+        List<Aluno> alunos = new ArrayList<>();
         try{
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
-            ResultSet resultado = st.executeQuery("select email from aluno where nome='"+aluno.getNome()+"'");
+            ResultSet resultado = st.executeQuery("select * from aluno ");
             while (resultado.next())
             {
-                String email = resultado.getString("email");
-                aluno.setEmail(email);
+                Aluno aluno = new Aluno(resultado.getString("nome"));
+                alunos.add(aluno);
             }
         } catch(SQLException e){
             throw e;
         } finally{
             closeResources(conn, st);
         }
-    
+        return alunos;
     }
+    
+    
+    /*
     
     public void change (Aluno aluno) throws SQLException, ClassNotFoundException{
         Connection conn = null;

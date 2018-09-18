@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
@@ -7,10 +8,11 @@
     </head>
     <body>
         <h1> Ler contatos </h1>
-        <form action="FrontController?action=LerContatoPost" method="post">
-            Entre com o nome a ser encontrado
-            <input type="text" name="textNome"/><br/>
-            <input type="submit"/>
-        </form>
-    </body>
+        <c:forEach var="alunos"  items="${alunos}">
+        <tr>
+            <td>${alunos.nome}</td>
+        </tr>
+    
+    </c:forEach>
+</body>
 </html>
