@@ -44,6 +44,7 @@ public class AlunoDAO {
             ResultSet resultado = st.executeQuery("select * from aluno");
             while (resultado.next()) {
                 Aluno aluno = new Aluno(resultado.getString("nome"));
+                aluno.setCodigoAluno(resultado.getInt("codigoAluno"));
                 String nomeEstado = resultado.getString("estado");
                 if (nomeEstado.equals("Matriculado")) {
                     AlunoEstado estado = new AlunoEstadoMatriculado();
@@ -87,6 +88,40 @@ public class AlunoDAO {
         return idCriado;
     }
 
+    public Aluno list(Integer codigoAluno) throws SQLException, ClassNotFoundException 
+    {
+        Connection conn = null;
+        Statement st = null;
+        Aluno aluno = null;
+        try {
+            conn = DatabaseLocator.getInstance().getConnection();
+            st = conn.createStatement();
+            ResultSet resultado = st.executeQuery("select * from aluno where codigoAluno = "+codigoAluno+"");
+            while (resultado.next()) {
+                aluno = new Aluno(resultado.getString("nome"));
+                aluno.setCodigoAluno(resultado.getInt("codigoAluno"));
+                String nomeEstado = resultado.getString("estado");
+                if (nomeEstado.equals("Matriculado")) {
+                    AlunoEstado estado = new AlunoEstadoMatriculado();
+                    aluno.setEstado(estado);
+                } else if (nomeEstado.equals("Formado")) {
+                    AlunoEstado estado = new AlunoEstadoTrancado();
+                    aluno.setEstado(estado);
+                } else if (nomeEstado.equals("Trancado")) {
+                    AlunoEstado estado = new AlunoEstadoTrancado();
+                    aluno.setEstado(estado);
+                } else {
+
+                }
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closeResources(conn, st);
+        }
+        return aluno;
+    }
+    
     /*
     
     public void change (Aluno aluno) throws SQLException, ClassNotFoundException{

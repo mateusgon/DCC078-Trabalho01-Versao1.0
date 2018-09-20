@@ -12,6 +12,6 @@ fkcodigoAluno integer not null,
 foreign key (fkcodigoAluno) references aluno (codigoAluno)
 );
 
-insert into alunoMemento(estado, fkcodigoAluno) values ('Matriculado', 1);
+
 
 

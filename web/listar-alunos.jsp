@@ -12,22 +12,26 @@
 
         <table style="width: 76px;">
             <tr>
-                <td >&nbsp;ALUNO</td>
-                <td >ESTADO</td>
-                <td >MATRICULAR</td>
-                <td >FORMAR</td>
-                <td >TRANCAR</td>
+                <td>ALUNO</td>
+                <td>ESTADO</td>
+                <td>MATRICULAR</td>
+                <td>FORMAR</td>
+                <td>TRANCAR</td>
+                <td>RESTAURAR</td>
             </tr>
 
             <tbody>
                 <c:forEach var="alunos"  items="${alunos}">
 
                     <tr>
+         
                         <td>${alunos.nome}</td>
                         <td>${alunos.estado.nome}</td>
-                        <td>Matricular</td>
-                        <td>Formar</td>
-                        <td>Trancar</td>
+                        <td><a href="FrontController?action=MatricularAluno&id=${alunos.codigoAluno}">Matricular</a></td>
+                        <td><a href="FrontController?action=FormarAluno&id=${alunos.codigoAluno}">Formar</a></td>
+                        <td><a href="FrontController?action=TrancarAluno&id=${alunos.codigoAluno}">Trancar</a></td>
+                        <td><a href="FrontController?action=RestaurarAluno&id=${alunos.codigoAluno}">Restaurar</a></td>
+
                     </tr>
 
                 </c:forEach>
