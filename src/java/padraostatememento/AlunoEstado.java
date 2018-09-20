@@ -1,4 +1,6 @@
-package padraomemento;
+package padraostatememento;
+
+import model.Aluno;
 
 public interface AlunoEstado {
     public void matricular(Aluno a);

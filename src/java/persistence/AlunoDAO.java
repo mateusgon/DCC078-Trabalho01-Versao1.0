@@ -6,52 +6,87 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import padraomemento.Aluno;
+import model.Aluno;
+import padraostatememento.AlunoEstado;
+import padraostatememento.AlunoEstadoMatriculado;
+import padraostatememento.AlunoEstadoTrancado;
 
 public class AlunoDAO {
 
     private static AlunoDAO instance = new AlunoDAO();
+
     public static AlunoDAO getInstance() {
         return instance;
     }
-    
-    public void save(Aluno aluno) throws SQLException, ClassNotFoundException{
+
+    public void save(Aluno aluno) throws SQLException, ClassNotFoundException {
         Connection conn = null;
         Statement st = null;
-        
-        try{
+        try {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
-            st.execute("insert into aluno( nome) values ('"+ aluno.getNome()+ "')");
-        } catch(SQLException e){
+            st.execute("insert into aluno(nome, estado) values ('" + aluno.getNome() + "', '" + aluno.getNomeEstado() + "')");
+            aluno.setCodigoAluno(listCodigoUsuario());
+        } catch (SQLException e) {
             throw e;
-        } finally{
+        } finally {
             closeResources(conn, st);
         }
     }
-    
-      public List<Aluno> listAll()  throws SQLException, ClassNotFoundException {
+
+    public List<Aluno> listAll() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         Statement st = null;
         List<Aluno> alunos = new ArrayList<>();
-        try{
+        try {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
-            ResultSet resultado = st.executeQuery("select * from aluno ");
-            while (resultado.next())
-            {
+            ResultSet resultado = st.executeQuery("select * from aluno");
+            while (resultado.next()) {
                 Aluno aluno = new Aluno(resultado.getString("nome"));
+                String nomeEstado = resultado.getString("estado");
+                if (nomeEstado.equals("Matriculado")) {
+                    AlunoEstado estado = new AlunoEstadoMatriculado();
+                    aluno.setEstado(estado);
+                } else if (nomeEstado.equals("Formado")) {
+                    AlunoEstado estado = new AlunoEstadoTrancado();
+                    aluno.setEstado(estado);
+                } else if (nomeEstado.equals("Trancado")) {
+                    AlunoEstado estado = new AlunoEstadoTrancado();
+                    aluno.setEstado(estado);
+                } else {
+
+                }
                 alunos.add(aluno);
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             throw e;
-        } finally{
+        } finally {
             closeResources(conn, st);
         }
         return alunos;
     }
-    
-    
+
+    public Integer listCodigoUsuario() throws SQLException, ClassNotFoundException {
+        Integer idCriado = -1;
+        Connection conn = null;
+        Statement st = null;
+        try {
+
+            conn = DatabaseLocator.getInstance().getConnection();
+            st = conn.createStatement();
+            ResultSet resultado = st.executeQuery("select codigoAluno from aluno");
+            while (resultado.next()) {
+                idCriado = resultado.getInt("codigoAluno");
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closeResources(conn, st);
+        }
+        return idCriado;
+    }
+
     /*
     
     public void change (Aluno aluno) throws SQLException, ClassNotFoundException{
@@ -84,15 +119,16 @@ public class AlunoDAO {
         }
     
     }*/
-    
-    public void closeResources (Connection conn, Statement st)
-    {
-        try{
-            if(st!=null) st.close();
-            if(conn!=null) conn.close();
-        }
-        catch (SQLException e){
-        
+    public void closeResources(Connection conn, Statement st) {
+        try {
+            if (st != null) {
+                st.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (SQLException e) {
+
         }
     }
 }

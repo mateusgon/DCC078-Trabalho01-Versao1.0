@@ -1,7 +1,12 @@
-package padraomemento;
+package model;
+
+import padraostatememento.AlunoEstado;
+import padraostatememento.AlunoEstadoMatriculado;
+import padraostatememento.AlunoMemento;
 
 public class Aluno 
 {
+    private Integer codigoAluno;
     private String nome;
     private AlunoEstado estado;
 
@@ -13,7 +18,7 @@ public class Aluno
         this.nome = nome;
         this.estado = new AlunoEstadoMatriculado();
     }
-    
+
     public void matricular()
     {
         estado.matricular(this);
@@ -43,12 +48,12 @@ public class Aluno
     
     public AlunoMemento saveToMemento()
     {
-        return new AlunoMemento(estado);
+        return new AlunoMemento(estado, codigoAluno);
     }
     
     public void restoreFromMemento(AlunoMemento memento)
     {
-        estado = memento.getEstadoSalvo();
+        estado = memento.getEstado();
     }
 
     public String getNome() {
@@ -57,6 +62,14 @@ public class Aluno
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Integer getCodigoAluno() {
+        return codigoAluno;
+    }
+
+    public void setCodigoAluno(Integer codigoAluno) {
+        this.codigoAluno = codigoAluno;
     }
         
 }

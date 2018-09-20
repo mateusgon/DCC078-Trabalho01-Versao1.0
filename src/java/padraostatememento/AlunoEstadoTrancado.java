@@ -1,7 +1,11 @@
-package padraomemento;
+package padraostatememento;
+
+import model.Aluno;
 
 public class AlunoEstadoTrancado implements AlunoEstado{
 
+    String nome = "Trancado";
+    
     public AlunoEstadoTrancado() {
     }
     
@@ -22,6 +26,11 @@ public class AlunoEstadoTrancado implements AlunoEstado{
     
     @Override
     public String getNomeEstado() {
-        return "Trancado";
+        return nome;
     }
+
+    public String getNome() {
+        return nome;
+    }
+    
 }

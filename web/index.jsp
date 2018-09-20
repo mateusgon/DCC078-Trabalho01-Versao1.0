@@ -9,8 +9,7 @@
         <nav id="menu">
             <ul>
                 <li><a href="FrontController?action=AdicionarAluno">Criar aluno</a></li>
-                <li><a href="FrontController?action=LerContato">Listar alunos</a></li>
-                <li><a href="FrontController?action=ApagarContato">Excluir contato</a></li>
+                <li><a href="FrontController?action=ListarAlunos">Listar alunos</a></li>
             </ul>
         </nav>
     </body>

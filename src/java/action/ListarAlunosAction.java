@@ -1,23 +1,20 @@
 package action;
 
 import controller.Action;
-import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Contato;
+import model.Aluno;
 import persistence.AlunoDAO;
-import persistence.EmpresaDAO;
 
-public class GravarContatoAction implements Action{
-
-    public GravarContatoAction() {
-    }
+public class ListarAlunosAction implements Action{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        request.setAttribute("empresas", EmpresaDAO.getInstance().getAllEmpresas());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("GravarContato.jsp");
+        List <Aluno> alunos = AlunoDAO.getInstance().listAll();
+        request.setAttribute("alunos", AlunoDAO.getInstance().listAll());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos.jsp");
         dispatcher.forward(request, response);
     }
     

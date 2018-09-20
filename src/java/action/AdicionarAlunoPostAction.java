@@ -5,8 +5,10 @@ import controller.Action;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import padraomemento.Aluno;
+import model.Aluno;
+import padraostatememento.AlunoMemento;
 import persistence.AlunoDAO;
+import persistence.AlunoMementoDAO;
 
 
 public class AdicionarAlunoPostAction implements Action{
@@ -15,20 +17,21 @@ public class AdicionarAlunoPostAction implements Action{
         String nome = request.getParameter("textNome");       
         if(nome.equals("") ) 
         {
-            response.sendRedirect("gravar-aluno.jsp");
+            response.sendRedirect("adicionar-aluno.jsp");
         } 
         else 
         {
             Aluno aluno = new Aluno(nome);
             try
             {
-                AlunoDAO.getInstance().save(aluno);
-                response.sendRedirect("Sucesso.jsp");
+                AlunoDAO.getInstance().save(aluno);            
+                AlunoMemento alunoMemento = aluno.saveToMemento();
+                AlunoMementoDAO.getInstance().save(alunoMemento);
+                response.sendRedirect("sucesso.jsp");
             }
             catch (SQLException ex)
             {
-                response.sendRedirect("Erro.jsp");
-                ex.printStackTrace();
+                response.sendRedirect("erro.jsp");
             }
         }
     }
