@@ -58,6 +58,8 @@ public class AlunoDAO {
                 } else {
 
                 }
+                aluno.saveToMemento();
+                AlunoLocator.getInstance().add(aluno);
                 alunos.add(aluno);
             }
         } catch (SQLException e) {

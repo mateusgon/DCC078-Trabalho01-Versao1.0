@@ -6,6 +6,25 @@ public class AlunoMemento {
     private Date data;
     private Integer codigoAluno;
     private AlunoEstado estado;
+    private AlunoMemento alunoAnt=null;
+    private AlunoMemento alunoProx=null;
+
+    public AlunoMemento getAlunoAnt() {
+        return alunoAnt;
+    }
+
+    public void setAlunoAnt(AlunoMemento alunoAnt) {
+        this.alunoAnt = alunoAnt;
+    }
+
+    public AlunoMemento getAlunoProx() {
+        return alunoProx;
+    }
+
+    public void setAlunoProx(AlunoMemento alunoProx) {
+        this.alunoProx = alunoProx;
+    }
+
 
     public AlunoMemento(AlunoEstado estado, Integer codigoAluno) {
         

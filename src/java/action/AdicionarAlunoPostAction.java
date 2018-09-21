@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Aluno;
 import padraostatememento.AlunoMemento;
 import persistence.AlunoDAO;
+import persistence.AlunoLocator;
 import persistence.AlunoMementoDAO;
 
 
@@ -19,14 +20,17 @@ public class AdicionarAlunoPostAction implements Action{
         {
             response.sendRedirect("adicionar-aluno.jsp");
         } 
-        else 
+        else
         {
             Aluno aluno = new Aluno(nome);
             try
             {
                 AlunoDAO.getInstance().save(aluno);            
-                AlunoMemento alunoMemento = aluno.saveToMemento();
-                AlunoMementoDAO.getInstance().save(alunoMemento);
+                AlunoLocator.getInstance().add(aluno);
+                aluno.saveToMemento();
+                
+                
+                //AlunoMementoDAO.getInstance().save(alunoMemento);
                 response.sendRedirect("sucesso.jsp");
             }
             catch (SQLException ex)

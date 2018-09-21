@@ -10,18 +10,20 @@ public class AlunoEstadoMatriculado implements AlunoEstado{
     }
 
     @Override
-    public void matricular(Aluno a) {
-        
+    public Boolean matricular(Aluno a) {
+        return false;
     }
 
     @Override
-    public void formar(Aluno a) {
+    public Boolean formar(Aluno a) {
         a.setEstado(new AlunoEstadoFormado());
+        return true;
     }
 
     @Override
-    public void trancar(Aluno a) {
+    public Boolean trancar(Aluno a) {
         a.setEstado(new AlunoEstadoTrancado());
+        return true;
     }
     
     @Override

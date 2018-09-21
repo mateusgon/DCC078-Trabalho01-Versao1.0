@@ -13,5 +13,3 @@ foreign key (fkcodigoAluno) references aluno (codigoAluno)
 );
 
 
-
-

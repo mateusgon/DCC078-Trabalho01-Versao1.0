@@ -10,18 +10,18 @@ public class AlunoEstadoFormado implements AlunoEstado{
     }
 
     @Override
-    public void matricular(Aluno a) {
-        
+    public Boolean matricular(Aluno a) {
+        return false;
     }
 
     @Override
-    public void formar(Aluno a) {
-        
+    public Boolean formar(Aluno a) {
+        return false;
     }
 
     @Override
-    public void trancar(Aluno a) {
-        
+    public Boolean trancar(Aluno a) {
+        return false;
     }
 
     @Override
