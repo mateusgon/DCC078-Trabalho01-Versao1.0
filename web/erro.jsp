@@ -7,5 +7,9 @@
     </head>
     <body>
         <h1>Erro</h1>
+           <ul>
+                <li><a href="FrontController?action=">Index</a></li>
+            
+            </ul>
     </body>
 </html>

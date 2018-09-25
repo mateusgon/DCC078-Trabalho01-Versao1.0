@@ -7,13 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Aluno;
 import persistence.AlunoDAO;
+import persistence.AlunoLocator;
 
 public class ListarAlunosAction implements Action{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        List <Aluno> alunos = AlunoDAO.getInstance().listAll();
-        request.setAttribute("alunos", AlunoDAO.getInstance().listAll());
+        List <Aluno> alunos =  AlunoLocator.getInstance();
+        request.setAttribute("alunos", alunos);
         RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos.jsp");
         dispatcher.forward(request, response);
     }

@@ -36,8 +36,15 @@ public class Aluno {
         this.estado = new AlunoEstadoMatriculado();
     }
 
-    public Aluno(String nome) {
+    public Aluno(String nome, Integer codigoAluno) {
         this.nome = nome;
+        this.codigoAluno = codigoAluno;
+        this.estado = new AlunoEstadoMatriculado();
+    }
+    
+       public Aluno(String nome){
+        this.nome = nome;
+        //this.codigoAluno = codigoAluno;
         this.estado = new AlunoEstadoMatriculado();
     }
 

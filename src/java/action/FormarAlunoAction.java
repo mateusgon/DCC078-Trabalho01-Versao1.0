@@ -28,12 +28,13 @@ public class FormarAlunoAction implements Action {
         Boolean possivel = al.getEstado().formar(al);
         if (possivel) {
             al.saveToMemento();
+            response.sendRedirect("sucesso.jsp");
         }
         else{
-            
+            response.sendRedirect("erro.jsp");
         }
 
-        System.out.println(al.getEstado().getNomeEstado());
+     
     }
 
 }

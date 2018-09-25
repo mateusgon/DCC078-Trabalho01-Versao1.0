@@ -13,5 +13,12 @@
     </head>
     <body>
         <h1>Sucesso</h1>
+        
+         <nav id="menu">
+            <ul>
+                <li><a href="FrontController?action=">Index</a></li>
+            
+            </ul>
+        </nav>
     </body>
 </html>

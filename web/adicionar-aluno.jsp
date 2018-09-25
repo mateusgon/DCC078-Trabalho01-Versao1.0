@@ -11,6 +11,9 @@
             Entre com nome do aluno
             <input type="text" name="textNome"/>
             
+            Entre com código do aluno
+            <input type="text" name="codAluno"/>
+            
             <input type="submit"/>
         </form>  
     </body>
