@@ -25,7 +25,7 @@ public class MatricularAlunoAction implements Action{
             }
         }
      //   System.out.println(al.getEstado().getNomeEstado());
-        System.out.println(al.getNomeEstado());
+      //  System.out.println(al.getNomeEstado());
         Boolean possivel = al.getEstado().matricular(al);
         if (possivel) {
             al.saveToMemento();

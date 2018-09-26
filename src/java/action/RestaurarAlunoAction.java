@@ -27,15 +27,25 @@ public class RestaurarAlunoAction implements Action{
         }
         List<AlunoMemento> alunos = new ArrayList<>();
         
-        /*PRECISA REVER ISSO*/
-        AlunoMemento atual = al.getAtual();
-        while ( atual.getAlunoAnt()!= null) {
+       /*AlunoMemento head   = head.getAtual();
+        while (atual.getAlunoAnt() != null) {
              alunos.add(atual);
-             atual = atual.getAlunoAnt();
+             atual = atual.getAlunoProximo();
+        }*/
+            
+         
+        AlunoMemento aux   = al.getHead();
+        
+        
+        while (aux != null) {
+             alunos.add(aux);
+             aux= aux.getAlunoProx();
         }
+            
             
         
         request.setAttribute("alunos",  alunos);
+        request.setAttribute("id",  id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("listar-historico.jsp");
         dispatcher.forward(request, response);
         

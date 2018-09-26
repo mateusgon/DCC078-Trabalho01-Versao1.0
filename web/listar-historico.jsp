@@ -22,8 +22,8 @@
 
                     <tr>
          
-                    <td>${alunos.estado.nome}</td>
-                     
+                  
+                    <td><a href="FrontController?action=RestaurarPost&id=${id}&id2=${alunos.codMemento}">${alunos.estado.nome}</a></td>
 
                     </tr>
 

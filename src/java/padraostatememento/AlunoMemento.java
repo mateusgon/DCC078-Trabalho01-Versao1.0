@@ -5,14 +5,26 @@ import java.util.Date;
 public class AlunoMemento {
     private Date data;
     private Integer codigoAluno;
+    private Integer codMemento;
     private AlunoEstado estado;
     private AlunoMemento alunoAnt=null;
     private AlunoMemento alunoProx=null;
 
+    
+    
     public AlunoMemento getAlunoAnt() {
         return alunoAnt;
     }
 
+    public Integer getCodMemento() {
+        return codMemento;
+    }
+
+    public void setCodMemento(Integer codMemento) {
+        this.codMemento = codMemento;
+    }
+
+        
     public void setAlunoAnt(AlunoMemento alunoAnt) {
         this.alunoAnt = alunoAnt;
     }
@@ -26,10 +38,11 @@ public class AlunoMemento {
     }
 
 
-    public AlunoMemento(AlunoEstado estado, Integer codigoAluno) {
+    public AlunoMemento(AlunoEstado estado, Integer codigoAluno,Integer codMemento) {
         
         this.estado = estado;
         this.codigoAluno = codigoAluno;
+        this.codMemento = codMemento;
     } 
 
     public AlunoEstado getEstado() {

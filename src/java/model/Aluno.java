@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import padraostatememento.AlunoEstado;
@@ -12,6 +13,7 @@ public class Aluno {
     private Integer codigoAluno;
     private String nome;
     private AlunoEstado estado;
+    private Integer codMementoCount;
     //private List<AlunoMemento> alunoMemento=new ArrayList<> ();
     private AlunoMemento head = null;
     private AlunoMemento atual = null;
@@ -40,6 +42,7 @@ public class Aluno {
         this.nome = nome;
         this.codigoAluno = codigoAluno;
         this.estado = new AlunoEstadoMatriculado();
+        this.codMementoCount =0;
     }
     
        public Aluno(String nome){
@@ -73,21 +76,30 @@ public class Aluno {
     }
 
     public void saveToMemento() {
-        AlunoMemento a = new AlunoMemento(estado, codigoAluno);
+       AlunoMemento a = new AlunoMemento(estado, codigoAluno, codMementoCount);
+       codMementoCount++;
+       
+       if(atual==null || atual.getAlunoProx()==null){
+       AlunoMemento aux = head;
         if (head == null) {
             head = a;
         } else {
-            while (head.getAlunoProx() != null) {
-                head = head.getAlunoProx();
+            while (aux.getAlunoProx() != null) {
+                aux = aux.getAlunoProx();
             }
-            head.setAlunoProx(a);
-            a.setAlunoAnt(head);
+            aux.setAlunoProx(a);
+            a.setAlunoAnt(aux);
         }
         atual = a;
+    }else{
+           atual.setAlunoProx(a);
+
+       }
     }
 
     public void restoreFromMemento(AlunoMemento memento) {
         estado = memento.getEstado();
+        atual=memento;
     }
 
     public String getNome() {
