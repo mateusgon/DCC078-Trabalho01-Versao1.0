@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="DCC078-StateMemento" default="default" basedir=".">
-    <description>Builds, tests, and runs the project DCC078-StateMemento.</description>
+<project name="TrabalhoAAES_-_2018" default="default" basedir=".">
+    <description>Builds, tests, and runs the project TrabalhoAAES - 2018.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 

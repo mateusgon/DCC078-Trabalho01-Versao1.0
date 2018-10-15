@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@include file="jspf/cabecalho.jspf" %>
     <div class="container text-center">
-        <h1> Bem vindo ao sistema de pedidos ${authUser} </h1>
+        <h1> Bem vindo ao sistema de pedidos </h1>
     </div>
     
         <div class="container text-center">
@@ -10,9 +10,8 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
-                    <a href="curadores.html" >
-                    <h5 class="card-title">Faça um Pedido</h5>
-                        <i class="material-icons" style="font-size:100px;">grade</i>
+                       <a href="FrontController?action=CadastrarRestaurante">
+                    <h5 class="card-title">Cadastrar um restaurante</h5>
                     </a>
                 </div>
             </div>
@@ -20,9 +19,8 @@
     <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                <a href="trolls.html">
-                    <h5 class="card-title">Administrador</h5>
-                    <i class="material-icons"  style="font-size:100px;">adb</i> 
+                   <a href="FrontController?action=CadastrarSuperUsuario">
+                    <h5 class="card-title">Cadastrar super-usuários</h5>
                 </a>
                 </div>
            </div>
@@ -30,10 +28,9 @@
      <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                 <a href="FrontController?action=AcessoRestrito">
-                    <h5 class="card-title">Acesso Restrito</h5>
-                    <i class="material-icons"  style="font-size:100px;">folder</i> 
-                </a>
+                 <a href="FrontController?action=ExcluirRestaurante">
+                    <h5 class="card-title">Excluir restaurante</h5>
+                    </a>
                 </div>
            </div>
         </div>
