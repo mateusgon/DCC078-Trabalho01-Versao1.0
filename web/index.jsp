@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <a href="curadores.html" >
                     <h5 class="card-title">Faça um Pedido</h5>
-                        <i class="material-icons" style="font-size:100px;">grade</i>
+                        <i class="material-icons" style="font-size:100px;">local_dining</i>
                     </a>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="card-body">
                 <a href="trolls.html">
                     <h5 class="card-title">Administrador</h5>
-                    <i class="material-icons"  style="font-size:100px;">adb</i> 
+                    <i class="material-icons"  style="font-size:100px;">room_service</i> 
                 </a>
                 </div>
            </div>
@@ -32,7 +32,7 @@
                 <div class="card-body">
                  <a href="FrontController?action=AcessoRestrito">
                     <h5 class="card-title">Acesso Restrito</h5>
-                    <i class="material-icons"  style="font-size:100px;">folder</i> 
+                    <i class="material-icons"  style="font-size:100px;">build</i> 
                 </a>
                 </div>
            </div>

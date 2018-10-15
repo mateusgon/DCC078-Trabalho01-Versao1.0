@@ -18,7 +18,7 @@ public class DatabaseLocator {
     public Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
         Connection conn
-                = DriverManager.getConnection("jdbc:derby://localhost/designpattern2", "root", "1234");
+                = DriverManager.getConnection("jdbc:derby://localhost/designpattern", "root", "1234");
         return conn;
     }
 }

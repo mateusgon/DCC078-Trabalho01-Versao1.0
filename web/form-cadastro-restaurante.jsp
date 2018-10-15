@@ -4,7 +4,7 @@
         <h1> Cadastre um restaurante </h1>
     </div>
      <div class="container">
-            <form method="post">
+            <form action="FrontController?action=CadastrarRestaurantePost" method="post">
                 <div class="form-group">
                     <label for="usr">Nome:</label>
                     <input name="nome" class="form-control" required>     
