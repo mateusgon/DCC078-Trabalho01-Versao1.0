@@ -20,7 +20,7 @@
     <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                <a href="trolls.html">
+                <a href="FrontController?action=AdmLogin">
                     <h5 class="card-title">Administrador</h5>
                     <i class="material-icons"  style="font-size:100px;">room_service</i> 
                 </a>

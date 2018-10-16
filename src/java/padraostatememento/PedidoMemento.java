@@ -6,7 +6,7 @@ public class PedidoMemento {
     private Date data;
     private Integer codigoAluno;
     private Integer codMemento;
-    private AlunoEstado estado;
+    private PedidoEstado estado;
     private AlunoMemento alunoAnt=null;
     private AlunoMemento alunoProx=null;
 
