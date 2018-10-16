@@ -2,7 +2,7 @@ package padraostatememento;
 
 import java.util.Date;
 
-public class AlunoMemento {
+public class PedidoMemento {
     private Date data;
     private Integer codigoAluno;
     private Integer codMemento;

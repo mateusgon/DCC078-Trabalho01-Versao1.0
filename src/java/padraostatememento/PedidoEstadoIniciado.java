@@ -2,11 +2,11 @@ package padraostatememento;
 
 import model.Aluno;
 
-public class AlunoEstadoFormado implements AlunoEstado{
+public class PedidoEstadoIniciado implements AlunoEstado{
 
-    String nome = "Formado";
+    String nome = "Matriculado";
     
-    public AlunoEstadoFormado() {
+    public AlunoEstadoMatriculado() {
     }
 
     @Override
@@ -16,14 +16,16 @@ public class AlunoEstadoFormado implements AlunoEstado{
 
     @Override
     public Boolean formar(Aluno a) {
-        return false;
+        a.setEstado(new AlunoEstadoFormado());
+        return true;
     }
 
     @Override
     public Boolean trancar(Aluno a) {
-        return false;
+        a.setEstado(new AlunoEstadoTrancado());
+        return true;
     }
-
+    
     @Override
     public String getNomeEstado() {
         return nome;
