@@ -19,7 +19,7 @@
     <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                   <a href="FrontController?action=CadastrarSuperUsuario">
+                   <a href="FrontController?action=CadastrarSuperUsuarios">
                     <h5 class="card-title">Cadastrar super-usuários</h5>
                 </a>
                 </div>
@@ -28,7 +28,7 @@
      <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                 <a href="FrontController?action=ExcluirRestaurante">
+                <a href="FrontController?action=ExcluirRestaurantes">
                     <h5 class="card-title">Excluir restaurante</h5>
                     </a>
                 </div>

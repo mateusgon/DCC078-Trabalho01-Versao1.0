@@ -16,11 +16,21 @@
                         <th>Data Criação</th>
                     </tr>
                 </thead>
-                <tbody>
-                    
-                    <tr>
+               
+            <tbody>
+                <c:forEach var="restaurantes"  items="${restaurantes}">
 
-              </tbody>
+                    <tr>
+                        <td>${restaurantes.nome}</td>
+                        <td>${restaurantes.nomeFantasia}</td>
+                        <td>${restaurantes.sigla}</td>
+                        <td><a href="FrontController?action=ExcluirRestaurante&id=${restaurantes.restaurantecod}">Adicionar Usuario</a></td>
+                    </tr>
+
+                </c:forEach>
+
+
+            </tbody>
             </table>
             
          
