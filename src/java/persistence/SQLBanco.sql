@@ -7,6 +7,23 @@ endereco varchar(100),
 sigla varchar(100)
 );
 
+
+
+create table pessoa (
+pessoacod integer primary key generated always as identity,
+nome varchar(100),
+endereco varchar(100),
+telefone varchar(100),
+email varchar(100),
+restaurantecod integer not null,
+tipoPessoa varchar(1),
+foreign key (restaurantecod) references restaurante (restaurantecod)
+
+);
+
+
+
+
 /*create table aluno (
 codigoAluno integer primary key generated always as identity,
 nome varchar(100),

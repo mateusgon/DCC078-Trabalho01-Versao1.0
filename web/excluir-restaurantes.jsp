@@ -11,9 +11,9 @@
                 <thead>
                     <tr>
                         <th>Restaurante</th>
+                        <th>Nome Fantasia</th>
                         <th>Sigla</th>
-                        <th>Cadastrar Super-Usuario</th>
-                        <th>Data Criação</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
                
@@ -21,10 +21,11 @@
                 <c:forEach var="restaurantes"  items="${restaurantes}">
 
                     <tr>
+         
                         <td>${restaurantes.nome}</td>
                         <td>${restaurantes.nomeFantasia}</td>
                         <td>${restaurantes.sigla}</td>
-                        <td><a href="FrontController?action=CadastrarSuperUsuario&id=${restaurantes.restaurantecod}">Adicionar Usuario</a></td>
+                        <td><a href="FrontController?action=ExcluirRestaurante&id=${restaurantes.restaurantecod}">Excluir</a></td>
                     </tr>
 
                 </c:forEach>
