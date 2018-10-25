@@ -7,7 +7,7 @@
 <div class="container">
         
 
-            <table class="table table-bordered">
+            <table class="table table-bordered"  style="background-color: white">
                 <thead>
                     <tr>
                         <th>Restaurante</th>

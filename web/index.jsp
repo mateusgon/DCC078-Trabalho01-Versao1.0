@@ -10,7 +10,7 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
-                    <a href="curadores.html" >
+                    <a href="FrontController?action=AcessoPedido">
                     <h5 class="card-title">Faça um Pedido</h5>
                         <i class="material-icons" style="font-size:100px;">local_dining</i>
                     </a>
