@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class PedidoMemento {
     private Date data;
-    private Integer codigoAluno;
+    private Integer codigoPedido;
     private Integer codMemento;
     private PedidoEstado estado;
-    private AlunoMemento alunoAnt=null;
-    private AlunoMemento alunoProx=null;
+    private PedidoMemento alunoAnt=null;
+    private PedidoMemento alunoProx=null;
 
     
     
-    public AlunoMemento getAlunoAnt() {
+    public PedidoMemento getPedidoAnt() {
         return alunoAnt;
     }
 
@@ -25,35 +25,35 @@ public class PedidoMemento {
     }
 
         
-    public void setAlunoAnt(AlunoMemento alunoAnt) {
+    public void setPedidoAnt(PedidoMemento alunoAnt) {
         this.alunoAnt = alunoAnt;
     }
 
-    public AlunoMemento getAlunoProx() {
+    public PedidoMemento getPedidoProx() {
         return alunoProx;
     }
 
-    public void setAlunoProx(AlunoMemento alunoProx) {
+    public void setPedidoProx(PedidoMemento alunoProx) {
         this.alunoProx = alunoProx;
     }
 
 
-    public AlunoMemento(AlunoEstado estado, Integer codigoAluno,Integer codMemento) {
+    public PedidoMemento(PedidoEstado estado, Integer codigoPedido,Integer codMemento) {
         
         this.estado = estado;
-        this.codigoAluno = codigoAluno;
+        this.codigoPedido = codigoPedido;
         this.codMemento = codMemento;
     } 
 
-    public AlunoEstado getEstado() {
+    public PedidoEstado getEstado() {
         return estado;
     }
 
-    public void setEstado(AlunoEstado estado) {
+    public void setEstado(PedidoEstado estado) {
         this.estado = estado;
     }
     
-    public AlunoEstado getEstadoSalvo()
+    public PedidoEstado getEstadoSalvo()
     {
         return estado;
     }
@@ -71,12 +71,12 @@ public class PedidoMemento {
         this.data = data;
     }
 
-    public Integer getCodigoAluno() {
-        return codigoAluno;
+    public Integer getCodigoPedido() {
+        return codigoPedido;
     }
 
-    public void setCodigoAluno(Integer codigoAluno) {
-        this.codigoAluno = codigoAluno;
+    public void setCodigoPedido(Integer codigoPedido) {
+        this.codigoPedido = codigoPedido;
     }
     
     

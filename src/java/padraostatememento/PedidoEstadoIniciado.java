@@ -1,29 +1,32 @@
 package padraostatememento;
 
-import model.Aluno;
+import model.Pedido;
 
-public class PedidoEstadoIniciado implements AlunoEstado{
+public class PedidoEstadoIniciado  implements PedidoEstado{
 
-    String nome = "Matriculado";
+    String nome = "Iniciado";
     
-    public AlunoEstadoMatriculado() {
+ 
+    
+    public PedidoEstadoIniciado() {
     }
 
     @Override
-    public Boolean matricular(Aluno a) {
+    public Boolean iniciado(Pedido a) {
         return false;
     }
 
     @Override
-    public Boolean formar(Aluno a) {
-        a.setEstado(new AlunoEstadoFormado());
-        return true;
+    public Boolean entregue(Pedido a) {
+        return false;
     }
-
     @Override
-    public Boolean trancar(Aluno a) {
-        a.setEstado(new AlunoEstadoTrancado());
-        return true;
+    public Boolean prontoParaEnviar(Pedido a) {
+        return false;
+    }
+    @Override
+    public Boolean cancelado(Pedido a) {
+        return false;
     }
     
     @Override

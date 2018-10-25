@@ -1,13 +1,29 @@
 
 package model;
 
+import java.util.Observable;
+
 
 public class Pessoa {
     
     private int pessoaCod,restauranteCod;
     private String nome,endereco,email,telefone,tipoPessoa,senha;
-
+    private Observable pedido;
     
+    
+     public Pessoa(Observable pedido) {
+        this.pedido = pedido;
+        pedido.addObserver(this);
+}
+     
+      public Observable getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Observable pedido) {
+        this.pedido = pedido;
+    }
+
     
     public Pessoa(int pessoaCod, int restauranteCod, String nome, String endereco, String email, String telefone, String tipoPessoa) {
         this.pessoaCod = pessoaCod;
@@ -91,6 +107,14 @@ public class Pessoa {
         this.tipoPessoa = tipoPessoa;
     }
 
-    
-    
+    /*
+    public void update(Observable pedidoSubject, Object arg) {
+        if (pedidoSubject instanceof Pedido)
+        {
+          //  Pedido pedido = (Pedido) pedidoSubject;
+            //edicacaoNovaPedido = pedido.getEdicao();
+            System.out.println("Atenção " + getNome() + ", já chegou mais uma edição da Pedido. Este é a sua edição números: " + edicacaoNovaPedido);
+        }
+}
+    */
 }
