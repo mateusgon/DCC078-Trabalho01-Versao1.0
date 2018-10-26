@@ -1,10 +1,8 @@
 package model;
 
-import PadraoObserver.PadraoObserverPedido;
-
 import java.util.Observable;
 
-public class Pedido {
+public class Pedido extends Observable{
     
     String estado;
 

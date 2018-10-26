@@ -2,9 +2,10 @@
 package model;
 
 import java.util.Observable;
+import java.util.Observer;
 
 
-public class Pessoa {
+public class Pessoa implements Observer{
     
     private int pessoaCod,restauranteCod;
     private String nome,endereco,email,telefone,tipoPessoa,senha;
@@ -117,4 +118,9 @@ public class Pessoa {
         }
 }
     */
+
+    @Override
+    public void update(Observable o, Object arg) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

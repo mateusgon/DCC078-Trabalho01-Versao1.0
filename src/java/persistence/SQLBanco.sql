@@ -41,4 +41,4 @@ foreign key (fkcodigoAluno) references aluno (codigoAluno)
 
 */
 
-delete from restaurante where restaurantecod=1
+--delete from restaurante where restaurantecod=1

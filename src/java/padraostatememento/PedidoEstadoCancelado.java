@@ -1,5 +1,6 @@
 package padraostatememento;
 
+import javafx.beans.InvalidationListener;
 import model.Pedido;
 
 public class PedidoEstadoCancelado implements PedidoEstado{
@@ -34,6 +35,5 @@ public class PedidoEstadoCancelado implements PedidoEstado{
 
     public String getNome() {
         return nome;
-    }
-    
+    }    
 }
