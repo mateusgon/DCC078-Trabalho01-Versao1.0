@@ -1,23 +1,20 @@
-
 package model;
 
 import java.util.Observable;
 import java.util.Observer;
 
+public class Pessoa implements Observer {
 
-public class Pessoa implements Observer{
-    
-    private int pessoaCod,restauranteCod;
-    private String nome,endereco,email,telefone,tipoPessoa,senha;
+    private Integer pessoaCod, restauranteCod;
+    private String nome, endereco, email, telefone, tipoPessoa, senha;
     private Observable pedido;
-    
-    
-     public Pessoa(Observable pedido) {
+
+    public Pessoa(Observable pedido) {
         this.pedido = pedido;
         pedido.addObserver(this);
-}
-     
-      public Observable getPedido() {
+    }
+
+    public Observable getPedido() {
         return pedido;
     }
 
@@ -25,8 +22,7 @@ public class Pessoa implements Observer{
         this.pedido = pedido;
     }
 
-    
-    public Pessoa(int pessoaCod, int restauranteCod, String nome, String endereco, String email, String telefone, String tipoPessoa) {
+    public Pessoa(int pessoaCod, int restauranteCod, String nome, String endereco, String email, String telefone, String tipoPessoa, String senha) {
         this.pessoaCod = pessoaCod;
         this.restauranteCod = restauranteCod;
         this.nome = nome;
@@ -34,10 +30,8 @@ public class Pessoa implements Observer{
         this.email = email;
         this.telefone = telefone;
         this.tipoPessoa = tipoPessoa;
+        this.senha = senha;
     }
-    
-    
-    
 
     public Pessoa(String nome, String endereco, Integer restauranteCod, String email, String telefone) {
         this.nome = nome;
@@ -47,9 +41,10 @@ public class Pessoa implements Observer{
         this.telefone = telefone;
     }
 
-    public Pessoa(String nome) {
-        this.nome=nome;
-        
+    public Pessoa(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+
     }
 
     public int getPessoaCod() {
@@ -117,10 +112,17 @@ public class Pessoa implements Observer{
             System.out.println("Atenção " + getNome() + ", já chegou mais uma edição da Pedido. Este é a sua edição números: " + edicacaoNovaPedido);
         }
 }
-    */
-
+     */
     @Override
     public void update(Observable o, Object arg) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

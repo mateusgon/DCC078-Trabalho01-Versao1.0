@@ -1,56 +1,48 @@
-
 package persistence;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import static javafx.scene.input.KeyCode.T;
 import model.Pessoa;
-import model.Restaurante;
-
 
 public class PessoaDAO {
-      private static PessoaDAO instance = new PessoaDAO();
+
+    private static PessoaDAO instance = new PessoaDAO();
+    private PreparedStatement operacaoLoginUsuario;
+    private PreparedStatement operacaoCriarUsuario;
 
     public static PessoaDAO getInstance() {
         return instance;
     }
-    
-    public Pessoa Autentica(Pessoa pessoa) throws SQLException, ClassNotFoundException{
-        Connection conn = null;
-        Pessoa pessoaAutenticada=null;
-        Statement st = null;
-        conn = DatabaseLocator.getInstance().getConnection();
-        st = conn.createStatement();
-        ResultSet resultado = st.executeQuery("select * from pessoa where nome='" + pessoa.getNome()  +"'");
-        while (resultado.next()) {
-                
-                 
-                pessoa.setNome(resultado.getString("nome"));
-                pessoa.setEmail(resultado.getString("email"));
-                pessoa.setEndereco(resultado.getString("endereco"));
-                pessoa.setPessoaCod(resultado.getInt("pessoaCod"));
-                pessoa.setRestauranteCod(resultado.getInt("restauranteCod"));
-                pessoa.setTipoPessoa(resultado.getString("tipoPessoa"));
-       
-        }
 
+    public Pessoa Autentica(Pessoa pessoa) throws SQLException, ClassNotFoundException {
+        operacaoLoginUsuario =  DatabaseLocator.getInstance().getConnection().prepareStatement("select * from pessoa where nome = ? and senha = ?");
+        operacaoLoginUsuario.clearParameters();
+        operacaoLoginUsuario.setString(1, pessoa.getNome());
+        operacaoLoginUsuario.setString(2, pessoa.getSenha());
+        ResultSet resultado = operacaoLoginUsuario.executeQuery();
+        while (resultado.next()) {
+            pessoa.setNome(resultado.getString("nome"));
+            pessoa.setEmail(resultado.getString("email"));
+            pessoa.setEndereco(resultado.getString("endereco"));
+            pessoa.setPessoaCod(resultado.getInt("pessoaCod"));
+            pessoa.setRestauranteCod(resultado.getInt("restauranteCod"));
+            pessoa.setTipoPessoa(resultado.getString("tipoPessoa"));
+        }
         return pessoa;
     }
-    
-    
-      public void save(Pessoa pessoa) throws SQLException, ClassNotFoundException {
+
+    public void save(Pessoa pessoa) throws SQLException, ClassNotFoundException {
         Connection conn = null;
         Statement st = null;
         String tipo = "T";
         try {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
-            st.execute("insert into pessoa(nome, endereco,  telefone,  email,  restaurantecod,tipoPessoa) values ('" + pessoa.getNome() + "','" + pessoa.getEndereco()+ "', '" + pessoa.getTelefone()+ "','" + pessoa.getEmail()+ "', " + pessoa.getRestauranteCod()+ ",'"+tipo+"')");
-          
+            st.execute("insert into pessoa(nome, endereco,  telefone,  email,  restaurantecod,tipoPessoa) values ('" + pessoa.getNome() + "','" + pessoa.getEndereco() + "', '" + pessoa.getTelefone() + "','" + pessoa.getEmail() + "', " + pessoa.getRestauranteCod() + ",'" + tipo + "')");
+
         } catch (SQLException e) {
             throw e;
         } finally {
@@ -59,7 +51,7 @@ public class PessoaDAO {
     }
 
     private void closeResources(Connection conn, Statement st) {
-      try {
+        try {
             if (st != null) {
                 st.close();
             }

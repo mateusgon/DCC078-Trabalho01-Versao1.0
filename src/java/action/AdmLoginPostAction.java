@@ -21,7 +21,7 @@ public class AdmLoginPostAction implements Action {
             response.sendRedirect("erro.jsp"); //tratar erro1
         } else {
             //#ajustar para capturar error
-            Pessoa pessoa = new Pessoa(nome);
+            Pessoa pessoa = new Pessoa(nome, senha);
             pessoa = PessoaDAO.getInstance().Autentica(pessoa);
           
             request.setAttribute("pessoa", pessoa);
