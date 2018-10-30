@@ -6,6 +6,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Restaurante;
+import persistence.PessoaDAO;
 import persistence.RestauranteDAO;
 
 public class CadastrarSuperUsuariosAction implements Action {

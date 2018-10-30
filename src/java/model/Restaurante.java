@@ -1,11 +1,16 @@
 
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Restaurante {
     
     String nome,nomeFantasia,telefone, endereco, sigla;
     Integer restaurantecod;
+    private List<Pessoa> superUsuarios;
+    private List<Pessoa> funcionarios;
 
     public Integer getRestaurantecod() {
         return restaurantecod;
@@ -22,6 +27,8 @@ public class Restaurante {
         this.telefone = telefone;
         this.endereco = endereco;
         this.sigla = sigla;
+        superUsuarios = new ArrayList<>();
+        funcionarios = new ArrayList<>();
     }
 
     public String getNome() {
@@ -62,6 +69,22 @@ public class Restaurante {
 
     public void setSigla(String sigla) {
         this.sigla = sigla;
+    }
+
+    public List<Pessoa> getSuperUsuarios() {
+        return superUsuarios;
+    }
+
+    public void setSuperUsuarios(List<Pessoa> superUsuarios) {
+        this.superUsuarios = superUsuarios;
+    }
+
+    public List<Pessoa> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public void setFuncionarios(List<Pessoa> funcionarios) {
+        this.funcionarios = funcionarios;
     }
    
     

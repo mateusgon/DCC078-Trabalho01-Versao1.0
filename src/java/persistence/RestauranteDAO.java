@@ -15,6 +15,8 @@ public class RestauranteDAO {
     private static RestauranteDAO instance = new RestauranteDAO();
     private PreparedStatement operacaoSalvarRestaurante;
     private PreparedStatement operacaoListarRestaurante;
+    private PreparedStatement operacaoListAll;
+    private PreparedStatement operacaoExcluirRestaurante;
     
     public static RestauranteDAO getInstance() {
         return instance;
@@ -54,36 +56,22 @@ public class RestauranteDAO {
 
     public List<Restaurante> listAll() throws ClassNotFoundException, SQLException {
 
-        Connection conn = null;
-        Statement st = null;
         List<Restaurante> restaurantes = new ArrayList<>();
-
-        conn = DatabaseLocator.getInstance().getConnection();
-        st = conn.createStatement();
-        ResultSet resultado = st.executeQuery("select * from restaurante");
+        operacaoListAll = DatabaseLocator.getInstance().getConnection().prepareStatement("select * from restaurante");
+        operacaoListAll.clearParameters();
+        ResultSet resultado = operacaoListAll.executeQuery();
         while (resultado.next()) {
             Restaurante restaurante = new Restaurante(resultado.getString("nome"), resultado.getString("nomefantasia"), resultado.getString("telefone"), resultado.getString("endereco"), resultado.getString("sigla"));
             restaurante.setRestaurantecod(resultado.getInt("restaurantecod"));
-
             restaurantes.add(restaurante);
         }
-
         return restaurantes;
     }
 
     public void delete(Integer restauranteCod) throws SQLException, ClassNotFoundException {
-        Connection conn = null;
-        Statement st = null;
-
-        try {
-            conn = DatabaseLocator.getInstance().getConnection();
-            st = conn.createStatement();
-            st.execute("delete from restaurante where restaurantecod=" + restauranteCod + "");
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            closeResources(conn, st);
-        }
-
+        operacaoExcluirRestaurante = DatabaseLocator.getInstance().getConnection().prepareStatement("delete from restaurante where restaurantecod = ?");
+        operacaoExcluirRestaurante.clearParameters();
+        operacaoExcluirRestaurante.setInt(1, restauranteCod);
+        operacaoExcluirRestaurante.execute();
     }
 }

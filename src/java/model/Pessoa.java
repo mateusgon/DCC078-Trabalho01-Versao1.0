@@ -14,6 +14,9 @@ public class Pessoa implements Observer {
         pedido.addObserver(this);
     }
 
+    public Pessoa() {
+    }
+
     public Pessoa(String nome, String endereco, String email, String telefone, Integer tipoPessoa, String senha) {
         this.nome = nome;
         this.endereco = endereco;
@@ -33,6 +36,16 @@ public class Pessoa implements Observer {
 
     public Pessoa(int pessoaCod, int restauranteCod, String nome, String endereco, String email, String telefone, Integer tipoPessoa, String senha) {
         this.pessoaCod = pessoaCod;
+        this.restauranteCod = restauranteCod;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.email = email;
+        this.telefone = telefone;
+        this.tipoPessoa = tipoPessoa;
+        this.senha = senha;
+    }
+
+    public Pessoa(int restauranteCod, String nome, String endereco, String email, String telefone, Integer tipoPessoa, String senha) {
         this.restauranteCod = restauranteCod;
         this.nome = nome;
         this.endereco = endereco;

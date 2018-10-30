@@ -20,6 +20,7 @@ public class AdmLoginPostAction implements Action {
             Pessoa pessoa = new Pessoa(nome, senha);
             PessoaDAO.getInstance().Autentica(pessoa);
             if (7 == pessoa.getTipoPessoa()) {
+                request.setAttribute("idRest", pessoa.getRestauranteCod());
                 RequestDispatcher dispatcher = request.getRequestDispatcher("restaurante-acesso-restrito.jsp");
                 dispatcher.forward(request, response);
             }
