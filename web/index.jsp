@@ -9,18 +9,8 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=CadastrarUsuario">
-                        <h5 class="card-title">Criar conta</h5>
-                        <i class="material-icons" style="font-size:100px;"> account_circle </i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
                     <a href="FrontController?action=AcessoPedido">
-                        <h5 class="card-title">Faça um Pedido</h5>
+                        <h5 class="card-title">Clientes</h5>
                         <i class="material-icons" style="font-size:100px;">local_dining</i>
                     </a>
                 </div>
@@ -29,8 +19,8 @@
         <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=AdmLogin">
-                        <h5 class="card-title">Administrador</h5>
+                    <a href="FrontController?action=AcessoFuncionarios">
+                        <h5 class="card-title">Funcionários</h5>
                         <i class="material-icons"  style="font-size:100px;">room_service</i> 
                     </a>
                 </div>
@@ -39,7 +29,7 @@
         <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=AcessoRestrito">
+                    <a href="FrontController?action=AdmLogin">
                         <h5 class="card-title">Acesso Restrito</h5>
                         <i class="material-icons"  style="font-size:100px;">build</i> 
                     </a>

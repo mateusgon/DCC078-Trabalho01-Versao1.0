@@ -4,7 +4,7 @@
     <h1> Cadastre um cliente </h1>
 </div>
 <div class="container">
-    <form action="FrontController?action=CadastrarUsuarioPost" method="post">
+    <form action="FrontController?action=CadastrarClientePost" method="post">
         <div class="form-group">
             <label for="usr">Nome:</label>
             <input name="nome" class="form-control" required>     

@@ -11,13 +11,13 @@
                 <form action="FrontController?action=ClienteLoginPost" method="post">
 
                     <div class="form-group">
-                        <label for="usr">Nome:</label>
-                        <input name="nome" class="form-control" required>     
+                        <label for="usr">Email</label>
+                        <input name="email" class="form-control" required>     
                     </div>
 
                     <div class="form-group">
                         <label for="usr">Senha:</label>
-                        <input name="password" class="form-control" required>     
+                        <input type="password" name="password" class="form-control" required>     
                     </div>
 
                     <input class="btn btn-primary btn" type ="Submit" value="Enviar"/> 

@@ -9,41 +9,17 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title> Sistema de pedidos </title>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">Sistema de pedidos</a>
+        <a class="navbar-brand" href="index.jsp">Sistema de pedidos</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <c:choose>
-                    <c:when test="${logado}">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Itens
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="ranking.html?ordem=default">Ranking de itens</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="item-novo.html">Criar item</a>
-                                <a class="dropdown-item" href="item-listar.html">Meus itens</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Comentários
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="a-avaliar.html">Itens a serem avaliados</a>
-                                <a class="dropdown-item" href="meus-comentarios.html">Meus comentários</a>
-                            </div>
-                        </li>
-                    </c:when>
-                </c:choose>
                 <li class="nav-item">
-                    <a class="nav-link" href="curadores.html">Faça um pedido</a>
+                    <a class="nav-link" href="">Faça um pedido</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="trolls.html">Acesso Restrito Adm</a>
+                    <a class="nav-link" href="">Acesso Restrito Adm</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

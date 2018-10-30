@@ -8,6 +8,6 @@ public class AcessoPedidoAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        response.sendRedirect("form-login-cliente.jsp");
+        response.sendRedirect("listar-acoes-cliente.jsp");
     }
 }

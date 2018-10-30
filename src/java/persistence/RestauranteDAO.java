@@ -1,6 +1,7 @@
 package persistence;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,24 +13,30 @@ import model.Restaurante;
 public class RestauranteDAO {
 
     private static RestauranteDAO instance = new RestauranteDAO();
-
+    private PreparedStatement operacaoSalvarRestaurante;
+    private PreparedStatement operacaoListarRestaurante;
+    
     public static RestauranteDAO getInstance() {
         return instance;
     }
 
     public void save(Restaurante restaurante) throws SQLException, ClassNotFoundException {
-        Connection conn = null;
-        Statement st = null;
-        try {
-            conn = DatabaseLocator.getInstance().getConnection();
-            st = conn.createStatement();
-            st.execute("insert into restaurante(nome, nomeFantasia,  telefone,  endereco,  sigla) values ('" + restaurante.getNome() + "','" + restaurante.getNomeFantasia() + "', '" + restaurante.getTelefone() + "','" + restaurante.getEndereco() + "', '" + restaurante.getSigla() + "')");
-
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            closeResources(conn, st);
-        }
+        operacaoSalvarRestaurante = DatabaseLocator.getInstance().getConnection().prepareStatement("insert into restaurante(nome, nomeFantasia, telefone, endereco, sigla) values (?, ?, ?, ?, ?)");
+        operacaoListarRestaurante = DatabaseLocator.getInstance().getConnection().prepareStatement("select restaurantecod from restaurante where nome = ? and nomeFantasia = ?");
+        operacaoListarRestaurante.clearParameters();
+        operacaoSalvarRestaurante.clearParameters();
+        operacaoSalvarRestaurante.setString(1, restaurante.getNome());
+        operacaoSalvarRestaurante.setString(2, restaurante.getNomeFantasia());
+        operacaoSalvarRestaurante.setString(3, restaurante.getTelefone());
+        operacaoSalvarRestaurante.setString(4, restaurante.getEndereco());
+        operacaoSalvarRestaurante.setString(5, restaurante.getSigla());
+        operacaoSalvarRestaurante.execute();
+        operacaoListarRestaurante.setString(1, restaurante.getNome());
+        operacaoListarRestaurante.setString(2, restaurante.getNomeFantasia());
+        ResultSet resultado = operacaoListarRestaurante.executeQuery();
+        resultado.next();
+        restaurante.setRestaurantecod(resultado.getInt("restaurantecod"));
+     
     }
 
     private void closeResources(Connection conn, Statement st) {

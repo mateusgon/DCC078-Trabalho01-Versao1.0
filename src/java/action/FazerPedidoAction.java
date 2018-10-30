@@ -1,21 +1,13 @@
 package action;
 
-import controller.Action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CadastrarUsuarioPostAction implements Action {
+public class FazerPedidoAction implements controller.Action{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        try
-        {
-        
-        }
-        catch (Exception ex)
-        {
-        
-        }
+        response.sendRedirect("form-login-cliente.jsp");
     }
-
+    
 }

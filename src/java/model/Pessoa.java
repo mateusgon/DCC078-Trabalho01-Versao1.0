@@ -5,13 +5,22 @@ import java.util.Observer;
 
 public class Pessoa implements Observer {
 
-    private Integer pessoaCod, restauranteCod;
-    private String nome, endereco, email, telefone, tipoPessoa, senha;
+    private Integer pessoaCod, restauranteCod, tipoPessoa;
+    private String nome, endereco, email, telefone, senha;
     private Observable pedido;
 
     public Pessoa(Observable pedido) {
         this.pedido = pedido;
         pedido.addObserver(this);
+    }
+
+    public Pessoa(String nome, String endereco, String email, String telefone, Integer tipoPessoa, String senha) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.email = email;
+        this.telefone = telefone;
+        this.tipoPessoa = tipoPessoa;
+        this.senha = senha;
     }
 
     public Observable getPedido() {
@@ -22,7 +31,7 @@ public class Pessoa implements Observer {
         this.pedido = pedido;
     }
 
-    public Pessoa(int pessoaCod, int restauranteCod, String nome, String endereco, String email, String telefone, String tipoPessoa, String senha) {
+    public Pessoa(int pessoaCod, int restauranteCod, String nome, String endereco, String email, String telefone, Integer tipoPessoa, String senha) {
         this.pessoaCod = pessoaCod;
         this.restauranteCod = restauranteCod;
         this.nome = nome;
@@ -95,11 +104,11 @@ public class Pessoa implements Observer {
         this.telefone = telefone;
     }
 
-    public String getTipoPessoa() {
+    public Integer getTipoPessoa() {
         return tipoPessoa;
     }
 
-    public void setTipoPessoa(String tipoPessoa) {
+    public void setTipoPessoa(Integer tipoPessoa) {
         this.tipoPessoa = tipoPessoa;
     }
 
