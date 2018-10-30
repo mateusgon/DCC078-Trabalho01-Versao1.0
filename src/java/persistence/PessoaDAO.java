@@ -1,10 +1,8 @@
 package persistence;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Pessoa;
@@ -19,6 +17,8 @@ public class PessoaDAO {
     private PreparedStatement operacaoExcluirCliente;
     private PreparedStatement operacaoBuscaSuperUsuario;
     private PreparedStatement operacaoBuscaFuncionariosRestaurante;
+    private PreparedStatement operacaoBuscarUsuario;
+    private PreparedStatement operacaoAtualizarUsuario;
 
     public static PessoaDAO getInstance() {
         return instance;
@@ -86,6 +86,13 @@ public class PessoaDAO {
         operacaoExcluirCliente.setInt(1, restauranteCod);
         operacaoExcluirCliente.execute();
     }
+    
+    public void deleteSuperUsuarioViaId(Integer idUsuario) throws SQLException, ClassNotFoundException {
+        operacaoExcluirCliente = DatabaseLocator.getInstance().getConnection().prepareStatement("delete from pessoa where pessoaCod = ?");
+        operacaoExcluirCliente.clearParameters();
+        operacaoExcluirCliente.setInt(1, idUsuario);
+        operacaoExcluirCliente.execute();
+    }
 
     public void buscaSuperUsuario(Restaurante restaurante) throws SQLException, ClassNotFoundException {
         operacaoBuscaSuperUsuario = DatabaseLocator.getInstance().getConnection().prepareStatement("select * from pessoa where restauranteCod = ? and tipoPessoa = ?");
@@ -127,4 +134,36 @@ public class PessoaDAO {
         return pessoas;
     }
 
+    public Pessoa buscaUsuario(Integer codigoUsuario) throws SQLException, ClassNotFoundException {
+        operacaoBuscarUsuario = DatabaseLocator.getInstance().getConnection().prepareStatement("select * from pessoa where pessoacod = ?");
+        operacaoBuscarUsuario.clearParameters();
+        operacaoBuscarUsuario.setInt(1, codigoUsuario);
+        Pessoa pessoa = null;
+        ResultSet resultado = operacaoBuscarUsuario.executeQuery();
+        while (resultado.next()) {
+            pessoa = new Pessoa();
+            pessoa.setNome(resultado.getString("nome"));
+            pessoa.setSenha(resultado.getString("senha"));
+            pessoa.setEmail(resultado.getString("email"));
+            pessoa.setTelefone(resultado.getString("telefone"));
+            pessoa.setEndereco(resultado.getString("endereco"));
+            pessoa.setPessoaCod(resultado.getInt("pessoaCod"));
+            pessoa.setRestauranteCod(resultado.getInt("restauranteCod"));
+            pessoa.setTipoPessoa(resultado.getInt("tipoPessoa"));
+        }
+        return pessoa;
+    }
+    
+    public void updateUsuario (Pessoa pessoa) throws SQLException, ClassNotFoundException
+    {
+        operacaoAtualizarUsuario = DatabaseLocator.getInstance().getConnection().prepareStatement("update pessoa set nome = ?, senha = ?, email = ?, telefone = ?, endereco = ? where pessoaCod = ?");
+        operacaoAtualizarUsuario.clearParameters();
+        operacaoAtualizarUsuario.setString(1, pessoa.getNome());
+        operacaoAtualizarUsuario.setString(2, pessoa.getSenha());
+        operacaoAtualizarUsuario.setString(3, pessoa.getEmail());
+        operacaoAtualizarUsuario.setString(4, pessoa.getTelefone());
+        operacaoAtualizarUsuario.setString(5, pessoa.getEndereco());
+        operacaoAtualizarUsuario.setInt(6, pessoa.getPessoaCod());
+        operacaoAtualizarUsuario.executeUpdate();
+    }
 }

@@ -20,8 +20,8 @@
                     <td>${funcionarios.nome}</td>
                     <td>${funcionarios.telefone}</td>
                     <td>${funcionarios.email}</td>
-                    <td><a href="FrontController?action=#&id=${funcionarios.pessoaCod}"> Editar  </a></td>
-                    <td><a href="FrontController?action=#&id=${funcionarios.pessoaCod}"> Excluir</a></td>
+                    <td><a href="FrontController?action=EditarFuncionarioAction&id=${funcionarios.pessoaCod}"> Editar  </a></td>
+                    <td><a href="FrontController?action=ExcluirFuncionarioAction&id=${funcionarios.pessoaCod}"> Excluir </a></td>
                 </tr>
             </c:forEach>
         </tbody>

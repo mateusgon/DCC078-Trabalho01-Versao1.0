@@ -19,8 +19,8 @@
                     <c:forEach var="superusuarios" items="${restaurantes.superUsuarios}">
                         <td>${restaurantes.nome}</td>
                         <td>${superusuarios.nome}</td>
-                        <td><a href="FrontController?action=#&id=${restaurantes.restaurantecod}&id2=${superusuarios.pessoaCod}"> Editar  </a></td>
-                        <td><a href="FrontController?action=#&id=${restaurantes.restaurantecod}&id2=${superusuarios.pessoaCod}"> Excluir</a></td>
+                        <td><a href="FrontController?action=EditarSuperUsuario&id=${superusuarios.pessoaCod}"> Editar  </a></td>
+                        <td><a href="FrontController?action=ExcluirSuperUsuario&id=${superusuarios.pessoaCod}"> Excluir</a></td>
                     </c:forEach>
                 </tr>
             </c:forEach>
