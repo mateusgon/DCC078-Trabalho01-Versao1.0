@@ -1,17 +1,30 @@
-<%-- 
-    Document   : listar-funcionarios
-    Created on : 30/10/2018, 11:54:59
-    Author     : Mateu
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="jspf/cabecalho.jspf" %>
+<div class="container text-center">
+    <h1> Lista de funcionários do seu restaurante </h1>
+</div>
+<div class="container">
+    <table class="table table-bordered"  style="background-color: white">
+        <thead>
+            <tr>
+                <th> Funcionário </th>
+                <th> Telefone </th>
+                <th> Email </th>
+                <th> Editar </th>
+                <th> Excluir </th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="funcionarios"  items="${listFuncionarios}">
+                <tr>
+                    <td>${funcionarios.nome}</td>
+                    <td>${funcionarios.telefone}</td>
+                    <td>${funcionarios.email}</td>
+                    <td><a href="FrontController?action=#&id=${funcionarios.pessoaCod}"> Editar  </a></td>
+                    <td><a href="FrontController?action=#&id=${funcionarios.pessoaCod}"> Excluir</a></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</div>
+<%@include file="jspf/rodape.jspf" %>

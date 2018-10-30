@@ -9,12 +9,11 @@ import controller.Action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-public class AcessoRestritoAction  implements Action {
+public class AcessoRestritoAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-  response.sendRedirect("acesso-restrito.jsp");
+        response.sendRedirect("acesso-restrito.jsp");
     }
-    
+
 }

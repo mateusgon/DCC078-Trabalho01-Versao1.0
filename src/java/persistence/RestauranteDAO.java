@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Restaurante;
 
-
 public class RestauranteDAO {
 
     private static RestauranteDAO instance = new RestauranteDAO();
     private PreparedStatement operacaoSalvarRestaurante;
     private PreparedStatement operacaoListarRestaurante;
     private PreparedStatement operacaoListAll;
+    private PreparedStatement operacaoUpdate;
     private PreparedStatement operacaoExcluirRestaurante;
-    
+
     public static RestauranteDAO getInstance() {
         return instance;
     }
@@ -38,7 +38,7 @@ public class RestauranteDAO {
         ResultSet resultado = operacaoListarRestaurante.executeQuery();
         resultado.next();
         restaurante.setRestaurantecod(resultado.getInt("restaurantecod"));
-     
+
     }
 
     private void closeResources(Connection conn, Statement st) {
@@ -66,6 +66,32 @@ public class RestauranteDAO {
             restaurantes.add(restaurante);
         }
         return restaurantes;
+    }
+
+    public Restaurante listarRestaurante(Integer codigoRestaurante) throws ClassNotFoundException, SQLException {
+        operacaoListarRestaurante = DatabaseLocator.getInstance().getConnection().prepareStatement("select * from restaurante where restaurantecod = ?");
+        operacaoListarRestaurante.clearParameters();
+        operacaoListarRestaurante.setInt(1, codigoRestaurante);
+        Restaurante restaurante = null;
+        ResultSet resultado = operacaoListarRestaurante.executeQuery();
+        while (resultado.next()) {
+            restaurante = new Restaurante(resultado.getString("nome"), resultado.getString("nomefantasia"), resultado.getString("telefone"), resultado.getString("endereco"), resultado.getString("sigla"));
+            restaurante.setRestaurantecod(resultado.getInt("restaurantecod"));
+        }
+        return restaurante;
+    }
+    
+    public void update (Restaurante restaurante) throws ClassNotFoundException, SQLException
+    {
+        operacaoUpdate = DatabaseLocator.getInstance().getConnection().prepareStatement("update restaurante set nome = ?, nomefantasia = ?, telefone = ?, endereco = ?, sigla = ? where restaurantecod = ?");
+        operacaoUpdate.clearParameters();
+        operacaoUpdate.setString(1, restaurante.getNome());
+        operacaoUpdate.setString(2, restaurante.getNomeFantasia());
+        operacaoUpdate.setString(3, restaurante.getTelefone());
+        operacaoUpdate.setString(4, restaurante.getEndereco());
+        operacaoUpdate.setString(5, restaurante.getSigla());
+        operacaoUpdate.setInt(6, restaurante.getRestaurantecod());
+        operacaoUpdate.executeUpdate();
     }
 
     public void delete(Integer restauranteCod) throws SQLException, ClassNotFoundException {

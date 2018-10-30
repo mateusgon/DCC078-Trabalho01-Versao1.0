@@ -33,6 +33,7 @@ public class PessoaDAO {
         while (resultado.next()) {
             pessoa.setNome(resultado.getString("nome"));
             pessoa.setEmail(resultado.getString("email"));
+            pessoa.setTelefone(resultado.getString("telefone"));
             pessoa.setEndereco(resultado.getString("endereco"));
             pessoa.setPessoaCod(resultado.getInt("pessoaCod"));
             pessoa.setRestauranteCod(resultado.getInt("restauranteCod"));
@@ -96,6 +97,7 @@ public class PessoaDAO {
             Pessoa pessoa = new Pessoa();
             pessoa.setNome(resultado.getString("nome"));
             pessoa.setEmail(resultado.getString("email"));
+            pessoa.setTelefone(resultado.getString("telefone"));
             pessoa.setEndereco(resultado.getString("endereco"));
             pessoa.setPessoaCod(resultado.getInt("pessoaCod"));
             pessoa.setRestauranteCod(resultado.getInt("restauranteCod"));
@@ -115,6 +117,7 @@ public class PessoaDAO {
             Pessoa pessoa = new Pessoa();
             pessoa.setNome(resultado.getString("nome"));
             pessoa.setEmail(resultado.getString("email"));
+            pessoa.setTelefone(resultado.getString("telefone"));
             pessoa.setEndereco(resultado.getString("endereco"));
             pessoa.setPessoaCod(resultado.getInt("pessoaCod"));
             pessoa.setRestauranteCod(resultado.getInt("restauranteCod"));

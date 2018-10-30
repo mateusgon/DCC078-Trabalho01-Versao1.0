@@ -20,7 +20,7 @@
                     <td>${restaurantes.nome}</td>
                     <td>${restaurantes.nomeFantasia}</td>
                     <td>${restaurantes.sigla}</td>
-                    <td><a href="FrontController?action=#&id=${restaurantes.restaurantecod}"> Editar  </a></td>
+                    <td><a href="FrontController?action=EditarRestaurante&id=${restaurantes.restaurantecod}"> Editar  </a></td>
                     <td><a href="FrontController?action=ExcluirRestaurante&id=${restaurantes.restaurantecod}"> Excluir</a></td>
                 </tr>
             </c:forEach>
