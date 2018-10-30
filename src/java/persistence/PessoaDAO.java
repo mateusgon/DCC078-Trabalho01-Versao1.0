@@ -87,7 +87,7 @@ public class PessoaDAO {
         operacaoExcluirCliente.execute();
     }
     
-    public void deleteSuperUsuarioViaId(Integer idUsuario) throws SQLException, ClassNotFoundException {
+    public void deleteUsuario(Integer idUsuario) throws SQLException, ClassNotFoundException {
         operacaoExcluirCliente = DatabaseLocator.getInstance().getConnection().prepareStatement("delete from pessoa where pessoaCod = ?");
         operacaoExcluirCliente.clearParameters();
         operacaoExcluirCliente.setInt(1, idUsuario);
@@ -156,14 +156,15 @@ public class PessoaDAO {
     
     public void updateUsuario (Pessoa pessoa) throws SQLException, ClassNotFoundException
     {
-        operacaoAtualizarUsuario = DatabaseLocator.getInstance().getConnection().prepareStatement("update pessoa set nome = ?, senha = ?, email = ?, telefone = ?, endereco = ? where pessoaCod = ?");
+        operacaoAtualizarUsuario = DatabaseLocator.getInstance().getConnection().prepareStatement("update pessoa set nome = ?, senha = ?, email = ?, telefone = ?, endereco = ?, tipoPessoa = ? where pessoaCod = ?");
         operacaoAtualizarUsuario.clearParameters();
         operacaoAtualizarUsuario.setString(1, pessoa.getNome());
         operacaoAtualizarUsuario.setString(2, pessoa.getSenha());
         operacaoAtualizarUsuario.setString(3, pessoa.getEmail());
         operacaoAtualizarUsuario.setString(4, pessoa.getTelefone());
         operacaoAtualizarUsuario.setString(5, pessoa.getEndereco());
-        operacaoAtualizarUsuario.setInt(6, pessoa.getPessoaCod());
+        operacaoAtualizarUsuario.setInt(6, pessoa.getTipoPessoa());
+        operacaoAtualizarUsuario.setInt(7, pessoa.getPessoaCod());
         operacaoAtualizarUsuario.executeUpdate();
     }
 }

@@ -10,7 +10,7 @@ public class ExcluirSuperUsuarioAction implements Action{
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Integer idUsuario = Integer.parseInt(request.getParameter("id"));
-        PessoaDAO.getInstance().deleteSuperUsuarioViaId(idUsuario);
+        PessoaDAO.getInstance().deleteUsuario(idUsuario);
         response.sendRedirect("acesso-restrito-superusuarios.jsp");
     }
     
