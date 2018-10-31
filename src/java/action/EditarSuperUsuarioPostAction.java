@@ -18,7 +18,7 @@ public class EditarSuperUsuarioPostAction implements Action {
         String senha = request.getParameter("senha");
         Pessoa pessoa = new Pessoa(idUsuario, 0, nome, endereco, email, telefone, 7, senha);
         PessoaDAO.getInstance().updateUsuario(pessoa);
-        response.sendRedirect("acesso-restrito-superusuarios.jsp");
+        response.sendRedirect("acesso-restrito-superusuario.jsp");
     }
 
 }

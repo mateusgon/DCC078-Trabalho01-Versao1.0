@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="jspf/cabecalho.jspf" %>
 <div class="container text-center">
-    <h1> Bem vindo ao sistema de pedidos ${authUser} </h1>
+    <h1> Bem vindo ao sistema de pedidos </h1>
 </div>
 <div class="container text-center">
 
@@ -9,19 +9,17 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=CadastrarCliente">
-                        <h5 class="card-title">Criar conta</h5>
-                        <i class="material-icons" style="font-size:100px;"> account_circle </i>
+                    <a href="FrontController?action=CadastrarRestaurante">
+                        <h5 class="card-title">Cadastrar restaurantes</h5>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=LoginCliente">
-                        <h5 class="card-title">Fazer login</h5>
-                        <i class="material-icons" style="font-size:100px;">local_dining</i>
+                    <a href="FrontController?action=ListarRestaurantes">
+                        <h5 class="card-title">Listar restaurantes</h5>
                     </a>
                 </div>
             </div>

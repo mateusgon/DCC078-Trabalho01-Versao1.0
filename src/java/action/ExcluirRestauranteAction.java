@@ -18,7 +18,7 @@ public class ExcluirRestauranteAction implements Action {
         try {
             PessoaDAO.getInstance().deleteSuperUsuario(restauranteCod);
             RestauranteDAO.getInstance().delete(restauranteCod);
-            response.sendRedirect("acesso-restrito.jsp");
+            response.sendRedirect("acesso-restrito-superusuario.jsp");
         } catch (SQLException ex) {
             response.sendRedirect("erro.jsp");
         }

@@ -14,7 +14,7 @@ public class ExcluirFuncionarioAction implements Action {
         Integer idRestaurante = Integer.parseInt(request.getParameter("id2"));
         PessoaDAO.getInstance().deleteUsuario(idUsuario);
         request.setAttribute("idRest", idRestaurante);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("restaurante-acesso-restrito.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-restaurante.jsp");
         dispatcher.forward(request, response);
     }
 

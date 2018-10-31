@@ -4,11 +4,11 @@ import controller.Action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AdministrarSuperUsuariosAction implements Action{
+public class LoginFuncionariosAction implements Action{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        response.sendRedirect("acesso-restrito-superusuario-administar-superusuarios.jsp");
+        response.sendRedirect("form-login-funcionarios.jsp");
     }
     
 }

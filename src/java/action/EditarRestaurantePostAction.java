@@ -23,7 +23,7 @@ public class EditarRestaurantePostAction implements Action {
         RestauranteDAO.getInstance().update(restaurante);
         List<Restaurante> restaurantes = RestauranteDAO.getInstance().listAll();
         request.setAttribute("restaurantes", restaurantes);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("listar-restaurantes.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-listar-restaurantes.jsp");
         dispatcher.forward(request, response);
     }
 

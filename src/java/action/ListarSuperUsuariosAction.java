@@ -18,7 +18,7 @@ public class ListarSuperUsuariosAction implements Action {
             PessoaDAO.getInstance().buscaSuperUsuario(restaurante);
         }
         request.setAttribute("restaurantes", restaurantes);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("listar-superusuarios.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-listar-superusuarios.jsp");
         dispatcher.forward(request, response);
     }
 

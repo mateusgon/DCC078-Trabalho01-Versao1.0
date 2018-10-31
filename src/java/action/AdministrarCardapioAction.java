@@ -11,7 +11,7 @@ public class AdministrarCardapioAction implements Action {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Integer idRestaurante = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("idRestaurante", idRestaurante);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("administrar-cardapio.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-administrar-cardapio.jsp");
         dispatcher.forward(request, response);
 
     }

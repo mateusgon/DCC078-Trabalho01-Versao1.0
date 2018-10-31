@@ -12,7 +12,7 @@ public class AdministrarFuncionarioAction implements Action {
         System.out.println("entrei");
         Integer idRestaurante = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("idRest", idRestaurante);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("administrar-funcionarios.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-administrar-funcionarios.jsp");
         dispatcher.forward(request, response);
     }
 

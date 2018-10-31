@@ -22,7 +22,7 @@ public class EditarFuncionariosPostAction implements Action {
         Pessoa pessoa = new Pessoa(idUsuario, 0, nome, endereco, email, telefone, tipoPessoa, senha);
         PessoaDAO.getInstance().updateUsuario(pessoa);
         request.setAttribute("idRest", idRestaurante);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("restaurante-acesso-restrito.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-restaurante.jsp");
         dispatcher.forward(request, response);
     }
 

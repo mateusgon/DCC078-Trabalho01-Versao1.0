@@ -5,7 +5,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.PessoaDAO;
-import persistence.RestauranteDAO;
 
 public class ListarFuncionariosAction implements Action {
 
@@ -14,7 +13,7 @@ public class ListarFuncionariosAction implements Action {
         Integer idRestaurante = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("listFuncionarios", PessoaDAO.getInstance().buscaFuncionarioRestaurante(idRestaurante));
         System.out.println(PessoaDAO.getInstance().buscaFuncionarioRestaurante(idRestaurante).size());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("listar-funcionarios.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-listar-funcionarios.jsp");
         dispatcher.forward(request, response);
     }
 

@@ -23,7 +23,7 @@ public class CadastrarRestaurantePostAction implements Action {
             Restaurante restaurante = new Restaurante(nome, nomeFantasia, telefone, endereco, sigla);
             try {
                 RestauranteDAO.getInstance().save(restaurante);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario.jsp");
                 dispatcher.forward(request, response);
             } catch (SQLException ex) {
                 response.sendRedirect("erro.jsp");

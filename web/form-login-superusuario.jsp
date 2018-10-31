@@ -8,11 +8,11 @@
     <div class="col-xs-3 col-centered" >
         <div class="card">
             <div class="card-body">
-                <form action="FrontController?action=LoginClientePost" method="post">
+                <form action="FrontController?action=LoginSuperUsuarioPost" method="post">
 
                     <div class="form-group">
-                        <label for="usr">Email</label>
-                        <input name="email" class="form-control" required>     
+                        <label for="usr">Nome:</label>
+                        <input name="nome" class="form-control" required>     
                     </div>
 
                     <div class="form-group">
