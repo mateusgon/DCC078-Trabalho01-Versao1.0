@@ -1,18 +1,9 @@
 package model;
 
-import java.util.Observable;
-import java.util.Observer;
-
-public class Pessoa implements Observer {
+public class Pessoa {
 
     private Integer pessoaCod, restauranteCod, tipoPessoa;
     private String nome, endereco, email, telefone, senha;
-    private Observable pedido;
-
-    public Pessoa(Observable pedido) {
-        this.pedido = pedido;
-        pedido.addObserver(this);
-    }
 
     public Pessoa() {
     }
@@ -24,14 +15,6 @@ public class Pessoa implements Observer {
         this.telefone = telefone;
         this.tipoPessoa = tipoPessoa;
         this.senha = senha;
-    }
-
-    public Observable getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Observable pedido) {
-        this.pedido = pedido;
     }
 
     public Pessoa(int pessoaCod, int restauranteCod, String nome, String endereco, String email, String telefone, Integer tipoPessoa, String senha) {
@@ -66,7 +49,6 @@ public class Pessoa implements Observer {
     public Pessoa(String email, String senha) {
         this.email = email;
         this.senha = senha;
-
     }
 
     public int getPessoaCod() {
@@ -123,21 +105,6 @@ public class Pessoa implements Observer {
 
     public void setTipoPessoa(Integer tipoPessoa) {
         this.tipoPessoa = tipoPessoa;
-    }
-
-    /*
-    public void update(Observable pedidoSubject, Object arg) {
-        if (pedidoSubject instanceof Pedido)
-        {
-          //  Pedido pedido = (Pedido) pedidoSubject;
-            //edicacaoNovaPedido = pedido.getEdicao();
-            System.out.println("Atenção " + getNome() + ", já chegou mais uma edição da Pedido. Este é a sua edição números: " + edicacaoNovaPedido);
-        }
-}
-     */
-    @Override
-    public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getSenha() {

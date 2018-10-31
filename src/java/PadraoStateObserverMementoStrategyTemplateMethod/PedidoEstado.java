@@ -1,4 +1,4 @@
-package PadraoStateObserverMemento;
+package PadraoStateObserverMementoStrategyTemplateMethod;
 
 public interface PedidoEstado {
     public Boolean aberto(Pedido a);
