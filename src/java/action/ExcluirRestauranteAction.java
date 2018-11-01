@@ -2,8 +2,6 @@ package action;
 
 import controller.Action;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.PessoaDAO;

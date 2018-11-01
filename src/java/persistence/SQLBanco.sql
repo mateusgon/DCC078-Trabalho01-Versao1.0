@@ -1,4 +1,3 @@
-
 create table restaurante (
 restaurantecod integer primary key generated always as identity,
 nome varchar(100),

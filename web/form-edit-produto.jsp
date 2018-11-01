@@ -4,15 +4,15 @@
     <h1> Cadastre um produto </h1>
 </div>
 <div class="container">
-    <form action="FrontController?action=CadastrarItemPost" method="post">
+    <form action="FrontController?action=EditarItemPost" method="post">
         <div class="form-group">
             <label for="usr">Nome:</label>
-            <input name="nome" class="form-control" required>     
+            <input name="nome" value= "${produto.nome} "class="form-control" required>     
         </div>
 
         <div class="form-group">
             <label for="usr">Valor:</label>
-            <input type = "text" name="valor" class="form-control" required>     
+            <input type = "text" value="${produto.valor}" name="valor" class="form-control" required>     
         </div>
 
         <div class="form-group">
@@ -35,6 +35,8 @@
         </div>
 
         <input type ="hidden" name="idRest" value="${idRest}">
+        <input type ="hidden" name="idProd" value="${produto.produtocod}">
+        
         <input class="btn btn-primary btn" type ="Submit" value="Enviar"/> 
         <input class="btn btn-primary btn" type ="Reset" value ="Limpar" /> 
     </form>
