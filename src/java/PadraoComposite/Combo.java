@@ -20,6 +20,5 @@ public class Combo extends ItemDeVenda {
     public List<ItemDeVenda> getItens() throws Exception {
         return this.itens; //To change body of generated methods, choose Tools | Templates.
     }
-
     
 }

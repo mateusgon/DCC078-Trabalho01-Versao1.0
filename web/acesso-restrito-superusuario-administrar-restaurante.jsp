@@ -18,7 +18,7 @@
         <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=ListarRestaurantes">
+                    <a href="FrontController?action=ListarRestaurantes&id2=1">
                         <h5 class="card-title">Listar restaurantes</h5>
                     </a>
                 </div>

@@ -1,10 +1,13 @@
 package persistence;
 
+import PadraoComposite.Combo;
 import PadraoComposite.ItemDeVenda;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import model.Pessoa;
 
 public class ComboDAO {
 
@@ -12,7 +15,9 @@ public class ComboDAO {
     private PreparedStatement insereCombo;
     private PreparedStatement buscaCombo;
     private PreparedStatement insereComboProduto;
-
+    private PreparedStatement excluirCombo;
+    private PreparedStatement excluirComboProduto;
+    
     public static ComboDAO getInstance() {
         return instance;
     }
@@ -44,5 +49,58 @@ public class ComboDAO {
             insereComboProduto.setInt(2, iten.getCodigo());
             insereComboProduto.execute();
         }
+    }
+
+    public List<ItemDeVenda> searchCombo(Integer idRest) throws ClassNotFoundException, SQLException {
+        buscaCombo = DatabaseLocator.getInstance().getConnection().prepareStatement("select * from combo where restaurantecod = ?");
+        buscaCombo.clearParameters();
+        buscaCombo.setInt(1, idRest);
+        ArrayList<ItemDeVenda> combos = new ArrayList<>();
+        ResultSet resultado = buscaCombo.executeQuery();
+        while (resultado.next()) {
+            ArrayList<ItemDeVenda> itensCombo = new ArrayList<>();
+            ItemDeVenda combo = new Combo(itensCombo, resultado.getInt("combocod"), resultado.getString("nome"), resultado.getDouble("valor"), resultado.getInt("dificuldade"), idRest);
+            combos.add(combo);
+        }
+        return combos;
+    }
+
+    public List<Integer> searchComboProduto(Integer comboCod) throws ClassNotFoundException, SQLException {
+        buscaCombo = DatabaseLocator.getInstance().getConnection().prepareStatement("select produtocod from combo_produto where combocod = ?");
+        buscaCombo.clearParameters();
+        buscaCombo.setInt(1, comboCod);
+        ArrayList<Integer> idProdutos = new ArrayList<>();
+        ResultSet resultado = buscaCombo.executeQuery();
+        while (resultado.next()) {
+            Integer idProduto = resultado.getInt("produtoCod");
+            idProdutos.add(idProduto);
+        }
+        return idProdutos;
+    }
+
+    public ItemDeVenda searchComboEspecifico(Integer idCOmbo) throws ClassNotFoundException, SQLException {
+        buscaCombo = DatabaseLocator.getInstance().getConnection().prepareStatement("select * from combo where combocod = ?");
+        buscaCombo.clearParameters();
+        buscaCombo.setInt(1, idCOmbo);
+        ItemDeVenda combo = null;
+        ResultSet resultado = buscaCombo.executeQuery();
+        while (resultado.next()) {
+
+            ArrayList<ItemDeVenda> itensCombo = new ArrayList<>();
+            combo = new Combo(itensCombo, resultado.getInt("combocod"), resultado.getString("nome"), resultado.getDouble("valor"), resultado.getInt("dificuldade"), resultado.getInt("restaurantecod"));
+        }
+        return combo;
+    }
+
+    public void deleteCombo (Integer idCombo) throws ClassNotFoundException, SQLException
+    {
+        excluirCombo = DatabaseLocator.getInstance().getConnection().prepareStatement("delete from combo where combocod = ?");
+        excluirCombo.clearParameters();
+        excluirComboProduto = DatabaseLocator.getInstance().getConnection().prepareStatement("delete from combo_produto where combocod = ?");
+        excluirComboProduto.clearParameters();
+        excluirComboProduto.setInt(1, idCombo);
+        excluirComboProduto.execute();
+        excluirCombo.setInt(1, idCombo);
+        excluirCombo.execute();
     }
 }

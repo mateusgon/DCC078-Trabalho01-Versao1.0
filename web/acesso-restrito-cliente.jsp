@@ -10,7 +10,7 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=VerPedido">
+                    <a href="FrontController?action=VerPedidos&id=${pessoa.pessoaCod}&id2=2">
                         <h5 class="card-title">Ver Pedidos</h5>
                     </a>
                 </div>
@@ -19,7 +19,7 @@
         <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=VerRestaurante">
+                    <a href="FrontController?action=ListarRestaurantes&id=${pessoa.pessoaCod}&id2=2">
                         <h5 class="card-title">Ver restaurantes</h5>
                     </a>
                 </div>
@@ -28,7 +28,7 @@
         <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=#">
+                    <a href="FrontController?action=ListarMensagens&id=${pessoa.pessoaCod}">
                         <h5 class="card-title">Ver mensagens</h5>
                     </a>
                 </div>
