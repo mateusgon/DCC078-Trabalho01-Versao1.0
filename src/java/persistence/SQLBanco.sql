@@ -7,8 +7,6 @@ endereco varchar(100),
 sigla varchar(100)
 );
 
-
-
 create table pessoa (
 pessoacod integer primary key generated always as identity,
 nome varchar(100),
@@ -19,7 +17,6 @@ senha varchar(100),
 restaurantecod integer,
 tipoPessoa integer,
 foreign key (restaurantecod) references restaurante (restaurantecod)
-
 );
 
 insert into pessoa (nome, email, senha, tipoPessoa) values ('adminGeral', 'adminGeral', 'adminGeral', 8);
@@ -52,4 +49,32 @@ combocod integer,
 produtocod integer,
 foreign key (combocod) references combo (combocod),
 foreign key (produtocod) references produto (produtocod)
+);
+
+create table pedido (
+pedidocod integer primary key generated always as identity,
+estado integer,
+valor double,
+datapedido timestamp,
+dificuldade integer,
+restaurantecod integer,
+pessoacod integer,
+foreign key (restaurantecod) references restaurante (restaurantecod),
+foreign key (pessoacod) references pessoa (pessoacod)
+);
+
+create table pedido_produto (
+codigo integer primary key generated always as identity,
+pedidocod integer,
+produtocod integer,
+foreign key (pedidocod) references pedido (pedidocod),
+foreign key (produtocod) references produto (produtocod)
+);
+
+create table pedido_combo (
+codigo integer primary key generated always as identity,
+pedidocod integer,
+combocod integer,
+foreign key (pedidocod) references pedido (pedidocod),
+foreign key (combocod) references combo (combocod)
 );

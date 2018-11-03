@@ -6,6 +6,5 @@ public interface PedidoEstado {
     public Boolean pronto(Pedido a);
     public Boolean enviado(Pedido a);
     public Boolean recebido(Pedido a);
-    public Boolean cancelado(Pedido a);
     public String getNomeEstado();
 }

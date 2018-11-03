@@ -36,11 +36,6 @@ public class PedidoEstadoAberto extends Observable implements PedidoEstado{
     }
 
     @Override
-    public Boolean cancelado(Pedido a) {
-        return false;
-    }
-
-    @Override
     public String getNomeEstado() {
         return this.getNomeEstado();
     }

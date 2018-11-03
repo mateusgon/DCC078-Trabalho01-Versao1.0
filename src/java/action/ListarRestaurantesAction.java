@@ -21,6 +21,7 @@ public class ListarRestaurantesAction implements Action {
         } else if (id == 2) {
             List<Restaurante> restaurantes = RestauranteDAO.getInstance().listAll();
             request.setAttribute("restaurantes", restaurantes);
+            request.setAttribute("idUsuario", Integer.parseInt(request.getParameter("id")));
             RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-cliente-listar-restaurantes.jsp");
             dispatcher.forward(request, response);
         } else {

@@ -19,7 +19,7 @@
                     <td>${restaurantes.nome}</td>
                     <td><a href="FrontController?action=VerInformacoesRestaurante&id=${restaurantes.restaurantecod}"> Ver informações  </a></td>
                     <td><a href="FrontController?action=VerCardapio&id=${restaurantes.restaurantecod}"> Ver cardápio  </a></td>
-                    <td><a href="FrontController?action=FazerPedido&id=${restaurantes.restaurantecod}"> Fazer pedido </a></td>
+                    <td><a href="FrontController?action=FazerPedido&id=${restaurantes.restaurantecod}&id2=${idUsuario}"> Fazer pedido </a></td>
                 </tr>
             </c:forEach>
         </tbody>
