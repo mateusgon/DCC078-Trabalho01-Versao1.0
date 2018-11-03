@@ -7,7 +7,6 @@ import PadraoTemplateMethod.MensagemPronto;
 import PadraoTemplateMethod.MensagemRecebido;
 import PadraoTemplateMethod.MensagemTemplate;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
@@ -19,11 +18,10 @@ public class Cliente implements Observer {
 
     private Integer pessoaCod, tipoPessoa;
     private String nome, endereco, email, senha, telefone;
-    private Pedido pedido2;
     private Observable pedido;
     private MensagemTemplate mensagem;
 
-    public Cliente(Integer pessoaCod, Integer tipoPessoa, String nome, String endereco, String email, String senha, String telefone, Observable pedido, Pedido pedido2) {
+    public Cliente(Integer pessoaCod, Integer tipoPessoa, String nome, String endereco, String email, String senha, String telefone, Observable pedido) {
         this.pessoaCod = pessoaCod;
         this.tipoPessoa = tipoPessoa;
         this.nome = nome;
@@ -33,32 +31,36 @@ public class Cliente implements Observer {
         this.telefone = telefone;
         this.pedido = pedido;
         pedido.addObserver(this);
-        this.pedido2 = pedido2;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if (pedido2.getEstado().getNomeEstado() == "Aberto") {
+        Pedido p = (Pedido) getPedido();
+        if (p.getEstado().getNomeEstado().equals("Aberto")) {
             mensagem = new MensagemAberto();
-        } else if (pedido2.getEstado().getNomeEstado() == "Preparar") {
+        } else if (p.getEstado().getNomeEstado().equals("Preparar")) {
             mensagem = new MensagemPreparado();
-        } else if (pedido2.getEstado().getNomeEstado() == "Pronto") {
+        } else if (p.getEstado().getNomeEstado().equals("Pronto")) {
             mensagem = new MensagemPronto();
-        } else if (pedido2.getEstado().getNomeEstado() == "Enviar") {
+        } else if (p.getEstado().getNomeEstado().equals("Enviar")) {
             mensagem = new MensagemEnviado();
         } else {
             mensagem = new MensagemRecebido();
         }
         Mensagem mensagemEnviada = new Mensagem();
-        mensagemEnviada.setMensagem(mensagem.getEstadoPedido(pedido2));
+        mensagemEnviada.setMensagem(mensagem.getEstadoPedido(p));
         mensagemEnviada.setIdReceptor(pessoaCod);
-        try {   
+        try {
             MensagemDAO.getInstance().saveMensagem(mensagemEnviada);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public Observable getPedido() {
+        return this.pedido;
     }
 
     public Integer getPessoaCod() {
@@ -117,15 +119,12 @@ public class Cliente implements Observer {
         this.telefone = telefone;
     }
 
-    public Observable getPedido() {
-        return pedido;
-    }
-
     public void setPedido(Observable pedido) {
         this.pedido = pedido;
     }
 
     public void notificarAbertura() throws ClassNotFoundException, SQLException {
+        Pedido pedido2 = (Pedido) pedido;
         MensagemTemplate mensagem = new MensagemAberto();
         Mensagem mensagemEnviada = new Mensagem();
         mensagemEnviada.setMensagem(mensagem.getEstadoPedido(pedido2));

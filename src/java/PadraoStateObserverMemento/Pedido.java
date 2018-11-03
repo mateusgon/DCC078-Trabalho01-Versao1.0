@@ -41,11 +41,10 @@ public class Pedido extends Observable {
         estado.preparando(this);
     }
 
-    public void pronto()
-    {
+    public void pronto() {
         estado.pronto(this);
     }
-    
+
     public void enviar() {
         estado.enviado(this);
     }
@@ -65,6 +64,8 @@ public class Pedido extends Observable {
 
     public void setEstado(PedidoEstado estado) {
         this.estado = estado;
+        setChanged();
+        notifyObservers();
     }
 
     public Integer getNumeroPedido() {
@@ -122,5 +123,5 @@ public class Pedido extends Observable {
     public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
-    
+
 }

@@ -6,8 +6,8 @@ public class PedidoEstadoEnviar extends Observable implements PedidoEstado {
 
     String nome = "Enviar";
 
-    public PedidoEstadoEnviar(Pedido pedido) {
-        pedido.notificar();
+    public PedidoEstadoEnviar() {
+        
     }
 
     @Override
@@ -32,7 +32,7 @@ public class PedidoEstadoEnviar extends Observable implements PedidoEstado {
 
     @Override
     public void recebido(Pedido a) {
-        a.setEstado(new PedidoEstadoReceber(a));
+        a.setEstado(new PedidoEstadoReceber());
     }
 
     @Override

@@ -95,7 +95,7 @@ public class FazerPedidoPostAction implements Action {
         }
 
         Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(idUsr);
-        Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido, pedido);
+        Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
         cliente.notificarAbertura();
 
         setDificuldade();

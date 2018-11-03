@@ -17,7 +17,7 @@ public class PedidoEstadoAberto extends Observable implements PedidoEstado{
 
     @Override
     public void preparando(Pedido a) {
-        a.setEstado(new PedidoEstadoPreparar(a));
+        a.setEstado(new PedidoEstadoPreparar());
     }
 
     @Override

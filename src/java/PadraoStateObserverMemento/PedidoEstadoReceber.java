@@ -6,8 +6,8 @@ public class PedidoEstadoReceber extends Observable implements PedidoEstado {
 
     String nome = "Receber";
 
-    public PedidoEstadoReceber(Pedido pedido) {
-        pedido.notificar();
+    public PedidoEstadoReceber() {
+
     }
 
     @Override

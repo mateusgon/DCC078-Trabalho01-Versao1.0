@@ -10,7 +10,7 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=VerPedidos&id=${pessoa.pessoaCod}&id2=2">
+                    <a href="FrontController?action=ListarPedido&id=${pessoa.pessoaCod}&id2=2">
                         <h5 class="card-title">Ver Pedidos</h5>
                     </a>
                 </div>
