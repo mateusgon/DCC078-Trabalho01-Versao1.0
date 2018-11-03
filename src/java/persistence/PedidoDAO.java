@@ -1,5 +1,6 @@
 package persistence;
 
+import PadraoComposite.ItemDeVenda;
 import PadraoStateObserverMemento.Pedido;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,12 +9,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class PedidoDAO {
 
     private static PedidoDAO instance = new PedidoDAO();
     private PreparedStatement inserePedido;
     private PreparedStatement buscaPedido;
+    private PreparedStatement atualizaPedido;
 
     public static PedidoDAO getInstance() {
         return instance;
@@ -45,4 +48,31 @@ public class PedidoDAO {
         return resutaldo.getInt("pedidocod");
     }
 
+    public void updatePedido(Pedido pedido) throws SQLException, ClassNotFoundException {
+        atualizaPedido = DatabaseLocator.getInstance().getConnection().prepareStatement("update pedido set valor = ?, dificuldade = ? where pedidocod = ?");
+        atualizaPedido.clearParameters();
+        atualizaPedido.setDouble(1, pedido.getValor());
+        atualizaPedido.setInt(2, pedido.getDificuldade());
+        atualizaPedido.setInt(3, pedido.getNumeroPedido());
+        atualizaPedido.execute();
+    }
+
+    public void savePedidoProduto(List<ItemDeVenda> itens, Integer pedido) throws SQLException, ClassNotFoundException {
+        inserePedido = DatabaseLocator.getInstance().getConnection().prepareStatement("insert into pedido_produto (pedidocod, produtocod) values (?, ?)");
+        for (ItemDeVenda iten : itens) {
+            inserePedido.clearParameters();
+            inserePedido.setInt(1, pedido);
+            inserePedido.setInt(2, iten.getCodigo());
+            inserePedido.execute();
+        }
+    }
+
+    public void saveComboProduto(ItemDeVenda combo, Integer pedido) throws SQLException, ClassNotFoundException
+    {
+        inserePedido = DatabaseLocator.getInstance().getConnection().prepareStatement("insert into pedido_combo (pedidocod, combocod) values (?, ?)");
+        inserePedido.clearParameters();
+        inserePedido.setInt(1, pedido);
+        inserePedido.setInt(2, combo.getCodigo());
+        inserePedido.execute();
+    }
 }

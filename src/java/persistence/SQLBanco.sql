@@ -78,3 +78,10 @@ combocod integer,
 foreign key (pedidocod) references pedido (pedidocod),
 foreign key (combocod) references combo (combocod)
 );
+
+create table mensagem (
+mensagemcod integer primary key generated always as identity,
+mensagem varchar (1000),
+pessoacod integer,
+foreign key (pessoacod) references pessoa (pessoacod)
+);

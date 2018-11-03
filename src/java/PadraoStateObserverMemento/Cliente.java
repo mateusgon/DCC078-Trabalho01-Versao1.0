@@ -112,7 +112,7 @@ public class Cliente implements Observer {
 
     public void notificarAbertura() {
         MensagemTemplate mensagem = new MensagemAberto();
-        System.out.println(mensagem.getEstadoPedido(pedido2));
+        
     }
 
 }

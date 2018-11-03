@@ -5,8 +5,8 @@ import PadraoStateObserverMemento.Pedido;
 public class MetodoPagamentoCartaoDebito implements MetodoPagamento{
 
     @Override
-    public Double obterValor(Pedido pedido) {
-        return pedido.getValor() * 1.10;
+    public Double obterValor(Double valor) {
+        return valor * 1.10;
     }
 
     @Override

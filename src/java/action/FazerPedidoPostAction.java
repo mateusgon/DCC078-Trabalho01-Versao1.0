@@ -1,15 +1,19 @@
 package action;
 
 import PadraoComposite.Bebida;
-import PadraoComposite.Combo;
 import PadraoComposite.ItemDeVenda;
 import PadraoComposite.PratoDeEntrada;
 import PadraoComposite.PratoPrincipal;
 import PadraoComposite.Sobremesa;
 import PadraoStateObserverMemento.Cliente;
 import PadraoStateObserverMemento.Pedido;
+import PadraoStrategy.MetodoPagamento;
+import PadraoStrategy.MetodoPagamentoCartaoCredito;
+import PadraoStrategy.MetodoPagamentoCartaoDebito;
+import PadraoStrategy.MetodoPagamentoDinheiro;
 import controller.Action;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Pessoa;
@@ -21,6 +25,7 @@ import persistence.ProdutoDAO;
 
 public class FazerPedidoPostAction implements Action {
 
+    Integer pagamento;
     Integer idRestaurante;
     Integer idUsr;
     Pedido pedido;
@@ -30,7 +35,7 @@ public class FazerPedidoPostAction implements Action {
 
         pedido = new Pedido();
 
-        Integer pagamento = Integer.parseInt(request.getParameter("pagamento"));
+        pagamento = Integer.parseInt(request.getParameter("pagamento"));
         idUsr = Integer.parseInt(request.getParameter("idUsr"));
         idRestaurante = Integer.parseInt(request.getParameter("idRest"));
 
@@ -72,6 +77,8 @@ public class FazerPedidoPostAction implements Action {
                 instanciaObjeto(ProdutoDAO.getInstance().listProduto(requisicao4[i]));
             }
         }
+        PedidoDAO.getInstance().savePedidoProduto(pedido.getItens(), pedido.getNumeroPedido());
+
         if (posicoes5 != null && posicoes5.length > 0) {
             Integer[] requisicao5 = new Integer[posicoes5.length];
             for (int i = 0; i < posicoes5.length; i++) {
@@ -82,7 +89,7 @@ public class FazerPedidoPostAction implements Action {
                     Produto produto = ProdutoDAO.getInstance().listProduto(idProduto);
                     instanciaCombo(produto, combo);
                 }
-                //
+                PedidoDAO.getInstance().saveComboProduto(combo, pedido.getNumeroPedido());
                 pedido.getItens().add(combo);
             }
         }
@@ -91,6 +98,16 @@ public class FazerPedidoPostAction implements Action {
         Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido, pedido);
         cliente.notificarAbertura();
 
+        setDificuldade();
+        calculaValor();
+        PedidoDAO.getInstance().updatePedido(pedido);
+
+        request.setAttribute("idRest", idRestaurante);
+        request.setAttribute("nomeUsuario", cliente.getNome());
+        request.setAttribute("valor", pedido.getValor());
+        request.setAttribute("idPedido", pedido.getNumeroPedido());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-cliente-confirmar-pedido.jsp");
+        dispatcher.forward(request, response);
     }
 
     public void instanciaObjeto(Produto produto) {
@@ -128,8 +145,7 @@ public class FazerPedidoPostAction implements Action {
     public void setDificuldade() {
         List<ItemDeVenda> itens = pedido.getItens();
         for (ItemDeVenda iten : itens) {
-            if (iten.getDificuldade() == 3)
-            {
+            if (iten.getDificuldade() == 3) {
                 pedido.setDificuldade(3);
                 break;
             }
@@ -138,6 +154,28 @@ public class FazerPedidoPostAction implements Action {
     }
 
     public void calculaValor() {
-
+        MetodoPagamento metodo;
+        List<ItemDeVenda> itens = pedido.getItens();
+        Double valor = 0.0;
+        for (ItemDeVenda iten : itens) {
+            valor = valor + iten.getValor();
+        }
+        switch (pagamento) {
+            case 1: {
+                metodo = new MetodoPagamentoCartaoCredito();
+                pedido.setValor(metodo.obterValor(valor));
+                break;
+            }
+            case 2: {
+                metodo = new MetodoPagamentoCartaoDebito();
+                pedido.setValor(metodo.obterValor(valor));
+                break;
+            }
+            case 3: {
+                metodo = new MetodoPagamentoDinheiro();
+                pedido.setValor(metodo.obterValor(valor));
+                break;
+            }
+        }
     }
 }
