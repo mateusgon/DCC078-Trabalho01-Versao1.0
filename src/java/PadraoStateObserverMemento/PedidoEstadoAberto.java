@@ -4,35 +4,35 @@ import java.util.Observable;
 
 public class PedidoEstadoAberto extends Observable implements PedidoEstado{
 
-    String nome = "O pedido está em aberto";
+    String nome = "Aberto";
     
     public PedidoEstadoAberto(Pedido pedido) {
         pedido.notificar();
     }
 
     @Override
-    public Boolean aberto(Pedido a) {
-        return false;
+    public void aberto(Pedido a) {
+    
     }
 
     @Override
-    public Boolean preparando(Pedido a) {
-        return true;
+    public void preparando(Pedido a) {
+        a.setEstado(new PedidoEstadoPreparar(a));
     }
 
     @Override
-    public Boolean pronto(Pedido a) {
-        return false;
+    public void pronto(Pedido a) {
+    
     }
 
     @Override
-    public Boolean enviado(Pedido a) {
-        return false;
+    public void enviado(Pedido a) {
+        
     }
 
     @Override
-    public Boolean recebido(Pedido a) {
-        return false;
+    public void recebido(Pedido a) {
+    
     }
 
     @Override

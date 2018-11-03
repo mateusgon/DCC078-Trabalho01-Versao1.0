@@ -1,6 +1,7 @@
 package PadraoStateObserverMemento;
 
 import PadraoComposite.ItemDeVenda;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Observable;
@@ -19,33 +20,38 @@ public class Pedido extends Observable {
     public Pedido(Integer numeroPedido, List<ItemDeVenda> itens, PedidoEstado estado, Double valor, Date dataPedido, Integer dificuldade, Integer idRestaurante, Integer idCliente) {
         this.numeroPedido = numeroPedido;
         this.itens = itens;
-        this.estado = estado;
         this.valor = valor;
         this.dataPedido = dataPedido;
         this.dificuldade = dificuldade;
         this.idRestaurante = idRestaurante;
         this.idCliente = idCliente;
+        // ver como fazer com pedido
     }
 
     public Pedido() {
+        this.itens = new ArrayList<>();
+        this.estado = new PedidoEstadoAberto(this);
     }
 
     public void abrir() {
+        estado.aberto(this);
     }
 
     public void preparar() {
+        estado.preparando(this);
     }
 
-    public void encerrar() {
+    public void pronto()
+    {
+        estado.pronto(this);
     }
-
+    
     public void enviar() {
+        estado.enviado(this);
     }
 
     public void receber() {
-    }
-
-    public void cancelar() {
+        estado.recebido(this);
     }
 
     public void notificar() {

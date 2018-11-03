@@ -1,5 +1,11 @@
 package PadraoStateObserverMemento;
 
+import PadraoTemplateMethod.MensagemAberto;
+import PadraoTemplateMethod.MensagemEnviado;
+import PadraoTemplateMethod.MensagemPreparado;
+import PadraoTemplateMethod.MensagemPronto;
+import PadraoTemplateMethod.MensagemRecebido;
+import PadraoTemplateMethod.MensagemTemplate;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -8,9 +14,11 @@ public class Cliente implements Observer {
     
     private Integer pessoaCod, tipoPessoa;
     private String nome, endereco, email, senha, telefone;
-    private List<Observable> pedido;
+    private Pedido pedido2;
+    private Observable pedido;
+    private MensagemTemplate mensagem;
     
-    public Cliente(Integer pessoaCod, Integer tipoPessoa, String nome, String endereco, String email, String senha, String telefone) {
+    public Cliente(Integer pessoaCod, Integer tipoPessoa, String nome, String endereco, String email, String senha, String telefone, Observable pedido, Pedido pedido2) {
         this.pessoaCod = pessoaCod;
         this.tipoPessoa = tipoPessoa;
         this.nome = nome;
@@ -18,11 +26,33 @@ public class Cliente implements Observer {
         this.email = email;
         this.senha = senha;
         this.telefone = telefone;
+        this.pedido = pedido;
+        pedido.addObserver(this);
+        this.pedido2 = pedido2;
     }
     
     @Override
     public void update(Observable o, Object arg) {
-        // mensagem de atualização
+        if (pedido2.getEstado().getNomeEstado() == "Aberto")
+        {
+            mensagem = new MensagemAberto();
+        }
+        else if (pedido2.getEstado().getNomeEstado() == "Preparar")
+        {
+            mensagem = new MensagemPreparado();
+        }
+        else if (pedido2.getEstado().getNomeEstado() == "Pronto")
+        {
+            mensagem = new MensagemPronto();
+        }
+        else if (pedido2.getEstado().getNomeEstado() == "Enviar")
+        {
+            mensagem = new MensagemEnviado();
+        }
+        else 
+        {
+            mensagem = new MensagemRecebido();
+        }
     }
 
     public Integer getPessoaCod() {
@@ -81,12 +111,13 @@ public class Cliente implements Observer {
         this.telefone = telefone;
     }
 
-    public List<Observable> getPedido() {
+    public Observable getPedido() {
         return pedido;
     }
 
-    public void setPedido(List<Observable> pedido) {
+    public void setPedido(Observable pedido) {
         this.pedido = pedido;
     }
-   
+
+    
 }
