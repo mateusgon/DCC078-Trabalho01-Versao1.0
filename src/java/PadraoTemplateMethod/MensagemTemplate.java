@@ -8,7 +8,7 @@ public abstract class MensagemTemplate {
     
     public String getEstadoPedido(Pedido pedido)
     {
-        return "O Pedido " + pedido.getNumeroPedido() + "mudou o seu estado para " + getEstado() + ". Fique atento"; 
+        return "O Pedido " + pedido.getNumeroPedido() + " mudou o seu estado para " + getEstado() + ". Fique atento"; 
     }
     
 }

@@ -37,7 +37,7 @@ public class PedidoEstadoAberto extends Observable implements PedidoEstado{
 
     @Override
     public String getNomeEstado() {
-        return this.getNomeEstado();
+        return this.nome;
     }
 
 }

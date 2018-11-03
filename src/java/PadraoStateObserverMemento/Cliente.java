@@ -11,13 +11,13 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Cliente implements Observer {
-    
+
     private Integer pessoaCod, tipoPessoa;
     private String nome, endereco, email, senha, telefone;
     private Pedido pedido2;
     private Observable pedido;
     private MensagemTemplate mensagem;
-    
+
     public Cliente(Integer pessoaCod, Integer tipoPessoa, String nome, String endereco, String email, String senha, String telefone, Observable pedido, Pedido pedido2) {
         this.pessoaCod = pessoaCod;
         this.tipoPessoa = tipoPessoa;
@@ -30,27 +30,18 @@ public class Cliente implements Observer {
         pedido.addObserver(this);
         this.pedido2 = pedido2;
     }
-    
+
     @Override
     public void update(Observable o, Object arg) {
-        if (pedido2.getEstado().getNomeEstado() == "Aberto")
-        {
+        if (pedido2.getEstado().getNomeEstado() == "Aberto") {
             mensagem = new MensagemAberto();
-        }
-        else if (pedido2.getEstado().getNomeEstado() == "Preparar")
-        {
+        } else if (pedido2.getEstado().getNomeEstado() == "Preparar") {
             mensagem = new MensagemPreparado();
-        }
-        else if (pedido2.getEstado().getNomeEstado() == "Pronto")
-        {
+        } else if (pedido2.getEstado().getNomeEstado() == "Pronto") {
             mensagem = new MensagemPronto();
-        }
-        else if (pedido2.getEstado().getNomeEstado() == "Enviar")
-        {
+        } else if (pedido2.getEstado().getNomeEstado() == "Enviar") {
             mensagem = new MensagemEnviado();
-        }
-        else 
-        {
+        } else {
             mensagem = new MensagemRecebido();
         }
     }
@@ -119,5 +110,9 @@ public class Cliente implements Observer {
         this.pedido = pedido;
     }
 
-    
+    public void notificarAbertura() {
+        MensagemTemplate mensagem = new MensagemAberto();
+        System.out.println(mensagem.getEstadoPedido(pedido2));
+    }
+
 }
