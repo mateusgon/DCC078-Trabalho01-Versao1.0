@@ -6,9 +6,14 @@ import PadraoTemplateMethod.MensagemPreparado;
 import PadraoTemplateMethod.MensagemPronto;
 import PadraoTemplateMethod.MensagemRecebido;
 import PadraoTemplateMethod.MensagemTemplate;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Mensagem;
+import persistence.MensagemDAO;
 
 public class Cliente implements Observer {
 
@@ -43,6 +48,16 @@ public class Cliente implements Observer {
             mensagem = new MensagemEnviado();
         } else {
             mensagem = new MensagemRecebido();
+        }
+        Mensagem mensagemEnviada = new Mensagem();
+        mensagemEnviada.setMensagem(mensagem.getEstadoPedido(pedido2));
+        mensagemEnviada.setIdReceptor(pessoaCod);
+        try {   
+            MensagemDAO.getInstance().saveMensagem(mensagemEnviada);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -110,9 +125,12 @@ public class Cliente implements Observer {
         this.pedido = pedido;
     }
 
-    public void notificarAbertura() {
+    public void notificarAbertura() throws ClassNotFoundException, SQLException {
         MensagemTemplate mensagem = new MensagemAberto();
-        
+        Mensagem mensagemEnviada = new Mensagem();
+        mensagemEnviada.setMensagem(mensagem.getEstadoPedido(pedido2));
+        mensagemEnviada.setIdReceptor(pessoaCod);
+        MensagemDAO.getInstance().saveMensagem(mensagemEnviada);
     }
 
 }
