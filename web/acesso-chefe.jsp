@@ -18,16 +18,15 @@
         </thead>
         <tbody>
     
-            
-       <!-- Apagar isso -->
-        <tr>
-                    <td>2313</td>
-                    <td>Cliente</td>
-                    <td>Rua numero 12</td>
-                    <td>Itens do Pedido</td>
-                    
-        </tr>
-                
+            <c:forEach var="pedidos"  items="${pedidos}">
+                <tr>
+                    <td>${pedidos.numeroPedido}</td>
+                    <td>${pedidos.cliente}</td>
+                    <td>${pedidos.endereco}</td>
+                    <td><a href="FrontController?action=MudaEstadoPedido&id=${pedidos.numeroPedido}"> Ver Itens do Pedido </a></td>
+                </tr>
+            </c:forEach>
+          
         </tbody>
     </table>
 </div>
