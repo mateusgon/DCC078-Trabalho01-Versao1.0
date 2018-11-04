@@ -4,9 +4,10 @@ import java.util.Observable;
 
 public class PedidoEstadoAberto extends Observable implements PedidoEstado{
 
-    String nome = "Aberto";
+    private String nome;
     
     public PedidoEstadoAberto(Pedido pedido) {
+        this.nome = "Aberto";
         pedido.notificar();
     }
 

@@ -12,21 +12,21 @@
             <tr>
                 <th> Número do Pedido </th>
                 <th> Cliente </th>
-                <th> Endereço </th>
-                <th> Ver Itens </th>
+                <th> Itens do Pedido </th>
+                <th> Mudar status </th>
             </tr>
         </thead>
         <tbody>
-    
+
             <c:forEach var="pedidos"  items="${pedidos}">
                 <tr>
                     <td>${pedidos.numeroPedido}</td>
-                    <td>${pedidos.cliente}</td>
-                    <td>${pedidos.endereco}</td>
-                    <td><a href="FrontController?action=MudaEstadoPedido&id=${pedidos.numeroPedido}"> Ver Itens do Pedido </a></td>
+                    <td>${pedidos.cliente.nome}</td>
+                    <td><a href="FrontController?action=MudarEstadoPedido&id=${pedidos.numeroPedido}"> Ver Itens do Pedido </a></td>
+                    <td><a href="FrontController?action=MudarEstadoPedido&id=${pedidos.numeroPedido}"> Mudar estado </a></td>
                 </tr>
             </c:forEach>
-          
+
         </tbody>
     </table>
 </div>

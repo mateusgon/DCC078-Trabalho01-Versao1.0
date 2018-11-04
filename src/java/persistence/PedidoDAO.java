@@ -1,5 +1,9 @@
 package persistence;
 
+import PadraoChainOfResponsibility.TipoPedido;
+import PadraoChainOfResponsibility.TipoPedidoEasy;
+import PadraoChainOfResponsibility.TipoPedidoHard;
+import PadraoChainOfResponsibility.TipoPedidoMedium;
 import PadraoComposite.ItemDeVenda;
 import PadraoStateObserverMemento.Cliente;
 import PadraoStateObserverMemento.Pedido;
@@ -100,12 +104,42 @@ public class PedidoDAO {
             pedido.setIdCliente(idUsuario);
             iniciaEstado(resultado.getInt("estado"), pedido);
             pedidos.add(pedido);
-            Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(idUsuario);
+            /*Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(idUsuario);
             Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
             pedido.preparar();
             pedido.pronto();
             pedido.enviar();
-            pedido.receber();
+            pedido.receber();*/
+        }
+        return pedidos;
+    }
+
+    public List<Pedido> searchPedidoRestaurante(Integer idRestaurante) throws SQLException, ClassNotFoundException {
+        List<Pedido> pedidos = new ArrayList<>();
+        buscaPedido = DatabaseLocator.getInstance().getConnection().prepareStatement("select * from pedido where restaurantecod = ?");
+        buscaPedido.clearParameters();
+        buscaPedido.setInt(1, idRestaurante);
+        ResultSet resultado = buscaPedido.executeQuery();
+        while (resultado.next()) {
+            Pedido pedido = new Pedido();
+            pedido.setNumeroPedido(resultado.getInt("pedidocod"));
+            pedido.setValor(resultado.getDouble("valor"));
+            pedido.setDificuldade(resultado.getInt("dificuldade"));
+            pedido.setIdRestaurante(resultado.getInt("restaurantecod"));
+            pedido.setDataPedido(resultado.getTimestamp("datapedido"));
+            pedido.setIdCliente(resultado.getInt("pessoacod"));
+            iniciaEstado(resultado.getInt("estado"), pedido);
+            Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(pedido.getIdCliente());
+            Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
+            pedido.setCliente(cliente);
+            iniciaTipoDoPedido(pedido.getDificuldade(), pedido);
+            pedidos.add(pedido);
+            /*Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(idUsuario);
+            Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
+            pedido.preparar();
+            pedido.pronto();
+            pedido.enviar();
+            pedido.receber();*/
         }
         return pedidos;
     }
@@ -115,26 +149,51 @@ public class PedidoDAO {
             case 1: {
                 PedidoEstado estado = new PedidoEstadoAberto(pedido);
                 pedido.setEstado(estado);
+                pedido.setNomeEstado(estado.getNomeEstado());
                 break;
             }
             case 2: {
                 PedidoEstado estado = new PedidoEstadoPreparar();
                 pedido.setEstado(estado);
+                pedido.setNomeEstado(estado.getNomeEstado());
                 break;
             }
             case 3: {
                 PedidoEstado estado = new PedidoEstadoPronto();
                 pedido.setEstado(estado);
+                pedido.setNomeEstado(estado.getNomeEstado());
                 break;
             }
             case 4: {
                 PedidoEstado estado = new PedidoEstadoEnviar();
                 pedido.setEstado(estado);
+                pedido.setNomeEstado(estado.getNomeEstado());
                 break;
             }
             case 5: {
                 PedidoEstado estado = new PedidoEstadoReceber();
                 pedido.setEstado(estado);
+                pedido.setNomeEstado(estado.getNomeEstado());
+                break;
+            }
+        }
+    }
+
+    public void iniciaTipoDoPedido(Integer dificuldade, Pedido pedido) {
+        switch (dificuldade) {
+            case 1: {
+                TipoPedido tp = new TipoPedidoEasy();
+                pedido.setTipoPedido(tp);
+                break;
+            }
+            case 2: {
+                TipoPedido tp = new TipoPedidoMedium();
+                pedido.setTipoPedido(tp);
+                break;
+            }
+            case 3: {
+                TipoPedido tp = new TipoPedidoHard();
+                pedido.setTipoPedido(tp);
                 break;
             }
         }

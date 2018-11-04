@@ -6,15 +6,15 @@
 
 <div class="container">
 
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Estados dos Pedidos
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1"  style="background-color: white">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cozinhando</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entregando</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Finalizado</a></li>
-    </ul>
-</div>   
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Estados dos Pedidos
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1"  style="background-color: white">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cozinhando</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entregando</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Finalizado</a></li>
+        </ul>
+    </div>   
     <table class="table table-bordered"  style="background-color: white">
         <thead>
             <tr>
@@ -25,18 +25,18 @@
             </tr>
         </thead>
         <tbody>
-    
-            
-       <c:forEach var="pedidos"  items="${pedidos}">
+
+
+            <c:forEach var="pedidos"  items="${pedidos}">
                 <tr>
                     <td>${pedidos.numeroPedido}</td>
-                    <td>${pedidos.cliente}</td>
-                    <td>${pedidos.endereco}</td>
-                    <td><a href="FrontController?action=MudaEstadoPedido&id=${pedidos.numeroPedido}"> ${pedidos.status} </a></td>
+                    <td>${pedidos.cliente.nome}</td>
+                    <td>${pedidos.cliente.endereco}</td>
+                    <td><a href="FrontController?action=MudaEstadoPedido&id=${pedidos.numeroPedido}"> ${pedidos.nomeEstado} </a></td>
                 </tr>
             </c:forEach>
-          
-                
+
+
         </tbody>
     </table>
 </div>

@@ -12,6 +12,7 @@ import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Mensagem;
+import model.Pessoa;
 import persistence.MensagemDAO;
 
 public class Cliente implements Observer {

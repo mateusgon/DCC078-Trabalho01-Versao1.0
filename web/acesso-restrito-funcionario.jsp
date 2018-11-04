@@ -8,7 +8,7 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=AcessoMotoqueiro">
+                    <a href="FrontController?action=AcessoMotoqueiro&id=${pessoa.restauranteCod}">
                         <h5 class="card-title">Motoqueiro</h5>
                     </a>
                 </div>
@@ -17,7 +17,7 @@
         <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=AcessoChefe">
+                    <a href="FrontController?action=AcessoChefe&id=${pessoa.restauranteCod}&id2=${pessoa.pessoaCod}">
                         <h5 class="card-title">Chef de Cozinha</h5>
                     </a>
                 </div>
@@ -26,7 +26,7 @@
           <div class="col-sm-4" >
             <div class="card">
                 <div class="card-body">
-                    <a href="FrontController?action=AcessoAtendente">
+                    <a href="FrontController?action=AcessoAtendente&id=${pessoa.restauranteCod}">
                         <h5 class="card-title">Atendente</h5>
                     </a>
                 </div>

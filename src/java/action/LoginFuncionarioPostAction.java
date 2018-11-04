@@ -29,7 +29,7 @@ public class LoginFuncionarioPostAction implements controller.Action{
                 dispatcher.forward(request, response);
             }
         } catch (Exception ex) {
-            RequestDispatcher dispacher = request.getRequestDispatcher("form-login-cliente.jsp");
+            RequestDispatcher dispacher = request.getRequestDispatcher("form-login-funcionarios.jsp");
             dispacher.forward(request, response);
         }
     }

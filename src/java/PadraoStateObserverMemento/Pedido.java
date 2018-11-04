@@ -1,5 +1,6 @@
 package PadraoStateObserverMemento;
 
+import PadraoChainOfResponsibility.TipoPedido;
 import PadraoComposite.ItemDeVenda;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,6 +17,9 @@ public class Pedido extends Observable {
     private Integer dificuldade;
     private Integer idRestaurante;
     private Integer idCliente;
+    private String nomeEstado;
+    private Cliente cliente;
+    private TipoPedido tipoPedido;
 
     public Pedido(Integer numeroPedido, List<ItemDeVenda> itens, PedidoEstado estado, Double valor, Date dataPedido, Integer dificuldade, Integer idRestaurante, Integer idCliente) {
         this.numeroPedido = numeroPedido;
@@ -122,6 +126,30 @@ public class Pedido extends Observable {
 
     public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public String getNomeEstado() {
+        return nomeEstado;
+    }
+
+    public void setNomeEstado(String nomeEstado) {
+        this.nomeEstado = nomeEstado;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public TipoPedido getTipoPedido() {
+        return tipoPedido;
+    }
+
+    public void setTipoPedido(TipoPedido tipoPedido) {
+        this.tipoPedido = tipoPedido;
     }
 
 }
