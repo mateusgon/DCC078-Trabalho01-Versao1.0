@@ -195,31 +195,26 @@ public class PedidoDAO {
             case 1: {
                 PedidoEstado estado = new PedidoEstadoAberto(pedido);
                 pedido.setEstado(estado);
-                pedido.setNomeEstado(estado.getNomeEstado());
                 break;
             }
             case 2: {
                 PedidoEstado estado = new PedidoEstadoPreparar();
                 pedido.setEstado(estado);
-                pedido.setNomeEstado(estado.getNomeEstado());
                 break;
             }
             case 3: {
                 PedidoEstado estado = new PedidoEstadoPronto();
                 pedido.setEstado(estado);
-                pedido.setNomeEstado(estado.getNomeEstado());
                 break;
             }
             case 4: {
                 PedidoEstado estado = new PedidoEstadoEnviar();
                 pedido.setEstado(estado);
-                pedido.setNomeEstado(estado.getNomeEstado());
                 break;
             }
             case 5: {
                 PedidoEstado estado = new PedidoEstadoReceber();
-                pedido.setEstado(estado);
-                pedido.setNomeEstado(estado.getNomeEstado());
+                pedido.setEstado(estado);;
                 break;
             }
         }

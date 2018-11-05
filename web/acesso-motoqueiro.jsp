@@ -31,7 +31,7 @@
                     <td>${pedidos.numeroPedido}</td>
                     <td>${pedidos.cliente.nome}</td>
                     <td>${pedidos.cliente.endereco}</td>
-                    <td><a href="FrontController?action=MudaEstadoPedido&id=${pedidos.numeroPedido}&id2=${motoboyCod}"> ${pedidos.nomeEstado} </a></td>
+                    <td><a href="FrontController?action=MudarEstado&id=${pedidos.numeroPedido}&id2=${motoboyCod}"> ${pedidos.nomeEstado} </a></td>
                 </tr>
             </c:forEach>
 

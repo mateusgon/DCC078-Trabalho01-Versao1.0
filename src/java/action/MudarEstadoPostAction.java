@@ -32,9 +32,12 @@ public class MudarEstadoPostAction implements Action {
         if (pedido.getNomeEstado().equals(estado)) {
             // redirecionar
         }
+
+        mudaEstado(estado);
+
         p = PessoaDAO.getInstance().buscaUsuario(pedido.getIdCliente());
         cliente = new Cliente(p.getPessoaCod(), p.getTipoPessoa(), p.getNome(), p.getEndereco(), p.getEmail(), null, p.getTelefone(), pedido);
-        mudaEstado(estado);
+
         Pessoa funci = PessoaDAO.getInstance().buscaUsuario(idChefe);
 
         if (funci.getTipoPessoa() >= 3 && funci.getTipoPessoa() <= 5) {
@@ -93,7 +96,7 @@ public class MudarEstadoPostAction implements Action {
             List<Pedido> pedidos = PedidoDAO.getInstance().searchPedidoRestaurante(idRestaurante);
 
             for (Pedido pedido : pedidos) {
-                if ((pedido.getEstado().getNomeEstado().equals("Aberto") || pedido.getEstado().getNomeEstado().equals("Preparar") || pedido.getEstado().getNomeEstado().equals("Pronto"))  && funcionari.pegarPedido(pedido)) {
+                if ((pedido.getEstado().getNomeEstado().equals("Aberto") || pedido.getEstado().getNomeEstado().equals("Preparar") || pedido.getEstado().getNomeEstado().equals("Pronto")) && funcionari.pegarPedido(pedido)) {
                     pedidosPegar.add(pedido);
                 }
             }
