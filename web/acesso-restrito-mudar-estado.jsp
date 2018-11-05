@@ -16,6 +16,7 @@
             </select>
         </div>
 
+        <input type ="hidden" name="idChefe" value="${idChefe}">
         <input type ="hidden" name="idPed" value="${idPed}">
         <input class="btn btn-primary btn" type ="Submit" value="Enviar"/> 
         <input class="btn btn-primary btn" type ="Reset" value ="Limpar" /> 

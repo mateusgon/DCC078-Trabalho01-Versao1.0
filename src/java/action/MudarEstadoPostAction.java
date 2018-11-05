@@ -7,6 +7,7 @@ import PadraoChainOfResponsibility.Funcionario;
 import PadraoStateObserverMemento.Cliente;
 import PadraoStateObserverMemento.Pedido;
 import controller.Action;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -19,24 +20,26 @@ import persistence.PessoaDAO;
 public class MudarEstadoPostAction implements Action {
 
     Pedido pedido;
-    Pessoa pessoa;
+    Pessoa p;
     Cliente cliente;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Integer idPedido = Integer.parseInt(request.getParameter("idPed"));
+        Integer idChefe = Integer.parseInt(request.getParameter("idChefe"));
         String estado = request.getParameter("estado");
         pedido = PedidoDAO.getInstance().searchPedidoNumPedido(idPedido);
         if (pedido.getNomeEstado().equals(estado)) {
             // redirecionar
         }
-        pessoa = PessoaDAO.getInstance().buscaUsuario(pedido.getIdCliente());
-        cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
+        p = PessoaDAO.getInstance().buscaUsuario(pedido.getIdCliente());
+        cliente = new Cliente(p.getPessoaCod(), p.getTipoPessoa(), p.getNome(), p.getEndereco(), p.getEmail(), null, p.getTelefone(), pedido);
         mudaEstado(estado);
+        Pessoa funci = PessoaDAO.getInstance().buscaUsuario(idChefe);
 
-        if (pessoa.getTipoPessoa() >= 3 && pessoa.getTipoPessoa() <= 5) {
-            Integer idRestaurante = pessoa.getRestauranteCod();
-            Integer idUsuario = pessoa.getPessoaCod();
+        if (funci.getTipoPessoa() >= 3 && funci.getTipoPessoa() <= 5) {
+            Integer idRestaurante = funci.getRestauranteCod();
+            Integer idUsuario = funci.getPessoaCod();
 
             Funcionario funcionari = null;
             List<Funcionario> funcionariosEasy = new ArrayList<>();
@@ -90,17 +93,18 @@ public class MudarEstadoPostAction implements Action {
             List<Pedido> pedidos = PedidoDAO.getInstance().searchPedidoRestaurante(idRestaurante);
 
             for (Pedido pedido : pedidos) {
-                if ((pedido.getEstado().getNomeEstado().equals("Aberto") || pedido.getEstado().getNomeEstado().equals("Preparar")) && funcionari.pegarPedido(pedido)) {
+                if ((pedido.getEstado().getNomeEstado().equals("Aberto") || pedido.getEstado().getNomeEstado().equals("Preparar") || pedido.getEstado().getNomeEstado().equals("Pronto"))  && funcionari.pegarPedido(pedido)) {
                     pedidosPegar.add(pedido);
                 }
             }
 
+            request.setAttribute("idChefe", funci.getPessoaCod());
             request.setAttribute("pedidos", pedidosPegar);
             RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-chefe.jsp");
             dispatcher.forward(request, response);
 
         } else {
-            Integer idRestaurante = pessoa.getRestauranteCod();
+            Integer idRestaurante = funci.getRestauranteCod();
             List<Pedido> pedidos = PedidoDAO.getInstance().searchPedidoRestaurante(idRestaurante);
             List<Pedido> pedidosLista = new ArrayList<>();
             for (Pedido pedido : pedidos) {
@@ -108,21 +112,26 @@ public class MudarEstadoPostAction implements Action {
                     pedidosLista.add(pedido);
                 }
             }
+            request.setAttribute("motoboyCod", funci.getPessoaCod());
             request.setAttribute("pedidos", pedidosLista);
             RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-motoqueiro.jsp");
             dispatcher.forward(request, response);
         }
     }
 
-    public void mudaEstado(String estado) {
+    public void mudaEstado(String estado) throws SQLException, ClassNotFoundException {
         if (estado.equals("Preparar")) {
             pedido.preparar();
+            PedidoDAO.getInstance().updatePedido(pedido, 2);
         } else if (estado.equals("Pronto")) {
             pedido.pronto();
+            PedidoDAO.getInstance().updatePedido(pedido, 3);
         } else if (estado.equals("Enviar")) {
             pedido.enviar();
+            PedidoDAO.getInstance().updatePedido(pedido, 4);
         } else {
             pedido.receber();
+            PedidoDAO.getInstance().updatePedido(pedido, 5);
         }
     }
 }

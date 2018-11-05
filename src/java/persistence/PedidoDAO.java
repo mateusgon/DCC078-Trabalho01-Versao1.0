@@ -111,12 +111,6 @@ public class PedidoDAO {
             pedido.setIdCliente(idUsuario);
             iniciaEstado(resultado.getInt("estado"), pedido);
             pedidos.add(pedido);
-            /*Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(idUsuario);
-            Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
-            pedido.preparar();
-            pedido.pronto();
-            pedido.enviar();
-            pedido.receber();*/
         }
         return pedidos;
     }
@@ -136,17 +130,12 @@ public class PedidoDAO {
             pedido.setDataPedido(resultado.getTimestamp("datapedido"));
             pedido.setIdCliente(resultado.getInt("pessoacod"));
             iniciaEstado(resultado.getInt("estado"), pedido);
+            System.out.println("q");
             Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(pedido.getIdCliente());
             Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
             pedido.setCliente(cliente);
             iniciaTipoDoPedido(pedido.getDificuldade(), pedido);
             pedidos.add(pedido);
-            /*Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(idUsuario);
-            Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
-            pedido.preparar();
-            pedido.pronto();
-            pedido.enviar();
-            pedido.receber();*/
         }
         return pedidos;
     }
@@ -170,12 +159,6 @@ public class PedidoDAO {
             Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
             pedido.setCliente(cliente);
             iniciaTipoDoPedido(pedido.getDificuldade(), pedido);
-            /*Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(idUsuario);
-            Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
-            pedido.preparar();
-            pedido.pronto();
-            pedido.enviar();
-            pedido.receber();*/
         }
 
         buscaPedidoCombo = DatabaseLocator.getInstance().getConnection().prepareStatement("select combocod from pedido_combo where pedidocod = ?");
@@ -197,6 +180,15 @@ public class PedidoDAO {
         
         pedido.setItens(itens);
         return pedido;
+    }
+    
+    public void updatePedido (Pedido pedido, Integer idEstado) throws SQLException, ClassNotFoundException
+    {
+        atualizaPedido = DatabaseLocator.getInstance().getConnection().prepareStatement("update pedido set estado = ? where pedidocod = ?");
+        atualizaPedido.clearParameters();
+        atualizaPedido.setInt(1, idEstado);
+        atualizaPedido.setInt(2, pedido.getNumeroPedido());
+        atualizaPedido.executeUpdate();
     }
 
     public void iniciaEstado(Integer codigoEstado, Pedido pedido) {

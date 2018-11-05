@@ -14,6 +14,7 @@ public class MudarEstadoAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Integer idPedido = Integer.parseInt(request.getParameter("id"));
+        Integer idChefe = Integer.parseInt(request.getParameter("id2"));
         Pedido pedido = PedidoDAO.getInstance().searchPedidoNumPedido(idPedido);
         String nomeEstado = null;
         if (pedido.getNomeEstado().equals("Aberto")) {
@@ -28,6 +29,7 @@ public class MudarEstadoAction implements Action {
         request.setAttribute("estadoAtual", pedido.getNomeEstado());
         request.setAttribute("estadoFuturo", nomeEstado);
         request.setAttribute("idPed", idPedido);
+        request.setAttribute("idChefe", idChefe);
         RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-mudar-estado.jsp");
         dispatcher.forward(request, response);
     }

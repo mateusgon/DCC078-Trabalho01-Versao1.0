@@ -24,7 +24,7 @@
                     <td>${pedidos.numeroPedido}</td>
                     <td>${pedidos.cliente.nome}</td>
                     <td><a href="FrontController?action=VerInformacoesDoPedido&id=${pedidos.numeroPedido}"> Ver Itens do Pedido </a></td>
-                    <td><a href="FrontController?action=MudarEstado&id=${pedidos.numeroPedido}"> Mudar estado </a></td>
+                    <td><a href="FrontController?action=MudarEstado&id=${pedidos.numeroPedido}&id2=${idChefe}"> Mudar estado </a></td>
                     <td><a href="FrontController?action=ReverterEstadoPedido&id=${pedidos.numeroPedido}"> Reverter estado </a></td>
                 </tr>
             </c:forEach>

@@ -34,7 +34,7 @@ public class Pedido extends Observable {
 
     public Pedido() {
         this.itens = new ArrayList<>();
-        this.estado = new PedidoEstadoAberto(this);
+        this.estado = null;
     }
 
     public void abrir() {
@@ -67,9 +67,13 @@ public class Pedido extends Observable {
     }
 
     public void setEstado(PedidoEstado estado) {
-        this.estado = estado;
-        setChanged();
-        notifyObservers();
+        if (this.estado == null) {
+            this.estado = estado;
+        } else {
+            this.estado = estado;
+            setChanged();
+            notifyObservers();
+        }
     }
 
     public Integer getNumeroPedido() {

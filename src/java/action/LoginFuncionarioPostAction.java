@@ -91,17 +91,17 @@ public class LoginFuncionarioPostAction implements controller.Action {
 
                     List<Pedido> pedidosPegar = new ArrayList<>();
                     List<Pedido> pedidos = PedidoDAO.getInstance().searchPedidoRestaurante(idRestaurante);
-
                     for (Pedido pedido : pedidos) {
-                        if ((pedido.getEstado().getNomeEstado().equals("Aberto") || pedido.getEstado().getNomeEstado().equals("Preparar")) && funcionari.pegarPedido(pedido)) {
+                        if ((pedido.getNomeEstado().equals("Aberto") || pedido.getNomeEstado().equals("Preparar") || pedido.getNomeEstado().equals("Pronto")) && funcionari.pegarPedido(pedido)) {
                             pedidosPegar.add(pedido);
                         }
                     }
 
+                    request.setAttribute("idChefe", funcionari.getPessoaCod());
                     request.setAttribute("pedidos", pedidosPegar);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-chefe.jsp");
                     dispatcher.forward(request, response);
-                    
+
                 } else if (p.getTipoPessoa() == 6) {
                     Integer idRestaurante = p.getRestauranteCod();
                     List<Pedido> pedidos = PedidoDAO.getInstance().searchPedidoRestaurante(idRestaurante);
@@ -111,6 +111,7 @@ public class LoginFuncionarioPostAction implements controller.Action {
                             pedidosLista.add(pedido);
                         }
                     }
+                    request.setAttribute("motoboyCod", p.getPessoaCod());
                     request.setAttribute("pedidos", pedidosLista);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-motoqueiro.jsp");
                     dispatcher.forward(request, response);

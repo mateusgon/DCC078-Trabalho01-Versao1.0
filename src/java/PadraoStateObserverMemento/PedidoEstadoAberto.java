@@ -8,7 +8,6 @@ public class PedidoEstadoAberto extends Observable implements PedidoEstado{
     
     public PedidoEstadoAberto(Pedido pedido) {
         this.nome = "Aberto";
-        pedido.notificar();
     }
 
     @Override

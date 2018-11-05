@@ -8,6 +8,7 @@
         <thead>
             <tr>
                 <th> Número do Pedido </th>
+                <th> Estado </th>
                 <th> Data </th>
                 <th> Informações </th>
             </tr>
@@ -16,6 +17,7 @@
             <c:forEach var="pedidos"  items="${pedidos}">
                 <tr>
                     <td>${pedidos.numeroPedido}</td>
+                    <td>${pedidos.nomeEstado}</td>
                     <td>${pedidos.dataPedido}</td>
                     <td><a href="FrontController?action=VerInformacoesDoPedido&id=${pedidos.numeroPedido}"> Ver informações  </a></td>
                 </tr>
