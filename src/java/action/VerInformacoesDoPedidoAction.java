@@ -4,6 +4,7 @@ import PadraoComposite.ItemDeVenda;
 import PadraoStateObserverMemento.Pedido;
 import controller.Action;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -19,14 +20,14 @@ public class VerInformacoesDoPedidoAction implements Action {
         List<ItemDeVenda> combos = new ArrayList<>();
         List<ItemDeVenda> produtos = new ArrayList<>();
         List<ItemDeVenda> itens = pedido.getItens();
-        for (ItemDeVenda iten : itens) {
+        for (Iterator i = itens.iterator(); i.hasNext();) {
+            ItemDeVenda iten = (ItemDeVenda) i.next();
             if (iten.getNome().contains("Combo")) {
                 combos.add(iten);
-            }
-            else
-            {
+            } else {
                 produtos.add(iten);
             }
+
         }
         request.setAttribute("pedido", pedido);
         request.setAttribute("combos", combos);

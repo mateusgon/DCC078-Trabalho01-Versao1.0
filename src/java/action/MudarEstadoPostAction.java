@@ -9,6 +9,7 @@ import PadraoStateObserverMemento.Pedido;
 import controller.Action;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -50,7 +51,8 @@ public class MudarEstadoPostAction implements Action {
             List<Funcionario> funcionariosHard = new ArrayList<>();
             List<Pessoa> pessoas = PessoaDAO.getInstance().buscaFuncionarioRestaurante(idRestaurante);
 
-            for (Pessoa pessoa : pessoas) {
+            for (Iterator i = pessoas.iterator(); i.hasNext();) {
+                Pessoa pessoa = (Pessoa) i.next();
                 Funcionario func;
                 switch (pessoa.getTipoPessoa()) {
                     case 3: {
@@ -77,30 +79,35 @@ public class MudarEstadoPostAction implements Action {
                 }
             }
 
-            for (Funcionario funcionario : funcionariosEasy) {
-                for (Funcionario funcionario1 : funcionariosMedium) {
+            for (Iterator i = funcionariosEasy.iterator(); i.hasNext();) {
+                Funcionario funcionario = (Funcionario) i.next();
+                for (Iterator i2 = funcionariosMedium.iterator(); i.hasNext();) {
+                    Funcionario funcionario1 = (Funcionario) i2.next();
                     funcionario.getFuncionarioSuperior().add(funcionario1);
                 }
-                for (Funcionario funcionario1 : funcionariosHard) {
-                    funcionario.getFuncionarioSuperior().add(funcionario1);
-                }
-            }
-
-            for (Funcionario funcionario : funcionariosMedium) {
-                for (Funcionario funcionario1 : funcionariosHard) {
-                    funcionario.getFuncionarioSuperior().add(funcionario1);
+                for (Iterator i3 = funcionariosHard.iterator(); i.hasNext();) {
+                    Funcionario funcionario2 = (Funcionario) i3.next();
+                    funcionario.getFuncionarioSuperior().add(funcionario2);
                 }
             }
 
+            for (Iterator i = funcionariosMedium.iterator(); i.hasNext();) {
+                Funcionario funcionario = (Funcionario) i.next();
+                for (Iterator i3 = funcionariosHard.iterator(); i.hasNext();) {
+                    Funcionario funcionario2 = (Funcionario) i3.next();
+                    funcionario.getFuncionarioSuperior().add(funcionario2);
+                }
+            }
             List<Pedido> pedidosPegar = new ArrayList<>();
             List<Pedido> pedidos = PedidoDAO.getInstance().searchPedidoRestaurante(idRestaurante);
 
-            for (Pedido pedido : pedidos) {
-                if ((pedido.getEstado().getNomeEstado().equals("Aberto") || pedido.getEstado().getNomeEstado().equals("Preparar") || pedido.getEstado().getNomeEstado().equals("Pronto")) && funcionari.pegarPedido(pedido)) {
+            for (Iterator i = pedidos.iterator(); i.hasNext();) {
+                Pedido pedido = (Pedido) i.next();
+                if ((pedido.getNomeEstado().equals("Aberto") || pedido.getNomeEstado().equals("Preparar") || pedido.getNomeEstado().equals("Pronto")) && funcionari.pegarPedido(pedido)) {
                     pedidosPegar.add(pedido);
                 }
-            }
 
+            }
             request.setAttribute("idChefe", funci.getPessoaCod());
             request.setAttribute("pedidos", pedidosPegar);
             RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-chefe.jsp");
@@ -110,10 +117,12 @@ public class MudarEstadoPostAction implements Action {
             Integer idRestaurante = funci.getRestauranteCod();
             List<Pedido> pedidos = PedidoDAO.getInstance().searchPedidoRestaurante(idRestaurante);
             List<Pedido> pedidosLista = new ArrayList<>();
-            for (Pedido pedido : pedidos) {
+            for (Iterator i = pedidos.iterator(); i.hasNext();) {
+                Pedido pedido = (Pedido) i.next();
                 if (pedido.getNomeEstado().equals("Enviar")) {
                     pedidosLista.add(pedido);
                 }
+
             }
             request.setAttribute("motoboyCod", funci.getPessoaCod());
             request.setAttribute("pedidos", pedidosLista);

@@ -9,7 +9,6 @@ public class AdministrarFuncionarioAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("entrei");
         Integer idRestaurante = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("idRest", idRestaurante);
         RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-administrar-funcionarios.jsp");

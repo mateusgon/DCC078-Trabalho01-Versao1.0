@@ -7,6 +7,7 @@ import PadraoComposite.PratoPrincipal;
 import PadraoComposite.Sobremesa;
 import controller.Action;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,8 @@ public class VerCardapioAction implements Action {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         idRestaurante = Integer.parseInt(request.getParameter("id"));
         List<Produto> produtos = ProdutoDAO.getInstance().listAllFromRestaurante(idRestaurante);
-        for (Produto produto : produtos) { // Trocar por iterator
+        for (Iterator i = produtos.iterator(); i.hasNext();) {
+            Produto produto = (Produto) i.next();
             instanciaObjeto(produto);
         }
         request.setAttribute("entradas", pratosDeEntrada);
@@ -36,7 +38,8 @@ public class VerCardapioAction implements Action {
         request.setAttribute("bebidas", bebidas);
         request.setAttribute("sobremesas", sobremesas);
         List<ItemDeVenda> combos = ComboDAO.getInstance().searchCombo(idRestaurante);
-        for (ItemDeVenda combo : combos) {
+        for (Iterator i = combos.iterator(); i.hasNext();) {
+            ItemDeVenda combo = (ItemDeVenda) i.next();
             List<Integer> idProdutos = ComboDAO.getInstance().searchComboProduto(combo.getCodigo());
             for (Integer idProduto : idProdutos) {
                 Produto produto = ProdutoDAO.getInstance().listProduto(idProduto);
