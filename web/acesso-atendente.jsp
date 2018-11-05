@@ -20,8 +20,10 @@
             <tr>
                 <th> Número do Pedido </th>
                 <th> Cliente </th>
+                <th> Horário </th>
                 <th> Endereço </th>
                 <th> Status </th>
+                <th> Detalhes </th>
             </tr>
         </thead>
         <tbody>
@@ -31,8 +33,10 @@
                 <tr>
                     <td>${pedidos.numeroPedido}</td>
                     <td>${pedidos.cliente.nome}</td>
+                    <td>${pedidos.dataPedido}</td>
                     <td>${pedidos.cliente.endereco}</td>
-                    <td><a href="FrontController?action=MudaEstadoPedido&id=${pedidos.numeroPedido}"> ${pedidos.nomeEstado} </a></td>
+                    <td>${pedidos.nomeEstado}</td>
+                    <td><a href="FrontController?action=VerInformacoesDoPedido&id=${pedidos.numeroPedido}"> Ver Itens do Pedido </a></td>
                 </tr>
             </c:forEach>
 

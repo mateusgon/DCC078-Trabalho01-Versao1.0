@@ -17,7 +17,7 @@
                 <tr>
                     <td>${pedidos.numeroPedido}</td>
                     <td>${pedidos.dataPedido}</td>
-                    <td><a href="FrontController?action=VerInformacoesRestaurante&id=${pedidos.numeroPedido}"> Ver informações  </a></td>
+                    <td><a href="FrontController?action=VerInformacoesDoPedido&id=${pedidos.numeroPedido}"> Ver informações  </a></td>
                 </tr>
             </c:forEach>
         </tbody>

@@ -129,7 +129,7 @@ public class Pedido extends Observable {
     }
 
     public String getNomeEstado() {
-        return nomeEstado;
+        return this.estado.getNomeEstado();
     }
 
     public void setNomeEstado(String nomeEstado) {

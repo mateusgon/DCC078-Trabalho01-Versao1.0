@@ -85,7 +85,6 @@ public class ComboDAO {
         ItemDeVenda combo = null;
         ResultSet resultado = buscaCombo.executeQuery();
         while (resultado.next()) {
-
             ArrayList<ItemDeVenda> itensCombo = new ArrayList<>();
             combo = new Combo(itensCombo, resultado.getInt("combocod"), resultado.getString("nome"), resultado.getDouble("valor"), resultado.getInt("dificuldade"), resultado.getInt("restaurantecod"));
         }

@@ -20,6 +20,7 @@ public class CadastrarClientePostAction implements Action {
             String endereco = request.getParameter("endereco");
             Pessoa pessoa = new Pessoa(nome, endereco, email, telefone, 1, senha);
             PessoaDAO.getInstance().saveCliente(pessoa);
+            request.setAttribute("id", pessoa.getPessoaCod());
             RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-cliente.jsp");
             dispatcher.forward(request, response);
         }

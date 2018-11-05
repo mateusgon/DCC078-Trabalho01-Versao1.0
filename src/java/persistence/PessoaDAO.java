@@ -25,7 +25,7 @@ public class PessoaDAO {
     }
 
     public void Autentica(Pessoa pessoa) throws SQLException, ClassNotFoundException {
-        operacaoLoginUsuarioSistema = DatabaseLocator.getInstance().getConnection().prepareStatement("select * from pessoa where nome = ? and senha = ?");
+        operacaoLoginUsuarioSistema = DatabaseLocator.getInstance().getConnection().prepareStatement("select * from pessoa where email = ? and senha = ?");
         operacaoLoginUsuarioSistema.clearParameters();
         operacaoLoginUsuarioSistema.setString(1, pessoa.getEmail());
         operacaoLoginUsuarioSistema.setString(2, pessoa.getSenha());

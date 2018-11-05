@@ -4,7 +4,11 @@ import PadraoChainOfResponsibility.TipoPedido;
 import PadraoChainOfResponsibility.TipoPedidoEasy;
 import PadraoChainOfResponsibility.TipoPedidoHard;
 import PadraoChainOfResponsibility.TipoPedidoMedium;
+import PadraoComposite.Bebida;
 import PadraoComposite.ItemDeVenda;
+import PadraoComposite.PratoDeEntrada;
+import PadraoComposite.PratoPrincipal;
+import PadraoComposite.Sobremesa;
 import PadraoStateObserverMemento.Cliente;
 import PadraoStateObserverMemento.Pedido;
 import PadraoStateObserverMemento.PedidoEstado;
@@ -23,12 +27,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import model.Pessoa;
+import model.Produto;
 
 public class PedidoDAO {
 
     private static PedidoDAO instance = new PedidoDAO();
     private PreparedStatement inserePedido;
     private PreparedStatement buscaPedido;
+    private PreparedStatement buscaPedidoCombo;
+    private PreparedStatement buscaPedidoProduto;
     private PreparedStatement atualizaPedido;
 
     public static PedidoDAO getInstance() {
@@ -144,6 +151,54 @@ public class PedidoDAO {
         return pedidos;
     }
 
+    public Pedido searchPedidoNumPedido(Integer numPedido) throws SQLException, ClassNotFoundException {
+        List<ItemDeVenda> itens = new ArrayList<>();
+        buscaPedido = DatabaseLocator.getInstance().getConnection().prepareStatement("select * from pedido where pedidocod = ?");
+        buscaPedido.clearParameters();
+        buscaPedido.setInt(1, numPedido);
+        Pedido pedido = new Pedido();
+        ResultSet resultado = buscaPedido.executeQuery();
+        while (resultado.next()) {
+            pedido.setNumeroPedido(resultado.getInt("pedidocod"));
+            pedido.setValor(resultado.getDouble("valor"));
+            pedido.setDificuldade(resultado.getInt("dificuldade"));
+            pedido.setIdRestaurante(resultado.getInt("restaurantecod"));
+            pedido.setDataPedido(resultado.getTimestamp("datapedido"));
+            pedido.setIdCliente(resultado.getInt("pessoacod"));
+            iniciaEstado(resultado.getInt("estado"), pedido);
+            Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(pedido.getIdCliente());
+            Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
+            pedido.setCliente(cliente);
+            iniciaTipoDoPedido(pedido.getDificuldade(), pedido);
+            /*Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(idUsuario);
+            Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
+            pedido.preparar();
+            pedido.pronto();
+            pedido.enviar();
+            pedido.receber();*/
+        }
+
+        buscaPedidoCombo = DatabaseLocator.getInstance().getConnection().prepareStatement("select combocod from pedido_combo where pedidocod = ?");
+        buscaPedidoCombo.clearParameters();
+        buscaPedidoCombo.setInt(1, pedido.getNumeroPedido());
+        ResultSet resultado2 = buscaPedidoCombo.executeQuery();
+        while (resultado2.next()) {
+            itens.add(ComboDAO.getInstance().searchComboEspecifico(resultado2.getInt("combocod")));
+        }
+
+        buscaPedidoProduto = DatabaseLocator.getInstance().getConnection().prepareStatement("select produtocod from pedido_produto where pedidocod = ?");
+        buscaPedidoProduto.clearParameters();
+        buscaPedidoProduto.setInt(1, pedido.getNumeroPedido());
+        ResultSet resultado3 = buscaPedidoProduto.executeQuery();
+        while (resultado3.next()) {
+            Produto produto = ProdutoDAO.getInstance().listProduto(resultado3.getInt("produtocod"));
+            itens.add(instanciaObjeto(produto));
+        }
+        
+        pedido.setItens(itens);
+        return pedido;
+    }
+
     public void iniciaEstado(Integer codigoEstado, Pedido pedido) {
         switch (codigoEstado) {
             case 1: {
@@ -197,5 +252,19 @@ public class PedidoDAO {
                 break;
             }
         }
+    }
+
+    public ItemDeVenda instanciaObjeto(Produto produto) {
+        ItemDeVenda item;
+        if (produto.getTipoItem() == 1) {
+            item = new PratoDeEntrada(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+        } else if (produto.getTipoItem() == 2) {
+            item = new PratoPrincipal(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+        } else if (produto.getTipoItem() == 3) {
+            item = new Bebida(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+        } else {
+            item = new Sobremesa(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+        }
+        return item;
     }
 }
