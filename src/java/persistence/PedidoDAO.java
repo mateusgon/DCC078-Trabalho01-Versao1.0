@@ -130,7 +130,6 @@ public class PedidoDAO {
             pedido.setDataPedido(resultado.getTimestamp("datapedido"));
             pedido.setIdCliente(resultado.getInt("pessoacod"));
             iniciaEstado(resultado.getInt("estado"), pedido);
-            System.out.println("q");
             Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(pedido.getIdCliente());
             Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
             pedido.setCliente(cliente);

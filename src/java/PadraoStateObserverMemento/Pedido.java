@@ -67,7 +67,7 @@ public class Pedido extends Observable {
     }
 
     public void setEstado(PedidoEstado estado) {
-        if (this.estado == null) {
+       if (this.estado == null) {
             this.estado = estado;
         } else {
             this.estado = estado;
