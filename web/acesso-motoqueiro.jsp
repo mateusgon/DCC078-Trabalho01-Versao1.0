@@ -6,14 +6,6 @@
 
 <div class="container">
 
-    <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Pedidos Fechados:
-            <span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1"  style="background-color: white">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Pedidos Fechados</a></li>
-
-        </ul>
-    </div>   
     <table class="table table-bordered"  style="background-color: white">
         <thead>
             <tr>

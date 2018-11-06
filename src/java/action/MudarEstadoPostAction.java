@@ -103,7 +103,7 @@ public class MudarEstadoPostAction implements Action {
 
             for (Iterator i = pedidos.iterator(); i.hasNext();) {
                 Pedido pedido = (Pedido) i.next();
-                if ((pedido.getNomeEstado().equals("Aberto") || pedido.getNomeEstado().equals("Preparar") || pedido.getNomeEstado().equals("Pronto")) && funcionari.pegarPedido(pedido)) {
+                if ((pedido.getNomeEstado().equals("Aberto") || pedido.getNomeEstado().equals("Preparando")) && funcionari.pegarPedido(pedido)) {
                     pedidosPegar.add(pedido);
                 }
 
@@ -119,7 +119,7 @@ public class MudarEstadoPostAction implements Action {
             List<Pedido> pedidosLista = new ArrayList<>();
             for (Iterator i = pedidos.iterator(); i.hasNext();) {
                 Pedido pedido = (Pedido) i.next();
-                if (pedido.getNomeEstado().equals("Enviar")) {
+                if (pedido.getNomeEstado().equals("Enviado") || pedido.getNomeEstado().equals("Pronto")) {
                     pedidosLista.add(pedido);
                 }
 

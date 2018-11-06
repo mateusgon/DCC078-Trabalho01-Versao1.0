@@ -1,3 +1,8 @@
+
+-- tipoPessoa = 1 (Cliente), 2 (Atendente), 3 (Chefe 01), 4 (Chefe 02), 5 (Chefe 03), 6 (Motoboy), 7 (SuperUsuarioRestaurante), 8 (SuperUsuarioSistema)
+-- tipoProduto = 1 (Entrada), 2 (Prato Principal), 3 (Bebida), 4 (Sobremesa)
+-- dificuldade = 1 (Fácil), 2 (Médio, 3 (Difícil)
+
 create table restaurante (
 restaurantecod integer primary key generated always as identity,
 nome varchar(100),
@@ -20,7 +25,6 @@ foreign key (restaurantecod) references restaurante (restaurantecod)
 );
 
 insert into pessoa (nome, email, senha, tipoPessoa) values ('adminGeral', 'adminGeral', 'adminGeral', 8);
--- tipoPessoa = 1 (Cliente), 2 (Atendente), 3 (Chefe 01), 4 (Chefe 02), 5 (Chefe 03), 6 (Motoboy), 7 (SuperUsuarioRestaurante), 8 (SuperUsuarioSistema)
 
 create table produto (
 produtocod integer primary key generated always as identity,
@@ -31,8 +35,7 @@ tipoProduto integer,
 restaurantecod integer,
 foreign key (restaurantecod) references restaurante (restaurantecod)
 );
--- tipoProduto = 1 (Entrada), 2 (Prato Principal), 3 (Bebida), 4 (Sobremesa)
--- dificuldade = 1 (Fácil), 2 (Médio, 3 (Difícil)
+
 
 create table combo (
 combocod integer primary key generated always as identity,

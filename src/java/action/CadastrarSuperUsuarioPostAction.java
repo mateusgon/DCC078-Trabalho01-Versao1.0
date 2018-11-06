@@ -2,10 +2,12 @@ package action;
 
 import controller.Action;
 import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Pessoa;
 import persistence.PessoaDAO;
+import persistence.RestauranteDAO;
 
 public class CadastrarSuperUsuarioPostAction implements Action {
 
@@ -22,13 +24,12 @@ public class CadastrarSuperUsuarioPostAction implements Action {
             response.sendRedirect("erro.jsp");
         } else {
             Pessoa pessoa = new Pessoa();
-            pessoa.setRestauranteCod(restauranteCod).setNome(nome).setEndereco(endereco).setEmail(email).setTelefone(telefone).setTipoPessoa(restauranteCod).setSenha(senha);
+            pessoa.setRestauranteCod(restauranteCod).setNome(nome).setEndereco(endereco).setEmail(email).setTelefone(telefone).setTipoPessoa(7).setSenha(senha);
             try {
                 PessoaDAO.getInstance().saveSuperUsuarioeFuncionario(pessoa);
-                //Redirecionar
-                response.sendRedirect("sucesso.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario.jsp");
+                dispatcher.forward(request, response);
             } catch (SQLException ex) {
-                //Redirecionar
                 response.sendRedirect("erro.jsp");
             }
         }

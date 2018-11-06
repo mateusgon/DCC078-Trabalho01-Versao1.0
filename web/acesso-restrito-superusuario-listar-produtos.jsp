@@ -10,7 +10,7 @@
                 <th> Produto </th>
                 <th> Valor </th>
                 <th> Editar </th>
-                <th> Excluir </th>
+                <th> Desativar </th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +19,7 @@
                     <td>${produtos.nome}</td>
                     <td>${produtos.valor}</td>
                     <td><a href="FrontController?action=EditarItem&id=${produtos.produtocod}&id2=${idRest}"> Editar  </a></td>
-                    <td><a href="FrontController?action=ExcluirItem&id=${produtos.produtocod}&id2=${idRest}"> Excluir</a></td>
+                    <td><a href="FrontController?action=DesativarItem&id=${produtos.produtocod}&id2=${idRest}"> Desativar </a></td>
                 </tr>
             </c:forEach>
         </tbody>

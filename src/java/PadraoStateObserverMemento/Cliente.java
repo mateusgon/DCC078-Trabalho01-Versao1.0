@@ -38,11 +38,11 @@ public class Cliente implements Observer {
         Pedido p = (Pedido) getPedido();
         if (p.getEstado().getNomeEstado().equals("Aberto")) {
             mensagem = new MensagemAberto();
-        } else if (p.getEstado().getNomeEstado().equals("Preparar")) {
+        } else if (p.getEstado().getNomeEstado().equals("Preparando")) {
             mensagem = new MensagemPreparado();
         } else if (p.getEstado().getNomeEstado().equals("Pronto")) {
             mensagem = new MensagemPronto();
-        } else if (p.getEstado().getNomeEstado().equals("Enviar")) {
+        } else if (p.getEstado().getNomeEstado().equals("Enviado")) {
             mensagem = new MensagemEnviado();
         } else {
             mensagem = new MensagemRecebido();

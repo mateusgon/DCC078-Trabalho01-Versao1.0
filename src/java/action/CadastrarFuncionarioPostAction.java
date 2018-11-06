@@ -22,7 +22,7 @@ public class CadastrarFuncionarioPostAction implements Action {
         pessoa = pessoa.setRestauranteCod(restauranteCod).setNome(nome).setEndereco(endereco).setEmail(email).setTelefone(telefone).setTipoPessoa(tipoPessoa).setSenha(senha);
         PessoaDAO.getInstance().saveSuperUsuarioeFuncionario(pessoa);
         request.setAttribute("idRest", pessoa.getRestauranteCod());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-administrar-funcionarios.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-restaurante.jsp");
         dispatcher.forward(request, response);
     }
 

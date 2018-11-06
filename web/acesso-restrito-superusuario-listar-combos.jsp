@@ -10,8 +10,7 @@
                 <th> Produto </th>
                 <th> Valor </th>
                 <th> Itens de Venda </th>
-                <th> Editar </th>
-                <th> Excluir </th>
+                <th> Desativar </th>
             </tr>
         </thead>
         <tbody>
@@ -19,9 +18,8 @@
                 <tr>
                     <td>${combos.nome}</td>
                     <td>${combos.valor}</td>
-                    <td><a href="FrontController?action=VerCombo&id=${combos.codigo}&id2=${idRest}"> Ver </a></td>
-                    <td><a href="FrontController?action=EditarCombo&id=${combos.codigo}&id2=${idRest}"> Editar </a></td>
-                    <td><a href="FrontController?action=ExcluirCombo&id=${combos.codigo}&id2=${idRest}"> Excluir</a></td>
+                    <td><a href="FrontController?action=VerCombo&id=${combos.codigo}&id2=${idRest}"> Ver itens do combo </a></td>
+                    <td><a href="FrontController?action=DesativarCombo&id=${combos.codigo}&id2=${idRest}"> Desativar </a></td>
                 </tr>
             </c:forEach>
         </tbody>

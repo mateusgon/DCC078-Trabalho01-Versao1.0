@@ -21,13 +21,13 @@ public class MudarEstadoAction implements Action {
             case "Aberto":
                 nomeEstado = "Preparar";
                 break;
-            case "Preparar":
+            case "Preparando":
                 nomeEstado = "Pronto";
                 break;
             case "Pronto":
                 nomeEstado = "Enviar";
                 break;
-            case "Enviar":
+            case "Enviado":
                 nomeEstado = "Receber";
                 break;
             default:

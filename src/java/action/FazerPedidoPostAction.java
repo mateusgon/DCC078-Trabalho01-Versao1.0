@@ -105,6 +105,7 @@ public class FazerPedidoPostAction implements Action {
         request.setAttribute("nomeUsuario", cliente.getNome());
         request.setAttribute("valor", pedido.getValor());
         request.setAttribute("idPedido", pedido.getNumeroPedido());
+        request.setAttribute("idUsr", pedido.getIdCliente());
         RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-cliente-confirmar-pedido.jsp");
         dispatcher.forward(request, response);
     }

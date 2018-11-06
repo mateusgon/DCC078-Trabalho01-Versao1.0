@@ -11,7 +11,7 @@
         </div>
 
         <div class="form-group">
-            <label for="usr">Valor:</label>
+            <label for="usr">Valor: (Ex: 20.00)</label>
             <input type = "text" name="valor" class="form-control" required>     
         </div>
 

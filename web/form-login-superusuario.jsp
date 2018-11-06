@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="jspf/cabecalho.jspf" %>
 <div class="container text-center">
-    <h1> Faça seu login no restaurante </h1>
+    <h1> Faça seu login no sistema </h1>
 </div>
 
 <div class="container text-center ">
@@ -11,7 +11,7 @@
                 <form action="FrontController?action=LoginSuperUsuarioPost" method="post">
 
                     <div class="form-group">
-                        <label for="usr">Nome:</label>
+                        <label for="usr">Email:</label>
                         <input name="nome" class="form-control" required>     
                     </div>
 
