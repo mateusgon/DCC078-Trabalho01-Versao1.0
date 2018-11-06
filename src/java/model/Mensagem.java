@@ -5,12 +5,6 @@ public class Mensagem {
     private Integer idMensagem;
     private Integer idReceptor;
     private String mensagem;
-
-    public Mensagem(Integer idMensagem, Integer idReceptor, String mensagem) {
-        this.idMensagem = idMensagem;
-        this.idReceptor = idReceptor;
-        this.mensagem = mensagem;
-    }
     
     public Mensagem() {
     }

@@ -8,49 +8,6 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String endereco, String email, String telefone, Integer tipoPessoa, String senha) {
-        this.nome = nome;
-        this.endereco = endereco;
-        this.email = email;
-        this.telefone = telefone;
-        this.tipoPessoa = tipoPessoa;
-        this.senha = senha;
-    }
-
-    public Pessoa(int pessoaCod, int restauranteCod, String nome, String endereco, String email, String telefone, Integer tipoPessoa, String senha) {
-        this.pessoaCod = pessoaCod;
-        this.restauranteCod = restauranteCod;
-        this.nome = nome;
-        this.endereco = endereco;
-        this.email = email;
-        this.telefone = telefone;
-        this.tipoPessoa = tipoPessoa;
-        this.senha = senha;
-    }
-
-    public Pessoa(int restauranteCod, String nome, String endereco, String email, String telefone, Integer tipoPessoa, String senha) {
-        this.restauranteCod = restauranteCod;
-        this.nome = nome;
-        this.endereco = endereco;
-        this.email = email;
-        this.telefone = telefone;
-        this.tipoPessoa = tipoPessoa;
-        this.senha = senha;
-    }
-
-    public Pessoa(String nome, String endereco, Integer restauranteCod, String email, String telefone) {
-        this.nome = nome;
-        this.endereco = endereco;
-        this.restauranteCod = restauranteCod;
-        this.email = email;
-        this.telefone = telefone;
-    }
-
-    public Pessoa(String email, String senha) {
-        this.email = email;
-        this.senha = senha;
-    }
-
     public int getPessoaCod() {
         return pessoaCod;
     }

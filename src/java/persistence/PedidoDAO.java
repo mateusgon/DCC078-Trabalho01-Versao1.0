@@ -103,12 +103,7 @@ public class PedidoDAO {
         ResultSet resultado = buscaPedido.executeQuery();
         while (resultado.next()) {
             Pedido pedido = new Pedido();
-            pedido.setNumeroPedido(resultado.getInt("pedidocod"));
-            pedido.setValor(resultado.getDouble("valor"));
-            pedido.setDificuldade(resultado.getInt("dificuldade"));
-            pedido.setIdRestaurante(resultado.getInt("restaurantecod"));
-            pedido.setDataPedido(resultado.getTimestamp("datapedido"));
-            pedido.setIdCliente(idUsuario);
+            pedido = pedido.setNumeroPedido(resultado.getInt("pedidocod")).setValor(resultado.getDouble("valor")).setDificuldade(resultado.getInt("dificuldade")).setIdRestaurante(resultado.getInt("restaurantecod")).setDataPedido(resultado.getTimestamp("datapedido")).setIdCliente(idUsuario);
             iniciaEstado(resultado.getInt("estado"), pedido);
             pedidos.add(pedido);
         }
@@ -123,12 +118,7 @@ public class PedidoDAO {
         ResultSet resultado = buscaPedido.executeQuery();
         while (resultado.next()) {
             Pedido pedido = new Pedido();
-            pedido.setNumeroPedido(resultado.getInt("pedidocod"));
-            pedido.setValor(resultado.getDouble("valor"));
-            pedido.setDificuldade(resultado.getInt("dificuldade"));
-            pedido.setIdRestaurante(resultado.getInt("restaurantecod"));
-            pedido.setDataPedido(resultado.getTimestamp("datapedido"));
-            pedido.setIdCliente(resultado.getInt("pessoacod"));
+            pedido = pedido.setNumeroPedido(resultado.getInt("pedidocod")).setValor(resultado.getDouble("valor")).setDificuldade(resultado.getInt("dificuldade")).setIdRestaurante(resultado.getInt("restaurantecod")).setDataPedido(resultado.getTimestamp("datapedido")).setIdCliente(resultado.getInt("pessoacod"));
             iniciaEstado(resultado.getInt("estado"), pedido);
             Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(pedido.getIdCliente());
             Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
@@ -147,12 +137,7 @@ public class PedidoDAO {
         Pedido pedido = new Pedido();
         ResultSet resultado = buscaPedido.executeQuery();
         while (resultado.next()) {
-            pedido.setNumeroPedido(resultado.getInt("pedidocod"));
-            pedido.setValor(resultado.getDouble("valor"));
-            pedido.setDificuldade(resultado.getInt("dificuldade"));
-            pedido.setIdRestaurante(resultado.getInt("restaurantecod"));
-            pedido.setDataPedido(resultado.getTimestamp("datapedido"));
-            pedido.setIdCliente(resultado.getInt("pessoacod"));
+            pedido = pedido.setNumeroPedido(resultado.getInt("pedidocod")).setValor(resultado.getDouble("valor")).setDificuldade(resultado.getInt("dificuldade")).setIdRestaurante(resultado.getInt("restaurantecod")).setDataPedido(resultado.getTimestamp("datapedido")).setIdCliente(resultado.getInt("pessoacod"));
             iniciaEstado(resultado.getInt("estado"), pedido);
             Pessoa pessoa = PessoaDAO.getInstance().buscaUsuario(pedido.getIdCliente());
             Cliente cliente = new Cliente(pessoa.getPessoaCod(), pessoa.getTipoPessoa(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail(), null, pessoa.getTelefone(), pedido);
@@ -176,13 +161,12 @@ public class PedidoDAO {
             Produto produto = ProdutoDAO.getInstance().listProduto(resultado3.getInt("produtocod"));
             itens.add(instanciaObjeto(produto));
         }
-        
+
         pedido.setItens(itens);
         return pedido;
     }
-    
-    public void updatePedido (Pedido pedido, Integer idEstado) throws SQLException, ClassNotFoundException
-    {
+
+    public void updatePedido(Pedido pedido, Integer idEstado) throws SQLException, ClassNotFoundException {
         atualizaPedido = DatabaseLocator.getInstance().getConnection().prepareStatement("update pedido set estado = ? where pedidocod = ?");
         atualizaPedido.clearParameters();
         atualizaPedido.setInt(1, idEstado);
@@ -242,14 +226,24 @@ public class PedidoDAO {
 
     public ItemDeVenda instanciaObjeto(Produto produto) {
         ItemDeVenda item;
-        if (produto.getTipoItem() == 1) {
-            item = new PratoDeEntrada(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
-        } else if (produto.getTipoItem() == 2) {
-            item = new PratoPrincipal(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
-        } else if (produto.getTipoItem() == 3) {
-            item = new Bebida(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
-        } else {
-            item = new Sobremesa(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+        switch (produto.getTipoItem()) {
+            case 1:
+                item = new PratoDeEntrada(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+                break;
+            case 2:
+                item = new PratoPrincipal(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+
+                break;
+            case 3:
+                item = new Bebida(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+
+                break;
+            case 4:
+                item = new Sobremesa(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+                break;
+            default:
+                item = new Sobremesa(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+                break;
         }
         return item;
     }

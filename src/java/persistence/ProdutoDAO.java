@@ -38,12 +38,7 @@ public class ProdutoDAO {
         ResultSet resultado = operacaoListaProduto.executeQuery();
         while (resultado.next()) {
             Produto produto = new Produto();
-            produto.setValor(resultado.getDouble("valor"));
-            produto.setProdutocod(resultado.getInt("produtocod"));
-            produto.setNome(resultado.getString("nome"));
-            produto.setDificuldade(resultado.getInt("dificuldade"));
-            produto.setTipoItem(resultado.getInt("tipoProduto"));
-            produto.setRestaurantecod(idRestaurante);
+            produto = produto.setValor(resultado.getDouble("valor")).setProdutocod(resultado.getInt("produtocod")).setNome(resultado.getString("nome")).setDificuldade(resultado.getInt("dificuldade")).setTipoItem(resultado.getInt("tipoProduto")).setRestaurantecod(idRestaurante);
             produtos.add(produto);
         }
         return produtos;
@@ -56,12 +51,7 @@ public class ProdutoDAO {
         operacaoListaProduto.setInt(1, idProduto);
         ResultSet resultado = operacaoListaProduto.executeQuery();
         while (resultado.next()) {
-            produto.setValor(resultado.getDouble("valor"));
-            produto.setProdutocod(resultado.getInt("produtocod"));
-            produto.setNome(resultado.getString("nome"));
-            produto.setDificuldade(resultado.getInt("dificuldade"));
-            produto.setTipoItem(resultado.getInt("tipoProduto"));
-            produto.setRestaurantecod(resultado.getInt("restaurantecod"));
+            produto = produto.setValor(resultado.getDouble("valor")).setProdutocod(resultado.getInt("produtocod")).setNome(resultado.getString("nome")).setDificuldade(resultado.getInt("dificuldade")).setTipoItem(resultado.getInt("tipoProduto")).setRestaurantecod(resultado.getInt("restaurantecod"));
         }
         return produto;
     }

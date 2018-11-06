@@ -24,16 +24,6 @@ public class Restaurante {
         return this;
     }
 
-    public Restaurante(String nome, String nomeFantasia, String telefone, String endereco, String sigla) {
-        this.nome = nome;
-        this.nomeFantasia = nomeFantasia;
-        this.telefone = telefone;
-        this.endereco = endereco;
-        this.sigla = sigla;
-        superUsuarios = new ArrayList<>();
-        funcionarios = new ArrayList<>();
-    }
-
     public String getNome() {
         return nome;
     }

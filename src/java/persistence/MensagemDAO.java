@@ -36,9 +36,7 @@ public class MensagemDAO {
         ResultSet resultado = buscaMensagem.executeQuery();
         while (resultado.next()) {
             Mensagem mensagem = new Mensagem();
-            mensagem.setIdMensagem(resultado.getInt("mensagemcod"));
-            mensagem.setIdReceptor(resultado.getInt("pessoacod"));
-            mensagem.setMensagem(resultado.getString("mensagem"));
+            mensagem = mensagem.setIdMensagem(resultado.getInt("mensagemcod")).setIdReceptor(resultado.getInt("pessoacod")).setMensagem(resultado.getString("mensagem"));
             mensagens.add(mensagem);
         }
         return mensagens;

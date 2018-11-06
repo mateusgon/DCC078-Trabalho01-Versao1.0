@@ -31,13 +31,7 @@ public class PessoaDAO {
         operacaoLoginUsuarioSistema.setString(2, pessoa.getSenha());
         ResultSet resultado = operacaoLoginUsuarioSistema.executeQuery();
         while (resultado.next()) {
-            pessoa.setNome(resultado.getString("nome"));
-            pessoa.setEmail(resultado.getString("email"));
-            pessoa.setTelefone(resultado.getString("telefone"));
-            pessoa.setEndereco(resultado.getString("endereco"));
-            pessoa.setPessoaCod(resultado.getInt("pessoaCod"));
-            pessoa.setRestauranteCod(resultado.getInt("restauranteCod"));
-            pessoa.setTipoPessoa(resultado.getInt("tipoPessoa"));
+            pessoa.setNome(resultado.getString("nome")).setEmail(resultado.getString("email")).setTelefone(resultado.getString("telefone")).setEndereco(resultado.getString("endereco")).setPessoaCod(resultado.getInt("pessoaCod")).setRestauranteCod(resultado.getInt("restauranteCod")).setTipoPessoa(resultado.getInt("tipoPessoa"));
         }
     }
 
@@ -102,13 +96,7 @@ public class PessoaDAO {
         ResultSet resultado = operacaoBuscaSuperUsuario.executeQuery();
         while (resultado.next()) {
             Pessoa pessoa = new Pessoa();
-            pessoa.setNome(resultado.getString("nome"));
-            pessoa.setEmail(resultado.getString("email"));
-            pessoa.setTelefone(resultado.getString("telefone"));
-            pessoa.setEndereco(resultado.getString("endereco"));
-            pessoa.setPessoaCod(resultado.getInt("pessoaCod"));
-            pessoa.setRestauranteCod(resultado.getInt("restauranteCod"));
-            pessoa.setTipoPessoa(resultado.getInt("tipoPessoa"));
+            pessoa = pessoa.setNome(resultado.getString("nome")).setEmail(resultado.getString("email")).setTelefone(resultado.getString("telefone")).setEndereco(resultado.getString("endereco")).setPessoaCod(resultado.getInt("pessoaCod")).setRestauranteCod(resultado.getInt("restauranteCod")).setTipoPessoa(resultado.getInt("tipoPessoa"));
             restaurante.getSuperUsuarios().add(pessoa);
         }
     }
@@ -122,13 +110,7 @@ public class PessoaDAO {
         ResultSet resultado = operacaoBuscaFuncionariosRestaurante.executeQuery();
         while (resultado.next()) {
             Pessoa pessoa = new Pessoa();
-            pessoa.setNome(resultado.getString("nome"));
-            pessoa.setEmail(resultado.getString("email"));
-            pessoa.setTelefone(resultado.getString("telefone"));
-            pessoa.setEndereco(resultado.getString("endereco"));
-            pessoa.setPessoaCod(resultado.getInt("pessoaCod"));
-            pessoa.setRestauranteCod(resultado.getInt("restauranteCod"));
-            pessoa.setTipoPessoa(resultado.getInt("tipoPessoa"));
+            pessoa = pessoa.setNome(resultado.getString("nome")).setEmail(resultado.getString("email")).setTelefone(resultado.getString("telefone")).setEndereco(resultado.getString("endereco")).setPessoaCod(resultado.getInt("pessoaCod")).setRestauranteCod(resultado.getInt("restauranteCod")).setTipoPessoa(resultado.getInt("tipoPessoa"));
             pessoas.add(pessoa);
         }
         return pessoas;
@@ -142,14 +124,7 @@ public class PessoaDAO {
         ResultSet resultado = operacaoBuscarUsuario.executeQuery();
         while (resultado.next()) {
             pessoa = new Pessoa();
-            pessoa.setNome(resultado.getString("nome"));
-            pessoa.setSenha(resultado.getString("senha"));
-            pessoa.setEmail(resultado.getString("email"));
-            pessoa.setTelefone(resultado.getString("telefone"));
-            pessoa.setEndereco(resultado.getString("endereco"));
-            pessoa.setPessoaCod(resultado.getInt("pessoaCod"));
-            pessoa.setRestauranteCod(resultado.getInt("restauranteCod"));
-            pessoa.setTipoPessoa(resultado.getInt("tipoPessoa"));
+            pessoa = pessoa.setNome(resultado.getString("nome")).setSenha(resultado.getString("senha")).setEmail(resultado.getString("email")).setTelefone(resultado.getString("telefone")).setEndereco(resultado.getString("endereco")).setPessoaCod(resultado.getInt("pessoaCod")).setRestauranteCod(resultado.getInt("restauranteCod")).setTipoPessoa(resultado.getInt("tipoPessoa"));
         }
         return pessoa;
     }

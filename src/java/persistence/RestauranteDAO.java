@@ -41,19 +41,6 @@ public class RestauranteDAO {
 
     }
 
-    private void closeResources(Connection conn, Statement st) {
-        try {
-            if (st != null) {
-                st.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        } catch (SQLException e) {
-
-        }
-    }
-
     public List<Restaurante> listAll() throws ClassNotFoundException, SQLException {
 
         List<Restaurante> restaurantes = new ArrayList<>();
@@ -61,8 +48,8 @@ public class RestauranteDAO {
         operacaoListAll.clearParameters();
         ResultSet resultado = operacaoListAll.executeQuery();
         while (resultado.next()) {
-            Restaurante restaurante = new Restaurante(resultado.getString("nome"), resultado.getString("nomefantasia"), resultado.getString("telefone"), resultado.getString("endereco"), resultado.getString("sigla"));
-            restaurante.setRestaurantecod(resultado.getInt("restaurantecod"));
+            Restaurante restaurante = new Restaurante();
+            restaurante = restaurante.setNome(resultado.getString("nome")).setNomeFantasia(resultado.getString("nomefantasia")).setTelefone(resultado.getString("telefone")).setEndereco(resultado.getString("endereco")).setSigla(resultado.getString("sigla")).setRestaurantecod(resultado.getInt("restaurantecod"));
             restaurantes.add(restaurante);
         }
         return restaurantes;
@@ -75,14 +62,13 @@ public class RestauranteDAO {
         Restaurante restaurante = null;
         ResultSet resultado = operacaoListarRestaurante.executeQuery();
         while (resultado.next()) {
-            restaurante = new Restaurante(resultado.getString("nome"), resultado.getString("nomefantasia"), resultado.getString("telefone"), resultado.getString("endereco"), resultado.getString("sigla"));
-            restaurante.setRestaurantecod(resultado.getInt("restaurantecod"));
+            restaurante = new Restaurante();
+            restaurante = restaurante.setNome(resultado.getString("nome")).setNomeFantasia(resultado.getString("nomefantasia")).setTelefone(resultado.getString("telefone")).setEndereco(resultado.getString("endereco")).setSigla(resultado.getString("sigla")).setRestaurantecod(resultado.getInt("restaurantecod"));
         }
         return restaurante;
     }
-    
-    public void update (Restaurante restaurante) throws ClassNotFoundException, SQLException
-    {
+
+    public void update(Restaurante restaurante) throws ClassNotFoundException, SQLException {
         operacaoUpdate = DatabaseLocator.getInstance().getConnection().prepareStatement("update restaurante set nome = ?, nomefantasia = ?, telefone = ?, endereco = ?, sigla = ? where restaurantecod = ?");
         operacaoUpdate.clearParameters();
         operacaoUpdate.setString(1, restaurante.getNome());

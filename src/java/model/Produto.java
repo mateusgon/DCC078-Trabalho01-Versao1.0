@@ -8,23 +8,6 @@ public class Produto {
     private Integer tipoItem;
     private Integer restaurantecod;
 
-    public Produto(String nome, Double valor, Integer dificuldade, Integer tipoItem, Integer restaurantecod) {
-        this.nome = nome;
-        this.valor = valor;
-        this.dificuldade = dificuldade;
-        this.tipoItem = tipoItem;
-        this.restaurantecod = restaurantecod;
-    }
-
-    public Produto(Integer produtocod, String nome, Double valor, Integer dificuldade, Integer tipoItem, Integer restaurantecod) {
-        this.produtocod = produtocod;
-        this.nome = nome;
-        this.valor = valor;
-        this.dificuldade = dificuldade;
-        this.tipoItem = tipoItem;
-        this.restaurantecod = restaurantecod;
-    }
-
     public Produto() {
     }
 

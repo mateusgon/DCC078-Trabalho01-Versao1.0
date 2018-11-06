@@ -21,17 +21,6 @@ public class Pedido extends Observable {
     private Cliente cliente;
     private TipoPedido tipoPedido;
 
-    public Pedido(Integer numeroPedido, List<ItemDeVenda> itens, PedidoEstado estado, Double valor, Date dataPedido, Integer dificuldade, Integer idRestaurante, Integer idCliente) {
-        this.numeroPedido = numeroPedido;
-        this.itens = itens;
-        this.valor = valor;
-        this.dataPedido = dataPedido;
-        this.dificuldade = dificuldade;
-        this.idRestaurante = idRestaurante;
-        this.idCliente = idCliente;
-        // ver como fazer com pedido
-    }
-
     public Pedido() {
         this.itens = new ArrayList<>();
         this.estado = null;
