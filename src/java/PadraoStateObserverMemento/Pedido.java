@@ -155,5 +155,14 @@ public class Pedido extends Observable {
         this.tipoPedido = tipoPedido;
         return this;
     }
+    
+    public void saveToMemento()
+    {
+        
+    }
 
+    public void restoreFromMemento()
+    {
+        
+    }
 }
