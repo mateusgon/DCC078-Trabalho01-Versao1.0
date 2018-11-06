@@ -68,7 +68,7 @@
 
         <input type ="hidden" name="idRest" value="${idRest}">
         <input type ="hidden" name="idUsr" value="${idUsuario}">
-        <input class="btn btn-primary btn" type ="Submit" value="Calcular valor"/> 
+        <input class="btn btn-primary btn" type ="Submit" value="Fazer Pedido"/> 
         <input class="btn btn-primary btn" type ="Reset" value ="Limpar" /> 
     </form>
 </div>

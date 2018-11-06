@@ -41,6 +41,7 @@ public class FazerPedidoPostAction implements Action {
         idRestaurante = Integer.parseInt(request.getParameter("idRest"));
 
         pedido = pedido.setIdCliente(idUsr).setIdRestaurante(idRestaurante).setNumeroPedido(PedidoDAO.getInstance().savePedido(pedido)).setEstado(new PedidoEstadoAberto(pedido));;
+        pedido.saveToMemento();
 
         String[] posicoes = request.getParameterValues("entrada");
         String[] posicoes2 = request.getParameterValues("principal");
@@ -101,8 +102,6 @@ public class FazerPedidoPostAction implements Action {
         setDificuldade();
         calculaValor();
         PedidoDAO.getInstance().updatePedido(pedido);
-        
-        pedido.saveToMemento();
 
         request.setAttribute("idRest", idRestaurante);
         request.setAttribute("nomeUsuario", cliente.getNome());

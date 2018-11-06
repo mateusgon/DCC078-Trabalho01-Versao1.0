@@ -166,8 +166,8 @@ public class Pedido extends Observable {
         PedidoMementoDAO.getInstance().saveMemento(pm);
     }
 
-    public void restoreFromMemento()
+    public void restoreFromMemento(PedidoMemento pedido)
     {
-        
+        this.estado = pedido.getEstado();
     }
 }

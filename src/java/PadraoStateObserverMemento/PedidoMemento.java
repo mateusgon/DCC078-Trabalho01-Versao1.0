@@ -1,11 +1,15 @@
 package PadraoStateObserverMemento;
 
+import java.util.Date;
+
 public class PedidoMemento {
 
+    private Date dataModificacao;
     private Integer mementoCod;
     private Integer numeroPedido;
     private PedidoEstado estado;
     private Integer atual;
+    private String nomeEstado;
     private PedidoMemento prox = null;
     private PedidoMemento ant = null;
 
@@ -70,6 +74,21 @@ public class PedidoMemento {
         this.mementoCod = mementoCod;
         return this;
     }
+
+    public Date getDataModificacao() {
+        return dataModificacao;
+    }
+
+    public PedidoMemento setDataModificacao(Date dataModificacao) {
+        this.dataModificacao = dataModificacao;
+        return this;
+    }
+
+    public PedidoMemento setNomeEstado(String nomeEstado) {
+        this.nomeEstado = estado.getNomeEstado();
+        return this;
+    }
+
     
     
     

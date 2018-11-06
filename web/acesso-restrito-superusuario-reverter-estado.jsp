@@ -1,29 +1,25 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="jspf/cabecalho.jspf" %>
 <div class="container text-center">
-    <h1> Lista de pedidos </h1>
+    <h1> Histórico do pedido </h1>
 </div>
 <div class="container">
     <table class="table table-bordered"  style="background-color: white">
         <thead>
             <tr>
-                <th> Número do Pedido </th>
                 <th> Estado </th>
                 <th> Data </th>
-                <th> Valor </th>
-                <th> Informações </th>
+                <th> Atual </th>
                 <th> Reverter Pedidos </th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="pedidos"  items="${pedidos}">
+            <c:forEach var="pedidos"  items="${memento}">
                 <tr>
-                    <td>${pedidos.numeroPedido}</td>
                     <td>${pedidos.nomeEstado}</td>
-                    <td>${pedidos.dataPedido}</td>
-                    <td>R$${pedidos.valor}</td>
-                    <td><a href="FrontController?action=VerInformacoesDoPedido&id=${pedidos.numeroPedido}"> Ver informações  </a></td>
-                    <td><a href="FrontController?action=ReverterEstado&id=${pedidos.numeroPedido}"> Reverter estado </a></td>
+                    <td>${pedidos.dataModificacao}</td>
+                    <td>${pedidos.atual}</td>
+                    <td><a href="FrontController?action=ReverterPedido&id=${pedidos.numeroPedido}"> Reverter </a></td>
                 </tr>
             </c:forEach>
         </tbody>
