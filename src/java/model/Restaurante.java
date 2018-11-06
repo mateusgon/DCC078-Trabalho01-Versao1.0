@@ -9,6 +9,7 @@ public class Restaurante {
     Integer restaurantecod;
     private List<Pessoa> superUsuarios;
     private List<Pessoa> funcionarios;
+    private Integer ativado;
 
     public Restaurante() {
         superUsuarios = new ArrayList<>();
@@ -87,4 +88,15 @@ public class Restaurante {
         return this;
     }
 
+    public Integer getAtivado() {
+        return ativado;
+    }
+
+    public Restaurante setAtivado(Integer ativado) {
+        this.ativado = ativado;
+        return this;
+    }
+
+    
+    
 }

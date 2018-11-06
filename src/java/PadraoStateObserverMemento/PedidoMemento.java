@@ -1,36 +1,16 @@
 package PadraoStateObserverMemento;
 
-import PadraoChainOfResponsibility.TipoPedido;
-import PadraoComposite.ItemDeVenda;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Observable;
+public class PedidoMemento {
 
-public class PedidoMemento extends Observable {
-
+    private Integer mementoCod;
     private Integer numeroPedido;
-    private List<ItemDeVenda> itens;
     private PedidoEstado estado;
-    private Double valor;
-    private Date dataPedido;
-    private Integer dificuldade;
-    private Integer idRestaurante;
-    private Integer idCliente;
-    private String nomeEstado;
-    private Cliente cliente;
-    private TipoPedido tipoPedido;
+    private Integer atual;
     private PedidoMemento prox = null;
     private PedidoMemento ant = null;
-    
-    public PedidoMemento() {
-        this.itens = new ArrayList<>();
-        this.estado = null;
-    }
 
-    public void notificar() {
-        this.setChanged();
-        notifyObservers();
+    public PedidoMemento() {
+        this.estado = null;
     }
 
     public PedidoEstado getEstado() {
@@ -38,13 +18,7 @@ public class PedidoMemento extends Observable {
     }
 
     public PedidoMemento setEstado(PedidoEstado estado) {
-        if (this.estado == null) {
-            this.estado = estado;
-        } else {
-            this.estado = estado;
-            setChanged();
-            notifyObservers();
-        }
+        this.estado = estado;
         return this;
     }
 
@@ -57,85 +31,8 @@ public class PedidoMemento extends Observable {
         return this;
     }
 
-    public List<ItemDeVenda> getItens() {
-        return itens;
-    }
-
-    public PedidoMemento setItens(List<ItemDeVenda> itens) {
-        this.itens = itens;
-        return this;
-    }
-
-    public Double getValor() {
-        return valor;
-    }
-
-    public PedidoMemento setValor(Double valor) {
-        this.valor = valor;
-        return this;
-    }
-
-    public Date getDataPedido() {
-        return dataPedido;
-    }
-
-    public PedidoMemento setDataPedido(Date dataPedido) {
-        this.dataPedido = dataPedido;
-        return this;
-    }
-
-    public Integer getDificuldade() {
-        return dificuldade;
-    }
-
-    public PedidoMemento setDificuldade(Integer dificuldade) {
-        this.dificuldade = dificuldade;
-        return this;
-    }
-
-    public Integer getIdRestaurante() {
-        return idRestaurante;
-    }
-
-    public PedidoMemento setIdRestaurante(Integer idRestaurante) {
-        this.idRestaurante = idRestaurante;
-        return this;
-    }
-
-    public Integer getIdCliente() {
-        return idCliente;
-    }
-
-    public PedidoMemento setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
-        return this;
-    }
-
     public String getNomeEstado() {
         return this.estado.getNomeEstado();
-    }
-
-    public PedidoMemento setNomeEstado(String nomeEstado) {
-        this.nomeEstado = nomeEstado;
-        return this;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public PedidoMemento setCliente(Cliente cliente) {
-        this.cliente = cliente;
-        return this;
-    }
-
-    public TipoPedido getTipoPedido() {
-        return tipoPedido;
-    }
-
-    public PedidoMemento setTipoPedido(TipoPedido tipoPedido) {
-        this.tipoPedido = tipoPedido;
-        return this;
     }
 
     public PedidoMemento getProx() {
@@ -156,6 +53,24 @@ public class PedidoMemento extends Observable {
         return this;
     }
 
+    public Integer getAtual() {
+        return atual;
+    }
+
+    public PedidoMemento setAtual(Integer atual) {
+        this.atual = atual;
+        return this;
+    }
+
+    public Integer getMementoCod() {
+        return mementoCod;
+    }
+
+    public PedidoMemento setMementoCod(Integer mementoCod) {
+        this.mementoCod = mementoCod;
+        return this;
+    }
+    
     
     
 }

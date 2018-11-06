@@ -1,10 +1,8 @@
 package persistence;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Restaurante;
@@ -23,7 +21,7 @@ public class RestauranteDAO {
     }
 
     public void save(Restaurante restaurante) throws SQLException, ClassNotFoundException {
-        operacaoSalvarRestaurante = DatabaseLocator.getInstance().getConnection().prepareStatement("insert into restaurante(nome, nomeFantasia, telefone, endereco, sigla) values (?, ?, ?, ?, ?)");
+        operacaoSalvarRestaurante = DatabaseLocator.getInstance().getConnection().prepareStatement("insert into restaurante(nome, nomeFantasia, telefone, endereco, sigla, ativado) values (?, ?, ?, ?, ?, ?)");
         operacaoListarRestaurante = DatabaseLocator.getInstance().getConnection().prepareStatement("select restaurantecod from restaurante where nome = ? and nomeFantasia = ?");
         operacaoListarRestaurante.clearParameters();
         operacaoSalvarRestaurante.clearParameters();
@@ -32,6 +30,7 @@ public class RestauranteDAO {
         operacaoSalvarRestaurante.setString(3, restaurante.getTelefone());
         operacaoSalvarRestaurante.setString(4, restaurante.getEndereco());
         operacaoSalvarRestaurante.setString(5, restaurante.getSigla());
+        operacaoSalvarRestaurante.setInt(6, 1);
         operacaoSalvarRestaurante.execute();
         operacaoListarRestaurante.setString(1, restaurante.getNome());
         operacaoListarRestaurante.setString(2, restaurante.getNomeFantasia());
@@ -49,7 +48,7 @@ public class RestauranteDAO {
         ResultSet resultado = operacaoListAll.executeQuery();
         while (resultado.next()) {
             Restaurante restaurante = new Restaurante();
-            restaurante = restaurante.setNome(resultado.getString("nome")).setNomeFantasia(resultado.getString("nomefantasia")).setTelefone(resultado.getString("telefone")).setEndereco(resultado.getString("endereco")).setSigla(resultado.getString("sigla")).setRestaurantecod(resultado.getInt("restaurantecod"));
+            restaurante = restaurante.setNome(resultado.getString("nome")).setNomeFantasia(resultado.getString("nomefantasia")).setTelefone(resultado.getString("telefone")).setEndereco(resultado.getString("endereco")).setSigla(resultado.getString("sigla")).setRestaurantecod(resultado.getInt("restaurantecod")).setAtivado(resultado.getInt("ativado"));
             restaurantes.add(restaurante);
         }
         return restaurantes;
@@ -63,7 +62,7 @@ public class RestauranteDAO {
         ResultSet resultado = operacaoListarRestaurante.executeQuery();
         while (resultado.next()) {
             restaurante = new Restaurante();
-            restaurante = restaurante.setNome(resultado.getString("nome")).setNomeFantasia(resultado.getString("nomefantasia")).setTelefone(resultado.getString("telefone")).setEndereco(resultado.getString("endereco")).setSigla(resultado.getString("sigla")).setRestaurantecod(resultado.getInt("restaurantecod"));
+            restaurante = restaurante.setNome(resultado.getString("nome")).setNomeFantasia(resultado.getString("nomefantasia")).setTelefone(resultado.getString("telefone")).setEndereco(resultado.getString("endereco")).setSigla(resultado.getString("sigla")).setRestaurantecod(resultado.getInt("restaurantecod")).setAtivado(resultado.getInt("ativado"));
         }
         return restaurante;
     }
@@ -81,9 +80,10 @@ public class RestauranteDAO {
     }
 
     public void delete(Integer restauranteCod) throws SQLException, ClassNotFoundException {
-        operacaoExcluirRestaurante = DatabaseLocator.getInstance().getConnection().prepareStatement("delete from restaurante where restaurantecod = ?");
+        operacaoExcluirRestaurante = DatabaseLocator.getInstance().getConnection().prepareStatement("update restaurante set ativado = ? where restaurantecod = ?");
         operacaoExcluirRestaurante.clearParameters();
-        operacaoExcluirRestaurante.setInt(1, restauranteCod);
+        operacaoExcluirRestaurante.setInt(1, 0);
+        operacaoExcluirRestaurante.setInt(2, restauranteCod);
         operacaoExcluirRestaurante.execute();
     }
 }

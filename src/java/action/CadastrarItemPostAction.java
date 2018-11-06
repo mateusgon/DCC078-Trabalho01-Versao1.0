@@ -17,7 +17,7 @@ public class CadastrarItemPostAction implements Action {
         Integer dificuldade = Integer.parseInt(request.getParameter("dificuldade"));
         Integer idRest = Integer.parseInt(request.getParameter("idRest"));
         Produto produto = new Produto();
-        produto = produto.setNome(nome).setValor(valor).setDificuldade(dificuldade).setTipoItem(tipoItem).setRestaurantecod(idRest);
+        produto = produto.setNome(nome).setValor(valor).setDificuldade(dificuldade).setTipoItem(tipoItem).setRestaurantecod(idRest).setAtivado(1);
         ProdutoDAO.getInstance().saveProduto(produto);
         request.setAttribute("idRest", idRest);
         RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-restaurante.jsp");

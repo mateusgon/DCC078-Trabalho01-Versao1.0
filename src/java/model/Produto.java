@@ -7,6 +7,7 @@ public class Produto {
     private Integer dificuldade;
     private Integer tipoItem;
     private Integer restaurantecod;
+    private Integer ativado;
 
     public Produto() {
     }
@@ -64,5 +65,16 @@ public class Produto {
         this.restaurantecod = restaurantecod;
         return this;
     }
+
+    public Integer getAtivado() {
+        return ativado;
+    }
+
+    public Produto setAtivado(Integer ativado) {
+        this.ativado = ativado;
+        return this;
+    }
+    
+    
     
 }

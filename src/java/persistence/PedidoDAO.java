@@ -228,21 +228,21 @@ public class PedidoDAO {
         ItemDeVenda item;
         switch (produto.getTipoItem()) {
             case 1:
-                item = new PratoDeEntrada(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+                item = new PratoDeEntrada(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod(), produto.getAtivado());
                 break;
             case 2:
-                item = new PratoPrincipal(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+                item = new PratoPrincipal(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod(), produto.getAtivado());
 
                 break;
             case 3:
-                item = new Bebida(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+                item = new Bebida(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod(), produto.getAtivado());
 
                 break;
             case 4:
-                item = new Sobremesa(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+                item = new Sobremesa(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod(), produto.getAtivado());
                 break;
             default:
-                item = new Sobremesa(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod());
+                item = new Sobremesa(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), produto.getRestaurantecod(), produto.getAtivado());
                 break;
         }
         return item;

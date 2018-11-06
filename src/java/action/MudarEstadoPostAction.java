@@ -108,6 +108,9 @@ public class MudarEstadoPostAction implements Action {
                 }
 
             }
+
+            pedido.saveToMemento();
+
             request.setAttribute("idChefe", funci.getPessoaCod());
             request.setAttribute("pedidos", pedidosPegar);
             RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-chefe.jsp");
@@ -124,6 +127,7 @@ public class MudarEstadoPostAction implements Action {
                 }
 
             }
+            pedido.saveToMemento();
             request.setAttribute("motoboyCod", funci.getPessoaCod());
             request.setAttribute("pedidos", pedidosLista);
             RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-motoqueiro.jsp");

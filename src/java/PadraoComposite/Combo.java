@@ -7,8 +7,8 @@ public class Combo extends ItemDeVenda {
 
     List<ItemDeVenda> itens;
 
-    public Combo(List<ItemDeVenda> itens, Integer codigo, String nome, Double valor, Integer dificuldade, Integer restaurantecod) {
-        super(codigo, nome, valor, dificuldade, restaurantecod);
+    public Combo(List<ItemDeVenda> itens, Integer codigo, String nome, Double valor, Integer dificuldade, Integer restaurantecod, Integer ativado) {
+        super(codigo, nome, valor, dificuldade, restaurantecod, ativado);
         this.itens = itens;
     }
 

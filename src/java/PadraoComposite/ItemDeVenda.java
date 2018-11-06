@@ -9,16 +9,18 @@ public abstract class ItemDeVenda {
     protected Double valor;
     protected Integer dificuldade;
     private Integer restaurantecod;
+    private Integer ativado;
 
     public ItemDeVenda() {
     }
     
-    public ItemDeVenda(Integer codigo, String nome, Double valor, Integer dificuldade, Integer restaurantecod) {
+    public ItemDeVenda(Integer codigo, String nome, Double valor, Integer dificuldade, Integer restaurantecod, Integer ativado) {
         this.codigo = codigo;
         this.nome = nome;
         this.valor = valor;
         this.dificuldade = dificuldade;
         this.restaurantecod = restaurantecod;
+        this.ativado = ativado;
     }
 
     public void adicionar(ItemDeVenda item) throws Exception {
@@ -75,5 +77,13 @@ public abstract class ItemDeVenda {
         return this;
     }
 
-    
+    public Integer getAtivado() {
+        return ativado;
+    }
+
+    public ItemDeVenda setAtivado(Integer ativado) {
+        this.ativado = ativado;
+        return this;
+    }
+
 }

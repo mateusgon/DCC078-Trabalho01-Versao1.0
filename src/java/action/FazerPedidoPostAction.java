@@ -7,6 +7,7 @@ import PadraoComposite.PratoPrincipal;
 import PadraoComposite.Sobremesa;
 import PadraoStateObserverMemento.Cliente;
 import PadraoStateObserverMemento.Pedido;
+import PadraoStateObserverMemento.PedidoEstadoAberto;
 import PadraoStrategy.MetodoPagamento;
 import PadraoStrategy.MetodoPagamentoCartaoCredito;
 import PadraoStrategy.MetodoPagamentoCartaoDebito;
@@ -39,7 +40,7 @@ public class FazerPedidoPostAction implements Action {
         idUsr = Integer.parseInt(request.getParameter("idUsr"));
         idRestaurante = Integer.parseInt(request.getParameter("idRest"));
 
-        pedido = pedido.setIdCliente(idUsr).setIdRestaurante(idRestaurante).setNumeroPedido(PedidoDAO.getInstance().savePedido(pedido));
+        pedido = pedido.setIdCliente(idUsr).setIdRestaurante(idRestaurante).setNumeroPedido(PedidoDAO.getInstance().savePedido(pedido)).setEstado(new PedidoEstadoAberto(pedido));;
 
         String[] posicoes = request.getParameterValues("entrada");
         String[] posicoes2 = request.getParameterValues("principal");
@@ -100,6 +101,8 @@ public class FazerPedidoPostAction implements Action {
         setDificuldade();
         calculaValor();
         PedidoDAO.getInstance().updatePedido(pedido);
+        
+        pedido.saveToMemento();
 
         request.setAttribute("idRest", idRestaurante);
         request.setAttribute("nomeUsuario", cliente.getNome());

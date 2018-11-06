@@ -11,7 +11,7 @@
                 <th> Nome fantasia </th>
                 <th> Sigla </th>
                 <th> Editar </th>
-                <th> Excluir </th>
+                <th> Desativar </th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +21,7 @@
                     <td>${restaurantes.nomeFantasia}</td>
                     <td>${restaurantes.sigla}</td>
                     <td><a href="FrontController?action=EditarRestaurante&id=${restaurantes.restaurantecod}"> Editar  </a></td>
-                    <td><a href="FrontController?action=ExcluirRestaurante&id=${restaurantes.restaurantecod}"> Excluir</a></td>
+                    <td><a href="FrontController?action=DesativarRestaurante&id=${restaurantes.restaurantecod}"> Desativar</a></td>
                 </tr>
             </c:forEach>
         </tbody>

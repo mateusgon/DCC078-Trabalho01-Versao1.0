@@ -40,22 +40,22 @@ public class CadastrarComboPostAction implements Action {
                 switch (produto.getTipoItem()) {
                     case 1:
                         ItemDeVenda entrada = new PratoDeEntrada();
-                        entrada = entrada.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante);
+                        entrada = entrada.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante).setAtivado(1);
                         combo.adicionar(entrada);
                         break;
                     case 2:
                         ItemDeVenda principal = new PratoPrincipal();
-                        principal = principal.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante);
+                        principal = principal.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante).setAtivado(1);
                         combo.adicionar(principal);
                         break;
                     case 3:
                         ItemDeVenda bebida = new Bebida();
-                        bebida = bebida.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante);
+                        bebida = bebida.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante).setAtivado(1);
                         combo.adicionar(bebida);
                         break;
                     case 4:
                         ItemDeVenda sobremesa = new Sobremesa();
-                        sobremesa = sobremesa.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante);
+                        sobremesa = sobremesa.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante).setAtivado(1);
                         combo.adicionar(sobremesa);
                         break;
                     default:

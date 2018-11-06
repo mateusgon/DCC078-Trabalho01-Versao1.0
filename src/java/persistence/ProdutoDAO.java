@@ -20,13 +20,14 @@ public class ProdutoDAO {
     }
 
     public void saveProduto(Produto produto) throws SQLException, ClassNotFoundException {
-        operacaoInsereProduto = DatabaseLocator.getInstance().getConnection().prepareStatement("insert into produto (nome, valor, dificuldade, tipoProduto, restaurantecod) values (?, ?, ?, ?, ?)");
+        operacaoInsereProduto = DatabaseLocator.getInstance().getConnection().prepareStatement("insert into produto (nome, valor, dificuldade, tipoProduto, restaurantecod, ativado) values (?, ?, ?, ?, ?, ?)");
         operacaoInsereProduto.clearParameters();
         operacaoInsereProduto.setString(1, produto.getNome());
         operacaoInsereProduto.setDouble(2, produto.getValor());
         operacaoInsereProduto.setInt(3, produto.getDificuldade());
         operacaoInsereProduto.setInt(4, produto.getTipoItem());
         operacaoInsereProduto.setInt(5, produto.getRestaurantecod());
+        operacaoInsereProduto.setInt(6, 1);
         operacaoInsereProduto.execute();
     }
 
@@ -38,7 +39,7 @@ public class ProdutoDAO {
         ResultSet resultado = operacaoListaProduto.executeQuery();
         while (resultado.next()) {
             Produto produto = new Produto();
-            produto = produto.setValor(resultado.getDouble("valor")).setProdutocod(resultado.getInt("produtocod")).setNome(resultado.getString("nome")).setDificuldade(resultado.getInt("dificuldade")).setTipoItem(resultado.getInt("tipoProduto")).setRestaurantecod(idRestaurante);
+            produto = produto.setValor(resultado.getDouble("valor")).setProdutocod(resultado.getInt("produtocod")).setNome(resultado.getString("nome")).setDificuldade(resultado.getInt("dificuldade")).setTipoItem(resultado.getInt("tipoProduto")).setRestaurantecod(idRestaurante).setAtivado(resultado.getInt("ativado"));
             produtos.add(produto);
         }
         return produtos;
@@ -51,7 +52,7 @@ public class ProdutoDAO {
         operacaoListaProduto.setInt(1, idProduto);
         ResultSet resultado = operacaoListaProduto.executeQuery();
         while (resultado.next()) {
-            produto = produto.setValor(resultado.getDouble("valor")).setProdutocod(resultado.getInt("produtocod")).setNome(resultado.getString("nome")).setDificuldade(resultado.getInt("dificuldade")).setTipoItem(resultado.getInt("tipoProduto")).setRestaurantecod(resultado.getInt("restaurantecod"));
+            produto = produto.setValor(resultado.getDouble("valor")).setProdutocod(resultado.getInt("produtocod")).setNome(resultado.getString("nome")).setDificuldade(resultado.getInt("dificuldade")).setTipoItem(resultado.getInt("tipoProduto")).setRestaurantecod(resultado.getInt("restaurantecod")).setAtivado(resultado.getInt("ativado"));
         }
         return produto;
     }
@@ -68,9 +69,10 @@ public class ProdutoDAO {
     }
 
     public void deleteProduto(Integer produtoCod) throws SQLException, ClassNotFoundException {
-        operacaoDeletaProduto = DatabaseLocator.getInstance().getConnection().prepareStatement("delete from produto where produtocod = ?");
+        operacaoDeletaProduto = DatabaseLocator.getInstance().getConnection().prepareStatement("update produto set ativado = ? where produtocod = ?");
         operacaoDeletaProduto.clearParameters();
-        operacaoDeletaProduto.setInt(1, produtoCod);
+        operacaoDeletaProduto.setInt(1, 0);
+        operacaoDeletaProduto.setInt(2, produtoCod);
         operacaoDeletaProduto.execute();
     }
 }

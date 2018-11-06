@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import persistence.PessoaDAO;
 import persistence.RestauranteDAO;
 
-public class ExcluirRestauranteAction implements Action {
+public class DesativarRestauranteAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

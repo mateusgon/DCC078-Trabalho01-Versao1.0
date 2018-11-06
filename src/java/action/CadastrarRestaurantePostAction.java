@@ -21,7 +21,7 @@ public class CadastrarRestaurantePostAction implements Action {
             response.sendRedirect("erro.jsp");
         } else {
             Restaurante restaurante = new Restaurante();
-            restaurante = restaurante.setNome(nome).setNomeFantasia(nomeFantasia).setTelefone(telefone).setEndereco(endereco).setSigla(sigla);
+            restaurante = restaurante.setNome(nome).setNomeFantasia(nomeFantasia).setTelefone(telefone).setEndereco(endereco).setSigla(sigla).setAtivado(1);
             try {
                 RestauranteDAO.getInstance().save(restaurante);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario.jsp");

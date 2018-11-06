@@ -2,10 +2,13 @@ package PadraoStateObserverMemento;
 
 import PadraoChainOfResponsibility.TipoPedido;
 import PadraoComposite.ItemDeVenda;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Observable;
+import persistence.PedidoDAO;
+import persistence.PedidoMementoDAO;
 
 public class Pedido extends Observable {
 
@@ -156,9 +159,11 @@ public class Pedido extends Observable {
         return this;
     }
     
-    public void saveToMemento()
+    public void saveToMemento() throws ClassNotFoundException, SQLException
     {
-        
+        PedidoMemento pm = new PedidoMemento();
+        pm = pm.setNumeroPedido(this.numeroPedido).setEstado(this.getEstado());
+        PedidoMementoDAO.getInstance().saveMemento(pm);
     }
 
     public void restoreFromMemento()

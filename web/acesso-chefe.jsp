@@ -15,7 +15,7 @@
                 <th> Estado </th>
                 <th> Itens do Pedido </th>
                 <th> Mudar status </th>
-                <th> Reverter mudança </th>
+
             </tr>
         </thead>
         <tbody>
@@ -27,7 +27,6 @@
                     <td>${pedidos.nomeEstado}</td>
                     <td><a href="FrontController?action=VerInformacoesDoPedido&id=${pedidos.numeroPedido}"> Ver Itens do Pedido </a></td>
                     <td><a href="FrontController?action=MudarEstado&id=${pedidos.numeroPedido}&id2=${idChefe}"> Mudar estado </a></td>
-                    <td><a href="FrontController?action=ReverterEstadoPedido&id=${pedidos.numeroPedido}"> Reverter estado </a></td>
                 </tr>
             </c:forEach>
 

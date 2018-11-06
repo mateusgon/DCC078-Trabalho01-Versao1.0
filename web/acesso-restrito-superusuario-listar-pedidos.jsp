@@ -12,6 +12,7 @@
                 <th> Data </th>
                 <th> Valor </th>
                 <th> Informações </th>
+                <th> Reverter Pedidos </th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
                     <td>${pedidos.dataPedido}</td>
                     <td>R$${pedidos.valor}</td>
                     <td><a href="FrontController?action=VerInformacoesDoPedido&id=${pedidos.numeroPedido}"> Ver informações  </a></td>
+                    <td><a href="FrontController?action=ReverterEstadoPedido&id=${pedidos.numeroPedido}"> Reverter estado </a></td>
                 </tr>
             </c:forEach>
         </tbody>
