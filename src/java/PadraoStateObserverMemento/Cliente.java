@@ -12,7 +12,6 @@ import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Mensagem;
-import model.Pessoa;
 import persistence.MensagemDAO;
 
 public class Cliente implements Observer {
@@ -68,60 +67,68 @@ public class Cliente implements Observer {
         return pessoaCod;
     }
 
-    public void setPessoaCod(Integer pessoaCod) {
+    public Cliente setPessoaCod(Integer pessoaCod) {
         this.pessoaCod = pessoaCod;
+        return this;
     }
 
     public Integer getTipoPessoa() {
         return tipoPessoa;
     }
 
-    public void setTipoPessoa(Integer tipoPessoa) {
+    public Cliente setTipoPessoa(Integer tipoPessoa) {
         this.tipoPessoa = tipoPessoa;
+        return this;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public Cliente setNome(String nome) {
         this.nome = nome;
+        return this;
     }
 
     public String getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public Cliente setEndereco(String endereco) {
         this.endereco = endereco;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public Cliente setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) {
+    public Cliente setSenha(String senha) {
         this.senha = senha;
+        return this;
     }
 
     public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public Cliente setTelefone(String telefone) {
         this.telefone = telefone;
+        return this;
     }
 
-    public void setPedido(Observable pedido) {
+    public Cliente setPedido(Observable pedido) {
         this.pedido = pedido;
+        return this;
     }
 
     public void notificarAbertura() throws ClassNotFoundException, SQLException {

@@ -17,7 +17,7 @@ public class ComboDAO {
     private PreparedStatement insereComboProduto;
     private PreparedStatement excluirCombo;
     private PreparedStatement excluirComboProduto;
-    
+
     public static ComboDAO getInstance() {
         return instance;
     }
@@ -58,8 +58,8 @@ public class ComboDAO {
         ArrayList<ItemDeVenda> combos = new ArrayList<>();
         ResultSet resultado = buscaCombo.executeQuery();
         while (resultado.next()) {
-            ArrayList<ItemDeVenda> itensCombo = new ArrayList<>();
-            ItemDeVenda combo = new Combo(itensCombo, resultado.getInt("combocod"), resultado.getString("nome"), resultado.getDouble("valor"), resultado.getInt("dificuldade"), idRest);
+            ItemDeVenda combo = new Combo();
+            combo = combo.setCodigo(resultado.getInt("combocod")).setNome(resultado.getString("nome")).setValor(resultado.getDouble("valor")).setDificuldade(resultado.getInt("dificuldade")).setRestaurantecod(idRest);
             combos.add(combo);
         }
         return combos;
@@ -85,14 +85,13 @@ public class ComboDAO {
         ItemDeVenda combo = null;
         ResultSet resultado = buscaCombo.executeQuery();
         while (resultado.next()) {
-            ArrayList<ItemDeVenda> itensCombo = new ArrayList<>();
-            combo = new Combo(itensCombo, resultado.getInt("combocod"), resultado.getString("nome"), resultado.getDouble("valor"), resultado.getInt("dificuldade"), resultado.getInt("restaurantecod"));
+            combo = new Combo();
+            combo = combo.setCodigo(resultado.getInt("combocod")).setNome(resultado.getString("nome")).setValor(resultado.getDouble("valor")).setDificuldade(resultado.getInt("dificuldade")).setRestaurantecod(resultado.getInt("restaurantecod"));
         }
         return combo;
     }
 
-    public void deleteCombo (Integer idCombo) throws ClassNotFoundException, SQLException
-    {
+    public void deleteCombo(Integer idCombo) throws ClassNotFoundException, SQLException {
         excluirCombo = DatabaseLocator.getInstance().getConnection().prepareStatement("delete from combo where combocod = ?");
         excluirCombo.clearParameters();
         excluirComboProduto = DatabaseLocator.getInstance().getConnection().prepareStatement("delete from combo_produto where combocod = ?");

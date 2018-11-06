@@ -19,24 +19,27 @@ public class Mensagem {
         return mensagem;
     }
 
-    public void setMensagem(String mensagem) {
+    public Mensagem setMensagem(String mensagem) {
         this.mensagem = mensagem;
+        return this;
     }
 
     public Integer getIdReceptor() {
         return idReceptor;
     }
 
-    public void setIdReceptor(Integer idReceptor) {
+    public Mensagem setIdReceptor(Integer idReceptor) {
         this.idReceptor = idReceptor;
+        return this;
     }
 
     public Integer getIdMensagem() {
         return idMensagem;
     }
 
-    public void setIdMensagem(Integer idMensagem) {
+    public Mensagem setIdMensagem(Integer idMensagem) {
         this.idMensagem = idMensagem;
+        return this;
     }
     
 }

@@ -8,7 +8,6 @@ public class PedidoEstadoReceber extends Observable implements PedidoEstado {
 
     public PedidoEstadoReceber() {
         this.nome = "Receber";
-
     }
 
     @Override

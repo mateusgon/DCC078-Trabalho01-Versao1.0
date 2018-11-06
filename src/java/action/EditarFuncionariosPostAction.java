@@ -19,7 +19,8 @@ public class EditarFuncionariosPostAction implements Action {
         String senha = request.getParameter("senha");
         Integer tipoPessoa = Integer.parseInt(request.getParameter("cargos"));
         Integer idRestaurante = Integer.parseInt(request.getParameter("idRestaurante"));
-        Pessoa pessoa = new Pessoa(idUsuario, 0, nome, endereco, email, telefone, tipoPessoa, senha);
+        Pessoa pessoa = new Pessoa();
+        pessoa = pessoa.setPessoaCod(idUsuario).setRestauranteCod(idRestaurante).setNome(nome).setEndereco(endereco).setEmail(email).setTelefone(telefone).setTipoPessoa(tipoPessoa).setSenha(senha);
         PessoaDAO.getInstance().updateUsuario(pessoa);
         request.setAttribute("idRest", idRestaurante);
         RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-restaurante.jsp");

@@ -24,64 +24,72 @@ public abstract class Funcionario {
         return listaPedidos;
     }
 
-    public void setListaPedidos(List listaPedidos) {
+    public Funcionario setListaPedidos(List listaPedidos) {
         this.listaPedidos = listaPedidos;
+        return this;
     }
 
     public List<Funcionario> getFuncionarioSuperior() {
         return funcionarioSuperior;
     }
 
-    public void setFuncionarioSuperior(List<Funcionario> funcionarioSuperior) {
+    public Funcionario setFuncionarioSuperior(List<Funcionario> funcionarioSuperior) {
         this.funcionarioSuperior = funcionarioSuperior;
+        return this;
     }
 
     public Integer getPessoaCod() {
         return pessoaCod;
     }
 
-    public void setPessoaCod(Integer pessoaCod) {
+    public Funcionario setPessoaCod(Integer pessoaCod) {
         this.pessoaCod = pessoaCod;
+        return this;
     }
 
     public Integer getRestauranteCod() {
         return restauranteCod;
     }
 
-    public void setRestauranteCod(Integer restauranteCod) {
+    public Funcionario setRestauranteCod(Integer restauranteCod) {
         this.restauranteCod = restauranteCod;
+        return this;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public Funcionario setNome(String nome) {
         this.nome = nome;
+        return this;
     }
 
     public String getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public Funcionario setEndereco(String endereco) {
         this.endereco = endereco;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public Funcionario setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public Funcionario setTelefone(String telefone) {
         this.telefone = telefone;
+        return this;
     }
 
     public Boolean pegarPedido(Pedido pedido) {

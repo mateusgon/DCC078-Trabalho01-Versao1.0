@@ -32,48 +32,54 @@ public class Produto {
         return produtocod;
     }
 
-    public void setProdutocod(Integer produtocod) {
+    public Produto setProdutocod(Integer produtocod) {
         this.produtocod = produtocod;
+        return this;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public Produto setNome(String nome) {
         this.nome = nome;
+        return this;
     }
 
     public Double getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public Produto setValor(Double valor) {
         this.valor = valor;
+        return this;
     }
 
     public Integer getDificuldade() {
         return dificuldade;
     }
 
-    public void setDificuldade(Integer dificuldade) {
+    public Produto setDificuldade(Integer dificuldade) {
         this.dificuldade = dificuldade;
+        return this;
     }
 
     public Integer getTipoItem() {
         return tipoItem;
     }
 
-    public void setTipoItem(Integer tipoItem) {
+    public Produto setTipoItem(Integer tipoItem) {
         this.tipoItem = tipoItem;
+        return this;
     }
 
     public Integer getRestaurantecod() {
         return restaurantecod;
     }
 
-    public void setRestaurantecod(Integer restaurantecod) {
+    public Produto setRestaurantecod(Integer restaurantecod) {
         this.restaurantecod = restaurantecod;
+        return this;
     }
     
 }

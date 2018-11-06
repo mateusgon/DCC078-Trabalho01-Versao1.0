@@ -18,7 +18,8 @@ public class LoginClientePostAction implements controller.Action {
             if (email.equals("") || senha.equals("")) {
                 response.sendRedirect("erro.jsp"); //tratar erro1
             } else {
-                Pessoa pessoa = new Pessoa(email, senha);
+                Pessoa pessoa = new Pessoa();
+                pessoa = pessoa.setEmail(email).setSenha(senha);
                 PessoaDAO.getInstance().Autentica(pessoa);
                 request.setAttribute("pessoa", pessoa);
 //                HttpSession session = request.getSession();

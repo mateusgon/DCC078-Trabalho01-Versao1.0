@@ -1,5 +1,6 @@
 package PadraoComposite;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Combo extends ItemDeVenda {
@@ -11,6 +12,12 @@ public class Combo extends ItemDeVenda {
         this.itens = itens;
     }
 
+    public Combo() {
+        this.itens = new ArrayList<>();
+    }
+
+    
+    
     @Override
     public void adicionar(ItemDeVenda item) throws Exception {
         this.itens.add(item);

@@ -21,7 +21,8 @@ public class CadastrarSuperUsuarioPostAction implements Action {
         if (nome.equals("") || email.equals("") || restauranteCod.equals("") || telefone.equals("") || email.equals("") || senha.equals("")) {
             response.sendRedirect("erro.jsp");
         } else {
-            Pessoa pessoa = new Pessoa(restauranteCod, nome, endereco, email, telefone, 7, senha);
+            Pessoa pessoa = new Pessoa();
+            pessoa.setRestauranteCod(restauranteCod).setNome(nome).setEndereco(endereco).setEmail(email).setTelefone(telefone).setTipoPessoa(restauranteCod).setSenha(senha);
             try {
                 PessoaDAO.getInstance().saveSuperUsuarioeFuncionario(pessoa);
                 //Redirecionar

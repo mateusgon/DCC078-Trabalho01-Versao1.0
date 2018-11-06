@@ -132,18 +132,25 @@ public class MudarEstadoPostAction implements Action {
     }
 
     public void mudaEstado(String estado) throws SQLException, ClassNotFoundException {
-        if (estado.equals("Preparar")) {
-            pedido.preparar();
-            PedidoDAO.getInstance().updatePedido(pedido, 2);
-        } else if (estado.equals("Pronto")) {
-            pedido.pronto();
-            PedidoDAO.getInstance().updatePedido(pedido, 3);
-        } else if (estado.equals("Enviar")) {
-            pedido.enviar();
-            PedidoDAO.getInstance().updatePedido(pedido, 4);
-        } else {
-            pedido.receber();
-            PedidoDAO.getInstance().updatePedido(pedido, 5);
+        switch (estado) {
+            case "Preparar":
+                pedido.preparar();
+                PedidoDAO.getInstance().updatePedido(pedido, 2);
+                break;
+            case "Pronto":
+                pedido.pronto();
+                PedidoDAO.getInstance().updatePedido(pedido, 3);
+                break;
+            case "Enviar":
+                pedido.enviar();
+                PedidoDAO.getInstance().updatePedido(pedido, 4);
+                break;
+            case "Receber":
+                pedido.receber();
+                PedidoDAO.getInstance().updatePedido(pedido, 5);
+                break;
+            default:
+                break;
         }
     }
 }

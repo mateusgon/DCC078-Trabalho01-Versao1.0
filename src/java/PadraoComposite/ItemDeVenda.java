@@ -10,6 +10,9 @@ public abstract class ItemDeVenda {
     protected Integer dificuldade;
     private Integer restaurantecod;
 
+    public ItemDeVenda() {
+    }
+    
     public ItemDeVenda(Integer codigo, String nome, Double valor, Integer dificuldade, Integer restaurantecod) {
         this.codigo = codigo;
         this.nome = nome;
@@ -31,40 +34,45 @@ public abstract class ItemDeVenda {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public ItemDeVenda setNome(String nome) {
         this.nome = nome;
+        return this;
     }
 
     public Double getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public ItemDeVenda setValor(Double valor) {
         this.valor = valor;
+        return this;
     }
 
     public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public ItemDeVenda setCodigo(Integer codigo) {
         this.codigo = codigo;
+        return this;
     }
 
     public Integer getDificuldade() {
         return dificuldade;
     }
 
-    public void setDificuldade(Integer dificuldade) {
+    public ItemDeVenda setDificuldade(Integer dificuldade) {
         this.dificuldade = dificuldade;
+        return this;
     }
 
     public Integer getRestaurantecod() {
         return restaurantecod;
     }
 
-    public void setRestaurantecod(Integer restaurantecod) {
+    public ItemDeVenda setRestaurantecod(Integer restaurantecod) {
         this.restaurantecod = restaurantecod;
+        return this;
     }
 
     

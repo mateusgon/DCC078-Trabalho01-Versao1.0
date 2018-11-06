@@ -27,7 +27,6 @@ public class VerInformacoesDoPedidoAction implements Action {
             } else {
                 produtos.add(iten);
             }
-
         }
         request.setAttribute("pedido", pedido);
         request.setAttribute("combos", combos);

@@ -17,7 +17,8 @@ public class LoginSuperUsuarioPostAction implements Action {
         if (nome.equals("") || senha.equals("")) {
             response.sendRedirect("erro.jsp");
         } else {
-            Pessoa pessoa = new Pessoa(nome, senha);
+            Pessoa pessoa = new Pessoa();
+            pessoa.setEmail(nome).setSenha(senha);
             PessoaDAO.getInstance().Autentica(pessoa);
             if (7 == pessoa.getTipoPessoa()) {
                 request.setAttribute("idRest", pessoa.getRestauranteCod());

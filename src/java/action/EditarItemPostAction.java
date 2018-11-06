@@ -17,7 +17,8 @@ public class EditarItemPostAction implements Action {
         Integer dificuldade = Integer.parseInt(request.getParameter("dificuldade"));
         Integer idRest = Integer.parseInt(request.getParameter("idRest"));
         Integer idProd = Integer.parseInt(request.getParameter("idProd"));
-        Produto produto = new Produto(idProd, nome, valor, dificuldade, tipoItem, idRest);
+        Produto produto = new Produto();
+        produto = produto.setProdutocod(idProd).setNome(nome).setValor(valor).setDificuldade(dificuldade).setTipoItem(tipoItem).setRestaurantecod(idRest);
         ProdutoDAO.getInstance().updateProduto(produto);
         request.setAttribute("idRest", idRest);
         RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario-restaurante.jsp");

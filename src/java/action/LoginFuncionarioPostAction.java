@@ -27,7 +27,8 @@ public class LoginFuncionarioPostAction implements controller.Action {
             if (email.equals("") || senha.equals("")) {
                 response.sendRedirect("erro.jsp"); //tratar erro1
             } else {
-                Pessoa p = new Pessoa(email, senha);
+                Pessoa p = new Pessoa();
+                p = p.setEmail(email).setSenha(senha);
                 PessoaDAO.getInstance().Autentica(p);
                 request.setAttribute("pessoa", p);
 //                HttpSession session = request.getSession();

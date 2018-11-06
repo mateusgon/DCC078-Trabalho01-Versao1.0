@@ -17,14 +17,21 @@ public class MudarEstadoAction implements Action {
         Integer idChefe = Integer.parseInt(request.getParameter("id2"));
         Pedido pedido = PedidoDAO.getInstance().searchPedidoNumPedido(idPedido);
         String nomeEstado = null;
-        if (pedido.getNomeEstado().equals("Aberto")) {
-            nomeEstado = "Preparar";
-        } else if (pedido.getNomeEstado().equals("Preparar")) {
-            nomeEstado = "Pronto";
-        } else if (pedido.getNomeEstado().equals("Pronto")) {
-            nomeEstado = "Enviar";
-        } else if (pedido.getNomeEstado().equals("Enviar")) {
-            nomeEstado = "Receber";
+        switch (pedido.getNomeEstado()) {
+            case "Aberto":
+                nomeEstado = "Preparar";
+                break;
+            case "Preparar":
+                nomeEstado = "Pronto";
+                break;
+            case "Pronto":
+                nomeEstado = "Enviar";
+                break;
+            case "Enviar":
+                nomeEstado = "Receber";
+                break;
+            default:
+                break;
         }
         request.setAttribute("estadoAtual", pedido.getNomeEstado());
         request.setAttribute("estadoFuturo", nomeEstado);

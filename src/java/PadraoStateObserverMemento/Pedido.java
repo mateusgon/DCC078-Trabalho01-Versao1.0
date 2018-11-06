@@ -66,94 +66,105 @@ public class Pedido extends Observable {
         return estado;
     }
 
-    public void setEstado(PedidoEstado estado) {
-       if (this.estado == null) {
+    public Pedido setEstado(PedidoEstado estado) {
+        if (this.estado == null) {
             this.estado = estado;
         } else {
             this.estado = estado;
             setChanged();
             notifyObservers();
         }
+        return this;
     }
 
     public Integer getNumeroPedido() {
         return numeroPedido;
     }
 
-    public void setNumeroPedido(Integer numeroPedido) {
+    public Pedido setNumeroPedido(Integer numeroPedido) {
         this.numeroPedido = numeroPedido;
+        return this;
     }
 
     public List<ItemDeVenda> getItens() {
         return itens;
     }
 
-    public void setItens(List<ItemDeVenda> itens) {
+    public Pedido setItens(List<ItemDeVenda> itens) {
         this.itens = itens;
+        return this;
     }
 
     public Double getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public Pedido setValor(Double valor) {
         this.valor = valor;
+        return this;
     }
 
     public Date getDataPedido() {
         return dataPedido;
     }
 
-    public void setDataPedido(Date dataPedido) {
+    public Pedido setDataPedido(Date dataPedido) {
         this.dataPedido = dataPedido;
+        return this;
     }
 
     public Integer getDificuldade() {
         return dificuldade;
     }
 
-    public void setDificuldade(Integer dificuldade) {
+    public Pedido setDificuldade(Integer dificuldade) {
         this.dificuldade = dificuldade;
+        return this;
     }
 
     public Integer getIdRestaurante() {
         return idRestaurante;
     }
 
-    public void setIdRestaurante(Integer idRestaurante) {
+    public Pedido setIdRestaurante(Integer idRestaurante) {
         this.idRestaurante = idRestaurante;
+        return this;
     }
 
     public Integer getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Integer idCliente) {
+    public Pedido setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
+        return this;
     }
 
     public String getNomeEstado() {
         return this.estado.getNomeEstado();
     }
 
-    public void setNomeEstado(String nomeEstado) {
+    public Pedido setNomeEstado(String nomeEstado) {
         this.nomeEstado = nomeEstado;
+        return this;
     }
 
     public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public Pedido setCliente(Cliente cliente) {
         this.cliente = cliente;
+        return this;
     }
 
     public TipoPedido getTipoPedido() {
         return tipoPedido;
     }
 
-    public void setTipoPedido(TipoPedido tipoPedido) {
+    public Pedido setTipoPedido(TipoPedido tipoPedido) {
         this.tipoPedido = tipoPedido;
+        return this;
     }
 
 }

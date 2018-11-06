@@ -20,7 +20,8 @@ public class CadastrarRestaurantePostAction implements Action {
         if (nome.equals("") || nomeFantasia.equals("") || sigla.equals("") || telefone.equals("") || endereco.equals("")) {
             response.sendRedirect("erro.jsp");
         } else {
-            Restaurante restaurante = new Restaurante(nome, nomeFantasia, telefone, endereco, sigla);
+            Restaurante restaurante = new Restaurante();
+            restaurante = restaurante.setNome(nome).setNomeFantasia(nomeFantasia).setTelefone(telefone).setEndereco(endereco).setSigla(sigla);
             try {
                 RestauranteDAO.getInstance().save(restaurante);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-superusuario.jsp");

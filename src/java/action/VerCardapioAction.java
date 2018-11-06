@@ -54,34 +54,56 @@ public class VerCardapioAction implements Action {
     }
 
     public void instanciaObjeto(Produto produto) {
-        if (produto.getTipoItem() == 1) {
-            ItemDeVenda entrada = new PratoDeEntrada(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), idRestaurante);
-            pratosDeEntrada.add(entrada);
-        } else if (produto.getTipoItem() == 2) {
-            ItemDeVenda principal = new PratoPrincipal(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), idRestaurante);
-            pratosPrincipais.add(principal);
-        } else if (produto.getTipoItem() == 3) {
-            ItemDeVenda bebida = new Bebida(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), idRestaurante);
-            bebidas.add(bebida);
-        } else {
-            ItemDeVenda sobremesa = new Sobremesa(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), idRestaurante);
-            sobremesas.add(sobremesa);
+        switch (produto.getTipoItem()) {
+            case 1:
+                ItemDeVenda entrada = new PratoDeEntrada();
+                entrada = entrada.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante);
+                pratosDeEntrada.add(entrada);
+                break;
+            case 2:
+                ItemDeVenda principal = new PratoPrincipal();
+                principal = principal.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante);
+                pratosPrincipais.add(principal);
+                break;
+            case 3:
+                ItemDeVenda bebida = new Bebida();
+                bebida = bebida.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante);
+                bebidas.add(bebida);
+                break;
+            case 4:
+                ItemDeVenda sobremesa = new Sobremesa();
+                sobremesa = sobremesa.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante);
+                sobremesas.add(sobremesa);
+                break;
+            default:
+                break;
         }
     }
 
     public void instanciaCombo(Produto produto, ItemDeVenda combo) throws Exception {
-        if (produto.getTipoItem() == 1) {
-            ItemDeVenda entrada = new PratoDeEntrada(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), idRestaurante);
-            combo.adicionar(entrada);
-        } else if (produto.getTipoItem() == 2) {
-            ItemDeVenda principal = new PratoPrincipal(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), idRestaurante);
-            combo.adicionar(principal);
-        } else if (produto.getTipoItem() == 3) {
-            ItemDeVenda bebida = new Bebida(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), idRestaurante);
-            combo.adicionar(bebida);
-        } else {
-            ItemDeVenda sobremesa = new Sobremesa(produto.getProdutocod(), produto.getNome(), produto.getValor(), produto.getDificuldade(), idRestaurante);
-            combo.adicionar(sobremesa);
+        switch (produto.getTipoItem()) {
+            case 1:
+                ItemDeVenda entrada = new PratoDeEntrada();
+                entrada = entrada.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante);
+                combo.adicionar(entrada);
+                break;
+            case 2:
+                ItemDeVenda principal = new PratoPrincipal();
+                principal = principal.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante);
+                combo.adicionar(principal);
+                break;
+            case 3:
+                ItemDeVenda bebida = new Bebida();
+                bebida = bebida.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante);
+                combo.adicionar(bebida);
+                break;
+            case 4:
+                ItemDeVenda sobremesa = new Sobremesa();
+                sobremesa = sobremesa.setCodigo(produto.getProdutocod()).setNome(produto.getNome()).setValor(produto.getValor()).setDificuldade(produto.getDificuldade()).setRestaurantecod(idRestaurante);
+                combo.adicionar(sobremesa);
+                break;
+            default:
+                break;
         }
     }
 }

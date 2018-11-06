@@ -1,17 +1,19 @@
 package PadraoStrategy;
 
-import PadraoStateObserverMemento.Pedido;
-
-public class MetodoPagamentoCartaoDebito implements MetodoPagamento{
+public class MetodoPagamentoCartaoDebito implements MetodoPagamento {
 
     @Override
     public Double obterValor(Double valor) {
-        return valor * 1.10;
+        if (valor > 50.00) {
+            return valor * 1.0;
+        } else {
+            return valor * 1.10;
+        }
     }
 
     @Override
     public String obterNomeMetodoPagamento() {
         return "Pagamento feito com cartão de débito";
     }
-    
+
 }
