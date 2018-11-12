@@ -1,8 +1,10 @@
 package PadraoChainOfResponsibility;
 
 import PadraoStateObserverMemento.Pedido;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import persistence.PessoaDAO;
 
 public abstract class Funcionario {
 
@@ -92,13 +94,16 @@ public abstract class Funcionario {
         return this;
     }
 
-    public Boolean pegarPedido(Pedido pedido) {
+    public Boolean pegarPedido(Pedido pedido) throws SQLException, ClassNotFoundException {
         Boolean contem = false;
         for (Object listaPedido : listaPedidos) {
             TipoPedido tp = (TipoPedido) listaPedido;
-            if (pedido.getTipoPedido().getTipoPedido().equals(tp.getTipoPedido()))
-            {
+            if (pedido.getTipoPedido().getTipoPedido().equals(tp.getTipoPedido())) {
                 contem = true;
+                pedido.setNotificado(true);
+                if (pedido.getNotificado().equals(false)) {
+                    System.out.println("Existe um pedido para o funcionário " + getNome() + ". Número: " + pedido.getNumeroPedido());
+                }
             }
         }
         if (contem) {
@@ -115,4 +120,5 @@ public abstract class Funcionario {
             }
         }
     }
+
 }

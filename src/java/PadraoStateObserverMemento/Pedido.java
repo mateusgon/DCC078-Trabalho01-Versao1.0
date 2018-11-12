@@ -23,7 +23,7 @@ public class Pedido extends Observable {
     private String nomeEstado;
     private Cliente cliente;
     private TipoPedido tipoPedido;
-    private MetodoPagamento metodoPagamento;
+    private Boolean notificado;
 
     public Pedido() {
         this.itens = new ArrayList<>();
@@ -170,15 +170,16 @@ public class Pedido extends Observable {
     public void restoreFromMemento(PedidoMemento pedido)
     {
         this.estado = pedido.getEstado();
+    }    
+
+    public Boolean getNotificado() {
+        return notificado;
     }
 
-    public MetodoPagamento getMetodoPagamento() {
-        return metodoPagamento;
-    }
-
-    public Pedido setMetodoPagamento(MetodoPagamento metodoPagamento) {
-        this.metodoPagamento = metodoPagamento;
+    public Pedido setNotificado(Boolean notificado) {
+        this.notificado = notificado;
         return this;
     }
+    
     
 }

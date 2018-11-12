@@ -51,6 +51,7 @@ public class PessoaDAO {
         operacaoCriarCliente.setInt(5, pessoa.getTipoPessoa());
         operacaoCriarCliente.setString(6, pessoa.getSenha());
         operacaoCriarCliente.setInt(7, pessoa.getRestauranteCod());
+        operacaoCriarCliente.setBoolean(8, false);
         operacaoCriarCliente.execute();
         operacaoListarUsuario.setString(1, pessoa.getEmail());
         operacaoListarUsuario.setString(2, pessoa.getSenha());
@@ -146,4 +147,5 @@ public class PessoaDAO {
         operacaoAtualizarUsuario.setInt(7, pessoa.getPessoaCod());
         operacaoAtualizarUsuario.executeUpdate();
     }
+    
 }

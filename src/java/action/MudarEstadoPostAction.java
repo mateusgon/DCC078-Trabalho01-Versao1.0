@@ -86,11 +86,11 @@ public class MudarEstadoPostAction implements Action {
 
                 for (Iterator i = funcionariosEasy.iterator(); i.hasNext();) {
                     Funcionario funcionario = (Funcionario) i.next();
-                    for (Iterator i2 = funcionariosMedium.iterator(); i.hasNext();) {
+                    for (Iterator i2 = funcionariosMedium.iterator(); i2.hasNext();) {
                         Funcionario funcionario1 = (Funcionario) i2.next();
                         funcionario.getFuncionarioSuperior().add(funcionario1);
                     }
-                    for (Iterator i3 = funcionariosHard.iterator(); i.hasNext();) {
+                    for (Iterator i3 = funcionariosHard.iterator(); i3.hasNext();) {
                         Funcionario funcionario2 = (Funcionario) i3.next();
                         funcionario.getFuncionarioSuperior().add(funcionario2);
                     }
@@ -98,7 +98,7 @@ public class MudarEstadoPostAction implements Action {
 
                 for (Iterator i = funcionariosMedium.iterator(); i.hasNext();) {
                     Funcionario funcionario = (Funcionario) i.next();
-                    for (Iterator i3 = funcionariosHard.iterator(); i.hasNext();) {
+                    for (Iterator i3 = funcionariosHard.iterator(); i3.hasNext();) {
                         Funcionario funcionario2 = (Funcionario) i3.next();
                         funcionario.getFuncionarioSuperior().add(funcionario2);
                     }
@@ -111,7 +111,6 @@ public class MudarEstadoPostAction implements Action {
                     if ((pedido.getNomeEstado().equals("Aberto") || pedido.getNomeEstado().equals("Preparando")) && funcionari.pegarPedido(pedido)) {
                         pedidosPegar.add(pedido);
                     }
-
                 }
 
                 pedido.saveToMemento();
