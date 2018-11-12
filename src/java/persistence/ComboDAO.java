@@ -7,11 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Pessoa;
 
 public class ComboDAO {
 
-    private static ComboDAO instance = new ComboDAO();
+    private static final ComboDAO instance = new ComboDAO();
     private PreparedStatement insereCombo;
     private PreparedStatement buscaCombo;
     private PreparedStatement insereComboProduto;
@@ -22,6 +21,10 @@ public class ComboDAO {
         return instance;
     }
 
+    private ComboDAO() {
+    
+    }
+    
     public void saveCombo(ItemDeVenda combo) throws ClassNotFoundException, SQLException, Exception {
         insereCombo = DatabaseLocator.getInstance().getConnection().prepareStatement("insert into combo (nome, valor, dificuldade, restaurantecod, ativado) values (?, ?, ?, ?, ?)");
         insereCombo.clearParameters();

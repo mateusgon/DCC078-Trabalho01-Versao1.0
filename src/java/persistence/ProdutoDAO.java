@@ -9,7 +9,7 @@ import model.Produto;
 
 public class ProdutoDAO {
 
-    private static ProdutoDAO instance = new ProdutoDAO();
+    private static final ProdutoDAO instance = new ProdutoDAO();
     private PreparedStatement operacaoInsereProduto;
     private PreparedStatement operacaoListaProduto;
     private PreparedStatement operacaoAtualizaProduto;
@@ -19,6 +19,10 @@ public class ProdutoDAO {
         return instance;
     }
 
+    private ProdutoDAO() {
+    
+    }
+    
     public void saveProduto(Produto produto) throws SQLException, ClassNotFoundException {
         operacaoInsereProduto = DatabaseLocator.getInstance().getConnection().prepareStatement("insert into produto (nome, valor, dificuldade, tipoProduto, restaurantecod, ativado) values (?, ?, ?, ?, ?, ?)");
         operacaoInsereProduto.clearParameters();

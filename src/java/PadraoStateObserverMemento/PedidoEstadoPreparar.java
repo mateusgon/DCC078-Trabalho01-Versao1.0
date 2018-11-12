@@ -1,38 +1,43 @@
 package PadraoStateObserverMemento;
 
+import PadraoTemplateMethod.MensagemPreparado;
+import PadraoTemplateMethod.MensagemTemplate;
 import java.util.Observable;
 
 public class PedidoEstadoPreparar extends Observable implements PedidoEstado {
 
-    private String nome;
+    private final String nome;
+    private final MensagemTemplate mensagem;
 
     public PedidoEstadoPreparar() {
         this.nome = "Preparando";
+        mensagem = new MensagemPreparado();
     }
 
     @Override
-    public void aberto(Pedido a) {
-
+    public Boolean aberto(Pedido a) {
+        return false;
     }
 
     @Override
-    public void preparando(Pedido a) {
-
+    public Boolean preparando(Pedido a) {
+        return false;
     }
 
     @Override
-    public void pronto(Pedido a) {
+    public Boolean pronto(Pedido a) {
         a.setEstado(new PedidoEstadoPronto());
+        return true;
     }
 
     @Override
-    public void enviado(Pedido a) {
-
+    public Boolean enviado(Pedido a) {
+        return false;
     }
 
     @Override
-    public void recebido(Pedido a) {
-
+    public Boolean recebido(Pedido a) {
+        return false;
     }
 
     @Override
@@ -40,4 +45,9 @@ public class PedidoEstadoPreparar extends Observable implements PedidoEstado {
         return this.nome;
     }
 
+    @Override
+    public MensagemTemplate getMensagem() {
+        return this.mensagem;
+    }
+    
 }

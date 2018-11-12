@@ -9,7 +9,7 @@ import model.Restaurante;
 
 public class RestauranteDAO {
 
-    private static RestauranteDAO instance = new RestauranteDAO();
+    private static final RestauranteDAO instance = new RestauranteDAO();
     private PreparedStatement operacaoSalvarRestaurante;
     private PreparedStatement operacaoListarRestaurante;
     private PreparedStatement operacaoListAll;
@@ -19,6 +19,10 @@ public class RestauranteDAO {
     public static RestauranteDAO getInstance() {
         return instance;
     }
+
+    private RestauranteDAO() {
+    
+    } 
 
     public void save(Restaurante restaurante) throws SQLException, ClassNotFoundException {
         operacaoSalvarRestaurante = DatabaseLocator.getInstance().getConnection().prepareStatement("insert into restaurante(nome, nomeFantasia, telefone, endereco, sigla, ativado) values (?, ?, ?, ?, ?, ?)");

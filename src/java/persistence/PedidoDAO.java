@@ -31,7 +31,7 @@ import model.Produto;
 
 public class PedidoDAO {
 
-    private static PedidoDAO instance = new PedidoDAO();
+    private static final PedidoDAO instance = new PedidoDAO();
     private PreparedStatement inserePedido;
     private PreparedStatement buscaPedido;
     private PreparedStatement buscaPedidoCombo;
@@ -42,6 +42,10 @@ public class PedidoDAO {
         return instance;
     }
 
+    private PedidoDAO() {
+    
+    }
+    
     public Integer savePedido(Pedido pedido) throws SQLException, ClassNotFoundException {
         inserePedido = DatabaseLocator.getInstance().getConnection().prepareStatement("insert into pedido (estado, datapedido, restaurantecod, pessoacod) values (?, ?, ?, ?)");
         inserePedido.clearParameters();

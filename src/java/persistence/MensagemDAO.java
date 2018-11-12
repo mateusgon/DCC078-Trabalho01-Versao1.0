@@ -9,13 +9,17 @@ import model.Mensagem;
 
 public class MensagemDAO {
 
-    private static MensagemDAO instance = new MensagemDAO();
+    private static final MensagemDAO instance = new MensagemDAO();
     private PreparedStatement insereMensagem;
     private PreparedStatement buscaMensagem;
     private PreparedStatement excluirMensagem;
   
     public static MensagemDAO getInstance() {
         return instance;
+    }
+
+    private MensagemDAO() {
+    
     }
 
     public void saveMensagem (Mensagem mensagem) throws ClassNotFoundException, SQLException

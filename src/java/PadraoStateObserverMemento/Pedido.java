@@ -2,6 +2,7 @@ package PadraoStateObserverMemento;
 
 import PadraoChainOfResponsibility.TipoPedido;
 import PadraoComposite.ItemDeVenda;
+import PadraoStrategy.MetodoPagamento;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,30 +23,31 @@ public class Pedido extends Observable {
     private String nomeEstado;
     private Cliente cliente;
     private TipoPedido tipoPedido;
+    private MetodoPagamento metodoPagamento;
 
     public Pedido() {
         this.itens = new ArrayList<>();
         this.estado = null;
     }
 
-    public void abrir() {
-        estado.aberto(this);
+    public Boolean abrir() {
+        return estado.aberto(this);
     }
 
-    public void preparar() {
-        estado.preparando(this);
+    public Boolean preparar() {
+        return estado.preparando(this);
     }
 
-    public void pronto() {
-        estado.pronto(this);
+    public Boolean pronto() {
+        return estado.pronto(this);
     }
 
-    public void enviar() {
-        estado.enviado(this);
+    public Boolean enviar() {
+        return estado.enviado(this);
     }
 
-    public void receber() {
-        estado.recebido(this);
+    public Boolean receber() {
+        return estado.recebido(this);
     }
 
     public void notificar() {
@@ -169,4 +171,14 @@ public class Pedido extends Observable {
     {
         this.estado = pedido.getEstado();
     }
+
+    public MetodoPagamento getMetodoPagamento() {
+        return metodoPagamento;
+    }
+
+    public Pedido setMetodoPagamento(MetodoPagamento metodoPagamento) {
+        this.metodoPagamento = metodoPagamento;
+        return this;
+    }
+    
 }

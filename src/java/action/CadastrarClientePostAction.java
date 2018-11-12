@@ -1,7 +1,10 @@
 package action;
 
 import controller.Action;
+import java.io.IOException;
+import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Pessoa;
@@ -25,7 +28,7 @@ public class CadastrarClientePostAction implements Action {
             RequestDispatcher dispatcher = request.getRequestDispatcher("acesso-restrito-cliente.jsp");
             dispatcher.forward(request, response);
         }
-        catch (Exception ex)
+        catch (IOException | ClassNotFoundException | SQLException | ServletException ex)
         {
         
         }
